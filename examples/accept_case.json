@@ -1,0 +1,34 @@
+{
+    "question": "What was the total revenue for Q1 2024?",
+    "evidence": {
+        "type": "table",
+        "content": {
+            "columns": [
+                "Quarter",
+                "Revenue"
+            ],
+            "rows": [
+                [
+                    "Q1 2024",
+                    "5000000"
+                ],
+                [
+                    "Q2 2024",
+                    "5500000"
+                ],
+                [
+                    "Q3 2024",
+                    "6000000"
+                ]
+            ],
+            "units": {
+                "Revenue": "dollars"
+            }
+        }
+    },
+    "candidate_answer": "The total revenue for Q1 was 5,000,000 dollars.",
+    "options": {
+        "tolerance": 0.01,
+        "log_run": true
+    }
+}

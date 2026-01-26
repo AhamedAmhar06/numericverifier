@@ -1,0 +1,194 @@
+{
+  "results": [
+    {
+      "test_id": "T1",
+      "category": "Correct numeric answers",
+      "description": "Simple correct answer matching evidence exactly",
+      "expected": "ACCEPT",
+      "actual": "ACCEPT",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Correct behaviour",
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations successful. Coverage meets threshold.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T2",
+      "category": "Arithmetic errors - percent change",
+      "description": "Incorrect percent change calculation",
+      "expected": "REPAIR",
+      "actual": "REPAIR",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 1,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Correct behaviour",
+      "rationale": "Good evidence coverage (100.0%), but issues detected: recomputation failures. Errors appear correctable.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T3",
+      "category": "Arithmetic errors - totals",
+      "description": "Incorrect total calculation",
+      "expected": "REPAIR",
+      "actual": "FLAG",
+      "key_signals": {
+        "coverage_ratio": 0.0,
+        "unsupported_claims": 1,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Over-conservative",
+      "rationale": "Issues detected: low coverage (0.0%), many unsupported claims (1). Requires review.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T4",
+      "category": "Fabricated / unsupported numbers",
+      "description": "Number not present in evidence",
+      "expected": "FLAG",
+      "actual": "FLAG",
+      "key_signals": {
+        "coverage_ratio": 0.0,
+        "unsupported_claims": 1,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Correct behaviour",
+      "rationale": "Issues detected: low coverage (0.0%), many unsupported claims (1). Requires review.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T5",
+      "category": "Scale mismatches",
+      "description": "Million vs absolute value mismatch",
+      "expected": "REPAIR",
+      "actual": "ACCEPT",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Over-permissive",
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations successful. Coverage meets threshold.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T6",
+      "category": "Scale mismatches",
+      "description": "Incorrect scale (million vs thousand)",
+      "expected": "REPAIR",
+      "actual": "REPAIR",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 0,
+        "scale_mismatches": 1,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Correct behaviour",
+      "rationale": "Good evidence coverage (100.0%), but issues detected: scale mismatches. Errors appear correctable.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T7",
+      "category": "Temporal mismatches",
+      "description": "Wrong year in answer",
+      "expected": "FLAG",
+      "actual": "ACCEPT",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 1,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Over-permissive",
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations successful. Coverage meets threshold.",
+      "claims_count": 2
+    },
+    {
+      "test_id": "T8",
+      "category": "Mixed correct + incorrect claims",
+      "description": "Some correct, some incorrect numbers",
+      "expected": "FLAG",
+      "actual": "FLAG",
+      "key_signals": {
+        "coverage_ratio": 0.6666666666666666,
+        "unsupported_claims": 1,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Correct behaviour",
+      "rationale": "Issues detected: low coverage (66.7%), many unsupported claims (1). Requires review.",
+      "claims_count": 3
+    },
+    {
+      "test_id": "T9",
+      "category": "Ambiguous grounding cases",
+      "description": "Multiple matching evidence values",
+      "expected": "FLAG",
+      "actual": "ACCEPT",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 1,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Over-permissive",
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations successful. Coverage meets threshold.",
+      "claims_count": 1
+    },
+    {
+      "test_id": "T10",
+      "category": "Correct numeric answers",
+      "description": "Percent change correctly calculated",
+      "expected": "ACCEPT",
+      "actual": "ACCEPT",
+      "key_signals": {
+        "coverage_ratio": 1.0,
+        "unsupported_claims": 0,
+        "recomputation_failures": 0,
+        "scale_mismatches": 0,
+        "period_mismatches": 0,
+        "ambiguity_count": 0,
+        "max_relative_error": 0.0
+      },
+      "outcome": "Correct behaviour",
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations successful. Coverage meets threshold.",
+      "claims_count": 2
+    }
+  ]
+}

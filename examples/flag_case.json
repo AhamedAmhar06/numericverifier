@@ -1,0 +1,12 @@
+{
+    "question": "What were the key financial metrics for 2024?",
+    "evidence": {
+        "type": "text",
+        "content": "In 2024, the company reported revenue of $20 million and operating expenses of $15 million. Net income was $5 million."
+    },
+    "candidate_answer": "The company had revenue of $25 million, expenses of $12 million, and net income of $13 million in 2024.",
+    "options": {
+        "tolerance": 0.01,
+        "log_run": true
+    }
+}

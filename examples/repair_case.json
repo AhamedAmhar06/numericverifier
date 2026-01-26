@@ -1,0 +1,30 @@
+{
+    "question": "What was the revenue growth from Q1 to Q2?",
+    "evidence": {
+        "type": "table",
+        "content": {
+            "columns": [
+                "Quarter",
+                "Revenue"
+            ],
+            "rows": [
+                [
+                    "Q1 2024",
+                    "5000000"
+                ],
+                [
+                    "Q2 2024",
+                    "5500000"
+                ]
+            ],
+            "units": {
+                "Revenue": "dollars"
+            }
+        }
+    },
+    "candidate_answer": "The revenue grew by 12% from 5,000,000 to 5,500,000 dollars.",
+    "options": {
+        "tolerance": 0.01,
+        "log_run": true
+    }
+}

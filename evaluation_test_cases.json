@@ -1,0 +1,256 @@
+{
+    "test_cases": [
+        {
+            "id": "T1",
+            "category": "Correct numeric answers",
+            "description": "Simple correct answer matching evidence exactly",
+            "expected": "ACCEPT",
+            "input": {
+                "question": "What was the revenue for Q1?",
+                "evidence": {
+                    "type": "table",
+                    "content": {
+                        "columns": [
+                            "Quarter",
+                            "Revenue"
+                        ],
+                        "rows": [
+                            [
+                                "Q1",
+                                "1000000"
+                            ],
+                            [
+                                "Q2",
+                                "1100000"
+                            ]
+                        ],
+                        "units": {
+                            "Revenue": "dollars"
+                        }
+                    }
+                },
+                "candidate_answer": "The revenue for Q1 was $1,000,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T2",
+            "category": "Arithmetic errors - percent change",
+            "description": "Incorrect percent change calculation",
+            "expected": "REPAIR",
+            "input": {
+                "question": "What was the revenue growth from Q1 to Q2?",
+                "evidence": {
+                    "type": "table",
+                    "content": {
+                        "columns": [
+                            "Quarter",
+                            "Revenue"
+                        ],
+                        "rows": [
+                            [
+                                "Q1",
+                                "1000000"
+                            ],
+                            [
+                                "Q2",
+                                "1100000"
+                            ]
+                        ],
+                        "units": {
+                            "Revenue": "dollars"
+                        }
+                    }
+                },
+                "candidate_answer": "Revenue grew by 15% from Q1 to Q2.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T3",
+            "category": "Arithmetic errors - totals",
+            "description": "Incorrect total calculation",
+            "expected": "REPAIR",
+            "input": {
+                "question": "What was the total revenue for Q1 and Q2?",
+                "evidence": {
+                    "type": "table",
+                    "content": {
+                        "columns": [
+                            "Quarter",
+                            "Revenue"
+                        ],
+                        "rows": [
+                            [
+                                "Q1",
+                                "1000000"
+                            ],
+                            [
+                                "Q2",
+                                "1100000"
+                            ]
+                        ],
+                        "units": {
+                            "Revenue": "dollars"
+                        }
+                    }
+                },
+                "candidate_answer": "The total revenue for Q1 and Q2 was $2,500,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T4",
+            "category": "Fabricated / unsupported numbers",
+            "description": "Number not present in evidence",
+            "expected": "FLAG",
+            "input": {
+                "question": "What was the revenue?",
+                "evidence": {
+                    "type": "text",
+                    "content": "The company reported revenue of 1000000 dollars in Q1."
+                },
+                "candidate_answer": "The revenue was $2,500,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T5",
+            "category": "Scale mismatches",
+            "description": "Million vs absolute value mismatch",
+            "expected": "REPAIR",
+            "input": {
+                "question": "What was the revenue?",
+                "evidence": {
+                    "type": "text",
+                    "content": "The company reported revenue of 5000000 dollars."
+                },
+                "candidate_answer": "The revenue was 5 million dollars.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T6",
+            "category": "Scale mismatches",
+            "description": "Incorrect scale (million vs thousand)",
+            "expected": "REPAIR",
+            "input": {
+                "question": "What was the revenue?",
+                "evidence": {
+                    "type": "text",
+                    "content": "The company reported revenue of 5000000 dollars."
+                },
+                "candidate_answer": "The revenue was 5,000 thousand dollars.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T7",
+            "category": "Temporal mismatches",
+            "description": "Wrong year in answer",
+            "expected": "FLAG",
+            "input": {
+                "question": "What was the revenue in 2024?",
+                "evidence": {
+                    "type": "text",
+                    "content": "In 2024, the company reported revenue of 1000000 dollars. In 2023, revenue was 900000 dollars."
+                },
+                "candidate_answer": "The revenue in 2023 was $1,000,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T8",
+            "category": "Mixed correct + incorrect claims",
+            "description": "Some correct, some incorrect numbers",
+            "expected": "FLAG",
+            "input": {
+                "question": "What were the key financial metrics?",
+                "evidence": {
+                    "type": "text",
+                    "content": "Revenue was 1000000 dollars. Expenses were 800000 dollars. Net income was 200000 dollars."
+                },
+                "candidate_answer": "Revenue was $1,000,000, expenses were $900,000, and net income was $200,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T9",
+            "category": "Ambiguous grounding cases",
+            "description": "Multiple matching evidence values",
+            "expected": "FLAG",
+            "input": {
+                "question": "What was the value?",
+                "evidence": {
+                    "type": "text",
+                    "content": "The first quarter value was 1000000. The second quarter value was also 1000000. The third quarter value was 1000000."
+                },
+                "candidate_answer": "The value was $1,000,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        },
+        {
+            "id": "T10",
+            "category": "Correct numeric answers",
+            "description": "Percent change correctly calculated",
+            "expected": "ACCEPT",
+            "input": {
+                "question": "What was the revenue growth?",
+                "evidence": {
+                    "type": "table",
+                    "content": {
+                        "columns": [
+                            "Quarter",
+                            "Revenue"
+                        ],
+                        "rows": [
+                            [
+                                "Q1",
+                                "1000000"
+                            ],
+                            [
+                                "Q2",
+                                "1100000"
+                            ]
+                        ],
+                        "units": {
+                            "Revenue": "dollars"
+                        }
+                    }
+                },
+                "candidate_answer": "Revenue grew by 10% from Q1 to Q2, reaching $1,100,000.",
+                "options": {
+                    "tolerance": 0.01,
+                    "log_run": false
+                }
+            }
+        }
+    ]
+}
