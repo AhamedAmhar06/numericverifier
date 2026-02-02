@@ -14,21 +14,21 @@ def ensure_runs_directory():
     return runs_dir
 
 
-def log_run(report: AuditReport, runs_dir: Path = None):
+def log_run(report: AuditReport, runs_dir: Path = None, extra: Dict[str, Any] = None):
     """
     Log a verification run to runs/logs.jsonl.
-    
-    Appends one JSON line per run.
+    Each run logs: question, evidence type, candidate_answer, claims, verification (recomputed values), signals, decision.
+    Optional extra (e.g. generated_answer, evidence) is merged for reproducibility.
     """
     if runs_dir is None:
         runs_dir = ensure_runs_directory()
     
     logs_file = runs_dir / "logs.jsonl"
     
-    # Convert report to dict
     report_dict = report.to_dict()
+    if extra:
+        report_dict.update(extra)
     
-    # Write as JSONL (one JSON object per line)
     with open(logs_file, 'a') as f:
         f.write(json.dumps(report_dict) + '\n')
 

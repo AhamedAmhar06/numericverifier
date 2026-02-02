@@ -77,12 +77,14 @@ def parse_table_evidence(table_data: Dict[str, Any]) -> List[EvidenceItem]:
             
             location = f"row:{row_idx},col:{col_idx}"
             unit = units.get(col_name)
+            # Use first column of row as context (e.g. "Q1 2024") for period-mismatch checks
+            context = str(row[0]) if row else None
             
             item = EvidenceItem(
                 value=value,
                 source="table",
                 location=location,
-                context=None
+                context=context
             )
             items.append(item)
     
