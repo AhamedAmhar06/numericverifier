@@ -90,7 +90,7 @@ class VerificationResult:
 
 @dataclass
 class VerifierSignals:
-    """Risk signals computed from verification results."""
+    """Risk signals computed from verification results. Schema v2 adds P&L fields."""
     unsupported_claims_count: int = 0
     coverage_ratio: float = 0.0
     recomputation_fail_count: int = 0
@@ -99,10 +99,17 @@ class VerifierSignals:
     scale_mismatch_count: int = 0
     period_mismatch_count: int = 0
     ambiguity_count: int = 0
+    # Schema v2 (P&L-only refactor)
+    schema_version: int = 2
+    pnl_table_detected: int = 0  # 0 or 1
+    pnl_identity_fail_count: int = 0
+    pnl_margin_fail_count: int = 0
+    pnl_missing_baseline_count: int = 0
+    pnl_period_strict_mismatch_count: int = 0
     
     def to_dict(self) -> Dict[str, Any]:
-        """Convert to dictionary for JSON serialization."""
-        return {
+        """Convert to dictionary for JSON/CSV. Includes v2 fields."""
+        d = {
             "unsupported_claims_count": self.unsupported_claims_count,
             "coverage_ratio": self.coverage_ratio,
             "recomputation_fail_count": self.recomputation_fail_count,
@@ -110,8 +117,15 @@ class VerifierSignals:
             "mean_relative_error": self.mean_relative_error,
             "scale_mismatch_count": self.scale_mismatch_count,
             "period_mismatch_count": self.period_mismatch_count,
-            "ambiguity_count": self.ambiguity_count
+            "ambiguity_count": self.ambiguity_count,
         }
+        d["schema_version"] = self.schema_version
+        d["pnl_table_detected"] = self.pnl_table_detected
+        d["pnl_identity_fail_count"] = self.pnl_identity_fail_count
+        d["pnl_margin_fail_count"] = self.pnl_margin_fail_count
+        d["pnl_missing_baseline_count"] = self.pnl_missing_baseline_count
+        d["pnl_period_strict_mismatch_count"] = self.pnl_period_strict_mismatch_count
+        return d
 
 
 @dataclass

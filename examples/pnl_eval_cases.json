@@ -1,0 +1,120 @@
+[
+  {
+    "case_id": "P001",
+    "scenario_type": "Identity correct",
+    "question": "What was gross profit in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": ["Line Item", "2022", "2023"],
+        "rows": [
+          ["Revenue", "100", "120"],
+          ["COGS", "40", "50"],
+          ["Gross Profit", "60", "70"]
+        ],
+        "units": {}
+      }
+    },
+    "endpoint": "/verify-only",
+    "candidate_answer": "Gross profit was 60.",
+    "expected_human_decision": "ACCEPT"
+  },
+  {
+    "case_id": "P002",
+    "scenario_type": "Identity wrong but repairable",
+    "question": "What was gross profit in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": ["Line Item", "2022"],
+        "rows": [
+          ["Revenue", "100"],
+          ["COGS", "40"],
+          ["Gross Profit", "50"]
+        ],
+        "units": {}
+      }
+    },
+    "endpoint": "/verify-only",
+    "candidate_answer": "Gross profit was 50.",
+    "expected_human_decision": "REPAIR"
+  },
+  {
+    "case_id": "P003",
+    "scenario_type": "YoY missing baseline",
+    "question": "What was the YoY growth from 2021 to 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": ["Line Item", "2022", "2023"],
+        "rows": [
+          ["Revenue", "100", "120"],
+          ["COGS", "40", "50"],
+          ["Gross Profit", "60", "70"]
+        ],
+        "units": {}
+      }
+    },
+    "endpoint": "/verify-only",
+    "candidate_answer": "YoY growth was 20%.",
+    "expected_human_decision": "FLAG"
+  },
+  {
+    "case_id": "P004",
+    "scenario_type": "Margin check correct",
+    "question": "What was gross margin in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": ["Line Item", "2022"],
+        "rows": [
+          ["Revenue", "100"],
+          ["COGS", "40"],
+          ["Gross Profit", "60"]
+        ],
+        "units": {}
+      }
+    },
+    "endpoint": "/verify-only",
+    "candidate_answer": "Gross margin was 60%.",
+    "expected_human_decision": "ACCEPT"
+  },
+  {
+    "case_id": "P005",
+    "scenario_type": "Synonym-heavy table (Sales, Cost of revenue, SG&A)",
+    "question": "What was sales in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": ["Line Item", "2022", "2023"],
+        "rows": [
+          ["Sales", "100", "120"],
+          ["Cost of revenue", "40", "50"],
+          ["Gross Profit", "60", "70"],
+          ["SG&A", "15", "18"],
+          ["Operating Income", "45", "52"]
+        ],
+        "units": {}
+      }
+    },
+    "endpoint": "/verify-only",
+    "candidate_answer": "Sales was 100.",
+    "expected_human_decision": "ACCEPT"
+  },
+  {
+    "case_id": "P006",
+    "scenario_type": "Non-P&L table",
+    "question": "What is the value?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": ["Category", "Count"],
+        "rows": [["A", "10"], ["B", "20"]],
+        "units": {}
+      }
+    },
+    "endpoint": "/verify-only",
+    "candidate_answer": "The value is 10.",
+    "expected_human_decision": "FLAG"
+  }
+]

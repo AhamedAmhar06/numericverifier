@@ -3,13 +3,20 @@
 Execute evaluation test cases against NumericVerifier API.
 Makes real HTTP requests; records actual decision, signals, rationale.
 No fabricated outputs.
+
+P&L-only refactor: runs P&L eval cases from examples/pnl_eval_cases.json by default.
+Use --legacy to run legacy TEST_CASES instead; use --all to run both.
 """
 import json
+import os
 import sys
 import urllib.request
 import urllib.error
 
 BASE = "http://127.0.0.1:8000"
+
+# Path to P&L evaluation cases (authoritative for P&L-only refactor)
+PNL_EVAL_PATH = os.path.join(os.path.dirname(__file__), "examples", "pnl_eval_cases.json")
 
 def post(endpoint: str, data: dict) -> dict:
     req = urllib.request.Request(
@@ -286,14 +293,43 @@ def signals_summary(signals: dict) -> str:
         parts.append("period_mismatch>0")
     if signals.get("unsupported_claims_count", 0) > 0:
         parts.append("unsupported>0")
+    if signals.get("pnl_identity_fail_count", 0) > 0:
+        parts.append("pnl_identity_fail>0")
+    if signals.get("pnl_margin_fail_count", 0) > 0:
+        parts.append("pnl_margin_fail>0")
+    if signals.get("pnl_missing_baseline_count", 0) > 0:
+        parts.append("pnl_missing_baseline>0")
+    if signals.get("pnl_period_strict_mismatch_count", 0) > 0:
+        parts.append("pnl_period_strict_mismatch>0")
     if signals.get("coverage_ratio") is not None:
         parts.append(f"coverage={signals['coverage_ratio']:.2f}")
     return "; ".join(parts) if parts else "none notable"
 
 
+def load_pnl_eval_cases() -> list:
+    """Load P&L evaluation cases from examples/pnl_eval_cases.json."""
+    if not os.path.isfile(PNL_EVAL_PATH):
+        return []
+    with open(PNL_EVAL_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data if isinstance(data, list) else []
+
+
 def main():
+    args = sys.argv[1:] if len(sys.argv) > 1 else []
+    run_legacy = "--legacy" in args
+    run_all = "--all" in args
+
+    if run_all:
+        test_cases = load_pnl_eval_cases() + TEST_CASES
+    elif run_legacy:
+        test_cases = TEST_CASES
+    else:
+        pnl_cases = load_pnl_eval_cases()
+        test_cases = pnl_cases if pnl_cases else TEST_CASES
+
     results = []
-    for tc in TEST_CASES:
+    for tc in test_cases:
         if tc["endpoint"] == "/verify-only":
             payload = {
                 "question": tc["question"],
@@ -376,3 +412,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # Usage: python run_evaluation_api.py          # P&L cases (from examples/pnl_eval_cases.json)
+    #        python run_evaluation_api.py --legacy  # Legacy TEST_CASES
+    #        python run_evaluation_api.py --all     # P&L + legacy

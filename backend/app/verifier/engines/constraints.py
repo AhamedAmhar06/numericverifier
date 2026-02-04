@@ -1,13 +1,28 @@
-"""Constraint-based verification engine."""
-from typing import List, Optional
+"""Constraint-based verification engine. P&L mode: strict period and YoY."""
+from typing import List, Optional, Set
 from ..types import VerificationResult, NumericClaim, GroundingMatch
+
+# Time-related keywords for period detection
+_TIME_KEYWORDS = [
+    '2020', '2021', '2022', '2023', '2024', '2025',
+    'Q1', 'Q2', 'Q3', 'Q4',
+    'january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december',
+]
+
+
+def _periods_in_text(text: str) -> Set[str]:
+    t = text.lower()
+    return {kw for kw in _TIME_KEYWORDS if kw in t}
 
 
 def verify_constraints(
     claim: NumericClaim,
     grounding_match: Optional[GroundingMatch],
     all_claims: List[NumericClaim],
-    evidence_items: List
+    evidence_items: List,
+    question: Optional[str] = None,
+    pnl_periods: Optional[List[str]] = None,
 ) -> VerificationResult:
     """
     Verify claim using constraint engine.
@@ -63,21 +78,30 @@ def verify_constraints(
             pass
     
     # Check period mismatch (basic heuristic)
-    # Look for time-related keywords in claim vs evidence context
-    time_keywords = ['2023', '2024', '2025', 'Q1', 'Q2', 'Q3', 'Q4', 'january', 'february', 'march',
-                     'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
-    
     if grounding_match and grounding_match.evidence.context:
-        claim_text_lower = claim.raw_text.lower()
+        claim_periods = _periods_in_text(claim.raw_text)
         evidence_context_lower = grounding_match.evidence.context.lower()
-        
-        claim_periods = [kw for kw in time_keywords if kw in claim_text_lower]
-        evidence_periods = [kw for kw in time_keywords if kw in evidence_context_lower]
-        
+        evidence_periods = {kw for kw in _TIME_KEYWORDS if kw in evidence_context_lower}
         if claim_periods and evidence_periods:
             if not any(cp in evidence_periods for cp in claim_periods):
                 violations.append("Period mismatch: claim and evidence reference different time periods")
-    
+
+    # P&L strict: question references period not in evidence
+    if question and pnl_periods is not None:
+        question_periods = _periods_in_text(question)
+        for qp in question_periods:
+            if qp not in pnl_periods:
+                violations.append("missing_period_in_evidence")
+                break
+    # P&L strict: claim/grounding context uses different period than question
+    if question and grounding_match and grounding_match.evidence.context and pnl_periods is not None:
+        question_periods = _periods_in_text(question)
+        evidence_context_lower = (grounding_match.evidence.context or "").lower()
+        evidence_periods = {kw for kw in _TIME_KEYWORDS if kw in evidence_context_lower}
+        if question_periods and evidence_periods:
+            if not any(qp in evidence_periods for qp in question_periods):
+                violations.append("pnl_period_strict_mismatch")
+
     result.constraint_violations = violations
     return result
 
