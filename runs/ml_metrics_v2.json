@@ -1,0 +1,56 @@
+{
+  "model_name": "RandomForest",
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "per_class": {
+    "ACCEPT": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 22
+    },
+    "FLAG": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 17
+    },
+    "REPAIR": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 11
+    }
+  },
+  "confusion_matrix": [
+    [
+      22,
+      0,
+      0
+    ],
+    [
+      0,
+      17,
+      0
+    ],
+    [
+      0,
+      0,
+      11
+    ]
+  ],
+  "class_labels": [
+    "ACCEPT",
+    "FLAG",
+    "REPAIR"
+  ],
+  "n_train": 200,
+  "n_val": 50,
+  "class_distribution": {
+    "ACCEPT": 109,
+    "FLAG": 87,
+    "REPAIR": 54
+  },
+  "random_state": 42,
+  "test_size": 0.2
+}

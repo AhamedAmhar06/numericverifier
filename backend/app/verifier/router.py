@@ -14,7 +14,7 @@ from .engines.lookup import verify_lookup
 from .engines.constraints import verify_constraints
 from .engines.pnl_execution import run_pnl_checks
 from .signals import compute_signals
-from .decision_rules import make_decision
+from ..ml.decision_model import decide
 from .report import generate_report
 from .types import VerificationResult
 from ..eval.logging import log_run, log_signals, ensure_runs_directory
@@ -176,7 +176,7 @@ def route_and_verify(
         domain_table_type="pnl",
         pnl_period_strict_mismatch_count=pnl_strict_count,
     )
-    decision = make_decision(signals, verification_results)
+    decision = decide(signals, verification_results)
     report = generate_report(
         question=question,
         candidate_answer=candidate_answer,
