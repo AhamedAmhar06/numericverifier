@@ -1,22 +1,30 @@
-"""Verifier signals computation. Schema v2: P&L fields."""
+"""Verifier signals computation. Schema v2: P&L fields. Uses typed Violation codes."""
 from typing import List, Optional, Any
-from .types import VerifierSignals, VerificationResult, NumericClaim
+from .types import (
+    VerifierSignals, VerificationResult, NumericClaim, Violation,
+    V_SCALE_MISMATCH, V_PERIOD_MISMATCH, V_PNL_PERIOD_STRICT,
+    V_MISSING_PERIOD_IN_EVIDENCE,
+)
 
 
 def is_temporal_claim(claim: NumericClaim) -> bool:
-    """
-    True if the claim is a temporal reference (year, quarter) and must not count toward coverage.
-    Conservative heuristics: 1900-2100, or raw_text contains FY, Q1-Q4.
-    """
     try:
         if 1900 <= claim.parsed_value <= 2100 and claim.parsed_value == int(claim.parsed_value):
             return True
     except (TypeError, ValueError):
         pass
     raw_upper = (claim.raw_text or "").upper()
-    if "FY" in raw_upper or "Q1" in raw_upper or "Q2" in raw_upper or "Q3" in raw_upper or "Q4" in raw_upper:
+    if any(tok in raw_upper for tok in ("FY", "Q1", "Q2", "Q3", "Q4")):
         return True
     return False
+
+
+def _violation_code(v) -> str:
+    if isinstance(v, Violation):
+        return v.code
+    if isinstance(v, str):
+        return v
+    return ""
 
 
 def compute_signals(
@@ -27,9 +35,6 @@ def compute_signals(
     domain_table_type: Optional[str] = None,
     pnl_period_strict_mismatch_count: int = 0,
 ) -> VerifierSignals:
-    """
-    Compute risk signals. Schema v2: when P&L, set pnl_table_detected and pnl_* counts.
-    """
     signals = VerifierSignals()
     if not claims:
         if domain_table_type == "pnl":
@@ -40,7 +45,7 @@ def compute_signals(
                 signals.pnl_missing_baseline_count = 1 if getattr(pnl_check_result, "missing_yoy_baseline", False) else 0
             signals.pnl_period_strict_mismatch_count = pnl_period_strict_mismatch_count
         return signals
-    
+
     unsupported_value = 0
     supported_value_count = 0
     recomputation_failures = 0
@@ -53,11 +58,8 @@ def compute_signals(
     for i, result in enumerate(verification_results):
         claim = claims[i] if i < len(claims) else None
         is_temporal = claim is not None and is_temporal_claim(claim)
-
-        # Supported if grounded OR we could recompute something meaningful (even if mismatch)
         supported = bool(result.grounded) or (result.execution_result is not None)
         if is_temporal:
-            # Temporal claims stay in claims/verification but do not affect coverage or unsupported count
             pass
         else:
             if supported:
@@ -69,19 +71,31 @@ def compute_signals(
             else:
                 unsupported_value += 1
 
-        # Check execution support (all claims)
         if (not result.execution_supported) and (result.execution_error is not None):
-            recomputation_failures += 1
+            # Only count actual formula mismatches as recomputation failures,
+            # not "no_matching_formula" or "period_not_found" which mean no formula was applicable
+            err = result.execution_error or ""
+            if err not in ("no_matching_formula", "period_not_found", "no_pnl_table",
+                           "cannot_determine_baseline", "baseline_period_missing",
+                           "revenue_missing_for_margin"):
+                recomputation_failures += 1
 
-        # Check constraint violations
-        if result.constraint_violations:
-            for violation in result.constraint_violations:
-                v = violation.lower()
-                if "scale mismatch" in v:
+        for v in (result.constraint_violations or []):
+            code = _violation_code(v)
+            if code == V_SCALE_MISMATCH:
+                scale_mismatches += 1
+            elif code == V_PERIOD_MISMATCH:
+                period_mismatches += 1
+            elif code in (V_PNL_PERIOD_STRICT, V_MISSING_PERIOD_IN_EVIDENCE):
+                pnl_strict_count += 1
+            else:
+                # Legacy string fallback
+                vl = code.lower() if isinstance(code, str) else ""
+                if "scale mismatch" in vl:
                     scale_mismatches += 1
-                if "period mismatch" in v and "strict" not in v:
+                elif "period mismatch" in vl and "strict" not in vl:
                     period_mismatches += 1
-                if "pnl_period_strict_mismatch" in v or "missing_period_in_evidence" in v:
+                elif "pnl_period_strict" in vl or "missing_period" in vl:
                     pnl_strict_count += 1
 
     value_claim_count = supported_value_count + unsupported_value
@@ -104,4 +118,3 @@ def compute_signals(
             signals.pnl_missing_baseline_count = 1 if getattr(pnl_check_result, "missing_yoy_baseline", False) else 0
 
     return signals
-

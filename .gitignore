@@ -1,2 +1,42 @@
-# Local ML deps (pip install --target .pip-ml ...)
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+.venv-1/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+
+# Cursor
+.cursor/
+
+# Python build
+build/
+dist/
+
+# Secrets
+.env
+
+# Test / cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local ML deps
 .pip-ml/

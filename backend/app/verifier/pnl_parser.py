@@ -1,6 +1,7 @@
 """P&L table parsing: Layout A/B, synonym mapping to canonical line items."""
 from dataclasses import dataclass, field
 from typing import Dict, Any, List, Optional
+from .normalize import normalize_cell_text
 
 # Canonical keys and their synonym lists (lowercase, normalized)
 _SYNONYMS: Dict[str, List[str]] = {
@@ -25,14 +26,34 @@ def _normalize_label(s: str) -> str:
 
 
 def _match_canonical(label: str) -> Optional[str]:
-    """Return canonical key if label matches a synonym."""
+    """Return canonical key if label matches a synonym. Longest match wins.
+    Exact matches are strongly preferred over substring matches."""
     norm = _normalize_label(label)
     if not norm:
         return None
+    # Pass 1: exact match (highest priority)
     for canonical, synonyms in _SYNONYMS.items():
         for syn in synonyms:
-            if syn in norm or norm in syn or norm == syn:
+            if syn == norm:
                 return canonical
+    # Pass 2: synonym is a substring of the label (e.g., "profit" in "gross profit")
+    best_canonical = None
+    best_len = 0
+    for canonical, synonyms in _SYNONYMS.items():
+        for syn in synonyms:
+            if syn in norm and len(syn) > best_len:
+                best_canonical = canonical
+                best_len = len(syn)
+    return best_canonical
+
+
+def _parse_pnl_cell(cell) -> Optional[float]:
+    """Parse a table cell into a float using robust normalization."""
+    if isinstance(cell, (int, float)):
+        return float(cell)
+    if isinstance(cell, str):
+        result = normalize_cell_text(cell)
+        return result["value"]
     return None
 
 
@@ -70,14 +91,9 @@ def _parse_layout_a(columns: List[Any], rows: List[Any]) -> Optional[PnLTable]:
             if idx >= len(row):
                 continue
             cell = row[idx]
-            try:
-                if isinstance(cell, (int, float)):
-                    val = float(cell)
-                else:
-                    val = float(str(cell).replace(",", "").strip())
+            val = _parse_pnl_cell(cell)
+            if val is not None:
                 out.items[canonical][period] = val
-            except (ValueError, TypeError):
-                continue
     if not out.items or not out.periods:
         return None
     return out
@@ -118,15 +134,10 @@ def _parse_layout_b(columns: List[Any], rows: List[Any]) -> Optional[PnLTable]:
         row_label_by_key[canonical] = label
         if canonical not in items_raw:
             items_raw[canonical] = {}
-        try:
-            cell = row[value_idx]
-            if isinstance(cell, (int, float)):
-                val = float(cell)
-            else:
-                val = float(str(cell).replace(",", "").strip())
+        cell = row[value_idx]
+        val = _parse_pnl_cell(cell)
+        if val is not None:
             items_raw[canonical][period] = val
-        except (ValueError, TypeError):
-            continue
     periods = sorted(periods_set)
     if not items_raw or not periods:
         return None

@@ -24,10 +24,16 @@ logger = logging.getLogger(__name__)
 _BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
 _RUNS_DIR = _BACKEND_DIR.parent / "runs"
 
-# Artifact names (must match scripts/train_ml_decision_v2.py exports)
-_MODEL_FILE = "decision_model_v2.joblib"
-_FEATURE_SCHEMA_FILE = "feature_schema_v2.json"
-_LABEL_MAPPING_FILE = "label_mapping_v2.json"
+# Artifact names (v2 default; v3 when ML_MODEL_VERSION=v3)
+def _model_version():
+    return os.environ.get("ML_MODEL_VERSION", "v2").strip().lower()
+
+
+def _artifact_names():
+    v = _model_version()
+    if v == "v3":
+        return "decision_model_v3.joblib", "feature_schema_v3.json", "label_mapping_v3.json"
+    return "decision_model_v2.joblib", "feature_schema_v2.json", "label_mapping_v2.json"
 
 # Runtime toggle: use ML after hard gates when true
 def _use_ml_decider() -> bool:
@@ -51,10 +57,11 @@ def load_model(model_path: Optional[Path] = None) -> Optional[object]:
     Load ML pipeline and metadata from runs/.
     Returns a dict with keys: pipeline, feature_order, label_mapping, or None if not available.
     """
+    mf, sf, lf = _artifact_names()
     base = model_path if model_path is not None else _RUNS_DIR
-    pipeline_path = base / _MODEL_FILE
-    schema_path = base / _FEATURE_SCHEMA_FILE
-    mapping_path = base / _LABEL_MAPPING_FILE
+    pipeline_path = base / mf
+    schema_path = base / sf
+    mapping_path = base / lf
 
     if not pipeline_path.exists() or not schema_path.exists() or not mapping_path.exists():
         logger.debug("ML artifacts missing in %s; using rule-based decision.", base)
@@ -85,7 +92,7 @@ def load_model(model_path: Optional[Path] = None) -> Optional[object]:
             return None
 
     try:
-        pipeline = joblib.load(pipeline_path)
+        loaded = joblib.load(pipeline_path)
         with open(schema_path, "r") as f:
             feature_schema = json.load(f)
         with open(mapping_path, "r") as f:
@@ -96,13 +103,18 @@ def load_model(model_path: Optional[Path] = None) -> Optional[object]:
 
     feature_order = feature_schema.get("feature_order") or feature_schema.get("feature_names")
     if not feature_order:
-        logger.warning("feature_schema_v2.json missing feature_order. Using rule-based decision.")
+        logger.warning("feature_schema missing feature_order. Using rule-based decision.")
         return None
 
+    # v3 format: dict with pipeline, threshold, classes, flag_idx
+    pipeline = loaded.get("pipeline", loaded) if isinstance(loaded, dict) else loaded
     return {
         "pipeline": pipeline,
         "feature_order": feature_order,
         "label_mapping": label_mapping,
+        "threshold": loaded.get("threshold") if isinstance(loaded, dict) else None,
+        "classes": loaded.get("classes") if isinstance(loaded, dict) else None,
+        "flag_idx": loaded.get("flag_idx", -1) if isinstance(loaded, dict) else -1,
     }
 
 
@@ -142,20 +154,33 @@ def predict_decision(
     feature_order = model["feature_order"]
     label_mapping = model["label_mapping"]
     pipeline = model["pipeline"]
+    threshold = model.get("threshold")
+    classes = model.get("classes")
+    flag_idx = model.get("flag_idx", -1)
 
     try:
         import numpy as np
         vec = _signals_to_feature_vector(signals, feature_order)
         X = np.array([vec], dtype=np.float64)
-        pred_index = pipeline.predict(X)[0]
-        idx = int(pred_index)
-        raw = label_mapping.get("index_to_label") or {}
-        index_to_label = {int(k): v for k, v in raw.items()}
-        decision_label = index_to_label.get(idx, "FLAG")
-        logger.info("Decision path: ML (v2 model). decision=%s", decision_label)
+        if threshold is not None and classes and flag_idx >= 0:
+            proba = pipeline.predict_proba(X)[0]
+            p_flag = proba[flag_idx] if flag_idx < len(proba) else 0
+            if p_flag >= threshold:
+                decision_label = "FLAG"
+            else:
+                pred_index = int(np.argmax(proba))
+                decision_label = classes[pred_index] if pred_index < len(classes) else "FLAG"
+        else:
+            pred_index = pipeline.predict(X)[0]
+            idx = int(pred_index)
+            raw = label_mapping.get("index_to_label") or {}
+            index_to_label = {int(k): v for k, v in raw.items()}
+            decision_label = index_to_label.get(idx, "FLAG")
+        v_label = "v3" if threshold is not None else "v2"
+        logger.info("Decision path: ML (%s model). decision=%s", v_label, decision_label)
         return Decision(
             decision=decision_label,
-            rationale=f"ML decision (v2): {decision_label}.",
+            rationale="ML decision (%s): %s." % (v_label, decision_label),
         )
     except Exception as e:
         logger.warning("ML prediction failed: %s. Falling back to rule-based decision.", e)

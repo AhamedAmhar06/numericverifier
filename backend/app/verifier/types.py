@@ -1,7 +1,31 @@
 """Core data types for the verifier system."""
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Any
+from decimal import Decimal
+from typing import List, Optional, Dict, Any, Union
 from datetime import datetime
+
+
+# ---------------------------------------------------------------------------
+# Violation codes (typed, for signals counting)
+# ---------------------------------------------------------------------------
+V_SCALE_MISMATCH = "SCALE_MISMATCH"
+V_PERIOD_MISMATCH = "PERIOD_MISMATCH"
+V_PNL_PERIOD_STRICT = "PNL_PERIOD_STRICT"
+V_MISSING_PERIOD_IN_EVIDENCE = "MISSING_PERIOD_IN_EVIDENCE"
+V_PNL_IDENTITY_MISMATCH = "PNL_IDENTITY_MISMATCH"
+V_PNL_MARGIN_MISMATCH = "PNL_MARGIN_MISMATCH"
+V_MISSING_YOY_BASELINE = "MISSING_YOY_BASELINE"
+
+
+@dataclass
+class Violation:
+    """Structured constraint violation with typed code."""
+    code: str
+    message: str
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {"code": self.code, "message": self.message, "metadata": self.metadata}
 
 
 @dataclass
@@ -12,16 +36,36 @@ class NumericClaim:
     char_span: tuple[int, int]  # (start, end)
     unit: Optional[str] = None  # e.g., "percent", "dollar", "K", "M", "B"
     scale_token: Optional[str] = None  # e.g., "thousand", "million", "billion"
-    
+    # Extended normalization fields (populated by normalize_claims)
+    unit_type: Optional[str] = None  # amount | percent | ratio | bps | count
+    scale_label: Optional[str] = None  # raw | K | M | B
+    currency: Optional[str] = None
+    period: Optional[str] = None
+    tolerance_abs: float = 0.0
+    tolerance_rel: float = 0.01
+    approximate: bool = False
+    value_decimal: Optional[Decimal] = field(default=None, repr=False)
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
-        return {
+        d = {
             "raw_text": self.raw_text,
             "parsed_value": self.parsed_value,
             "char_span": list(self.char_span),
             "unit": self.unit,
-            "scale_token": self.scale_token
+            "scale_token": self.scale_token,
         }
+        if self.unit_type is not None:
+            d["unit_type"] = self.unit_type
+        if self.scale_label is not None:
+            d["scale_label"] = self.scale_label
+        if self.currency is not None:
+            d["currency"] = self.currency
+        if self.period is not None:
+            d["period"] = self.period
+        if self.approximate:
+            d["approximate"] = True
+        return d
 
 
 @dataclass
@@ -31,15 +75,36 @@ class EvidenceItem:
     source: str  # "text" or "table"
     location: Optional[str] = None  # For tables: "row:col" or cell identifier
     context: Optional[str] = None  # Surrounding text for text evidence
-    
+    # Extended fields (populated by enriched evidence ingestion)
+    row_label: Optional[str] = None
+    col_label: Optional[str] = None
+    row_index: Optional[int] = None
+    col_index: Optional[int] = None
+    period: Optional[str] = None
+    canonical_line_item: Optional[str] = None
+    currency: Optional[str] = None
+    scale_label: Optional[str] = None
+    is_percent: bool = False
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
-        return {
+        d = {
             "value": self.value,
             "source": self.source,
             "location": self.location,
-            "context": self.context
+            "context": self.context,
         }
+        if self.row_label is not None:
+            d["row_label"] = self.row_label
+        if self.col_label is not None:
+            d["col_label"] = self.col_label
+        if self.period is not None:
+            d["period"] = self.period
+        if self.canonical_line_item is not None:
+            d["canonical_line_item"] = self.canonical_line_item
+        if self.is_percent:
+            d["is_percent"] = True
+        return d
 
 
 @dataclass
@@ -50,7 +115,9 @@ class GroundingMatch:
     distance: float  # Absolute difference
     relative_error: float  # Relative error
     ambiguous: bool = False  # True if multiple matches found
-    
+    confidence: float = 0.0
+    confidence_margin: float = 0.0
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
         return {
@@ -58,7 +125,9 @@ class GroundingMatch:
             "evidence": self.evidence.to_dict(),
             "distance": self.distance,
             "relative_error": self.relative_error,
-            "ambiguous": self.ambiguous
+            "ambiguous": self.ambiguous,
+            "confidence": round(self.confidence, 4),
+            "confidence_margin": round(self.confidence_margin, 4),
         }
 
 
@@ -72,10 +141,17 @@ class VerificationResult:
     execution_supported: bool = False
     execution_result: Optional[float] = None
     execution_error: Optional[str] = None
-    constraint_violations: List[str] = field(default_factory=list)
-    
+    execution_confidence: Optional[str] = None  # high | medium | low
+    constraint_violations: List[Union[str, Violation]] = field(default_factory=list)
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
+        violations_out = []
+        for v in self.constraint_violations:
+            if isinstance(v, Violation):
+                violations_out.append(v.to_dict())
+            else:
+                violations_out.append(v)
         return {
             "claim": self.claim.to_dict(),
             "grounded": self.grounded,
@@ -84,7 +160,8 @@ class VerificationResult:
             "execution_supported": self.execution_supported,
             "execution_result": self.execution_result,
             "execution_error": self.execution_error,
-            "constraint_violations": self.constraint_violations
+            "execution_confidence": self.execution_confidence,
+            "constraint_violations": violations_out,
         }
 
 

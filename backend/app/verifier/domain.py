@@ -20,10 +20,13 @@ _MIN_CONFIDENCE = 0.25
 _MIN_MATCH_COUNT = 2
 
 
+_WEAK_PNL_CONFIDENCE = 0.10
+
+
 @dataclass
 class DomainContext:
     """Result of table-type classification."""
-    table_type: str  # "pnl" | "unknown"
+    table_type: str  # "pnl" | "weak_pnl" | "unknown"
     confidence: float
     matched_terms: List[str]
 
@@ -95,6 +98,8 @@ def classify_table_type(evidence_table: Dict[str, Any]) -> DomainContext:
     else:
         match_ratio = len(matched) / max(len(unique_labels), 1)
         confidence = min(1.0, match_ratio)
-    if len(matched) < _MIN_MATCH_COUNT or confidence < _MIN_CONFIDENCE:
-        return DomainContext(table_type="unknown", confidence=confidence, matched_terms=matched)
-    return DomainContext(table_type="pnl", confidence=confidence, matched_terms=matched)
+    if len(matched) >= _MIN_MATCH_COUNT and confidence >= _MIN_CONFIDENCE:
+        return DomainContext(table_type="pnl", confidence=confidence, matched_terms=matched)
+    if len(matched) >= _MIN_MATCH_COUNT and confidence >= _WEAK_PNL_CONFIDENCE:
+        return DomainContext(table_type="weak_pnl", confidence=confidence, matched_terms=matched)
+    return DomainContext(table_type="unknown", confidence=confidence, matched_terms=matched)

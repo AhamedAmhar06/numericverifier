@@ -1,0 +1,16 @@
+{
+  "total": 53,
+  "gold_accept_count": 18,
+  "gold_accept_rate": 0.3396,
+  "false_flag_count": 34,
+  "false_flag_rate": 0.6415,
+  "repair_count": 1,
+  "repair_rate": 0.0189,
+  "error_count": 0,
+  "grounding_rate": 0.3585,
+  "scale_mismatch_count": 0,
+  "scale_mismatch_rate": 0.0,
+  "period_mismatch_count": 0,
+  "period_mismatch_rate": 0.0,
+  "avg_latency_ms": 0.31
+}

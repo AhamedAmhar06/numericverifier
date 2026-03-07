@@ -1,0 +1,4775 @@
+[
+  {
+    "id": "tatqa_pnl_00057",
+    "question": "What was the total net sales in 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Net sales:      ",
+            "",
+            "",
+            ""
+          ],
+          [
+            "AMER ",
+            "$1,429,308",
+            "$1,218,944",
+            "$1,166,346"
+          ],
+          [
+            "APAC ",
+            "1,557,205",
+            "1,498,010",
+            "1,279,261"
+          ],
+          [
+            "EMEA ",
+            "309,933",
+            "281,489",
+            "192,829"
+          ],
+          [
+            "Elimination of inter-segment sales ",
+            "(132,012)",
+            "(124,935)",
+            "(110,384)"
+          ],
+          [
+            "",
+            "3,164,434",
+            "2,873,508",
+            "2,528,052"
+          ],
+          [
+            "Operating income (loss):",
+            "",
+            "",
+            ""
+          ],
+          [
+            "AMER",
+            "$57,780",
+            "$38,637",
+            "$41,924"
+          ],
+          [
+            "APAC",
+            "208,178",
+            "213,935",
+            "200,103"
+          ],
+          [
+            "EMEA",
+            "4,475",
+            "1,447",
+            "(6,197)"
+          ],
+          [
+            "Corporate and other costs",
+            "(128,378)",
+            "(135,736)",
+            "(105,922)"
+          ],
+          [
+            "",
+            "$142,055",
+            "$118,283",
+            "$129,908"
+          ],
+          [
+            "Other income (expense):",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Interest expense",
+            "$(12,853)",
+            "$(12,226)",
+            "$(13,578)"
+          ],
+          [
+            "Interest income",
+            "1,949",
+            "4,696",
+            "5,042"
+          ],
+          [
+            "Miscellaneous, net",
+            "(5,196)",
+            "(3,143)",
+            "451"
+          ],
+          [
+            "Income before income taxes",
+            "$125,955",
+            "$107,610",
+            "$121,823"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "3,164,434",
+    "answer_type": "span",
+    "answer_from": "table-text"
+  },
+  {
+    "id": "tatqa_pnl_00093",
+    "question": "What was the net sales from Ardent Mills in fiscal 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Net Sales:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ardent Mills .",
+            "$3,476.0",
+            "$3,344.1",
+            "$3,180.0"
+          ],
+          [
+            "Others",
+            "195.4",
+            "198.8",
+            "177.7"
+          ],
+          [
+            "Total net sales .",
+            "$3,671.4",
+            "$3,542.9",
+            "$3,357.7"
+          ],
+          [
+            "Gross margin:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ardent Mills .",
+            "$281.9",
+            "$386.5",
+            "$340.3"
+          ],
+          [
+            "Others",
+            "45.5",
+            "34.8",
+            "34.6"
+          ],
+          [
+            "Total gross margin",
+            "$327.4",
+            "$421.3",
+            "$374.9"
+          ],
+          [
+            "Earnings after income taxes:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ardent Mills .",
+            "$151.9",
+            "$197.0",
+            "$152.0"
+          ],
+          [
+            "Others",
+            "18.1",
+            "10.1",
+            "10.1"
+          ],
+          [
+            "Total earnings after income taxes",
+            "$170.0",
+            "$207.1",
+            "$162.1"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "$3,344.1",
+    "answer_type": "span",
+    "answer_from": "table-text"
+  },
+  {
+    "id": "tatqa_pnl_00103",
+    "question": "What is the depreciation in 2017/18?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Adjusted earnings per share (\u00a3m)",
+          "2018/19",
+          "2017/18"
+        ],
+        "rows": [
+          [
+            "Trading profit",
+            "128.5",
+            "123.0"
+          ],
+          [
+            "Depreciation",
+            "17.0",
+            "16.6"
+          ],
+          [
+            "Other non-cash items",
+            "2.4",
+            "2.8"
+          ],
+          [
+            "Interest",
+            "(30.1)",
+            "(38.0)"
+          ],
+          [
+            "Taxation",
+            "\u2013",
+            "1.0"
+          ],
+          [
+            "Pension contributions",
+            "(41.9)",
+            "(39.8)"
+          ],
+          [
+            "Capital expenditure",
+            "(17.7)",
+            "(19.2)"
+          ],
+          [
+            "Working capital and other",
+            "(7.7)",
+            "(0.6)"
+          ],
+          [
+            "Restructuring costs",
+            "(18.1)",
+            "(12.5)"
+          ],
+          [
+            "Proceeds from share issue",
+            "1.4",
+            "1.2"
+          ],
+          [
+            "Sale of property, plant and equipment",
+            "\u2013",
+            "1.3"
+          ],
+          [
+            "Hovis repayment of loan note",
+            "7.6",
+            "\u2013"
+          ],
+          [
+            "Financing fees",
+            "(12.2)",
+            "(7.0)"
+          ],
+          [
+            "Free cash flow10",
+            "29.2",
+            "28.8"
+          ],
+          [
+            "Statutory cash flow statement",
+            "",
+            ""
+          ],
+          [
+            "Cash generated from operating activities",
+            "57.7",
+            "52.4"
+          ],
+          [
+            "Cash used in investing activities",
+            "(17.7)",
+            "(17.9)"
+          ],
+          [
+            "Cash (used in)/generated from financing activities",
+            "(35.8)",
+            "7.2"
+          ],
+          [
+            "Net increase in cash and cash equivalents",
+            "4.2",
+            "41.7"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "16.6",
+    "answer_type": "span",
+    "answer_from": "table"
+  },
+  {
+    "id": "tatqa_pnl_00254",
+    "question": "What is the percentage change in diluted weighted average shares outstanding from 2018 to 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Net income available to Conagra Brands, Inc. common stockholders:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Income from continuing operations attributable to Conagra Brands, Inc. common stockholders",
+            "$680.2",
+            "$794.1",
+            "$544.1"
+          ],
+          [
+            "Income (loss) from discontinued operations, net of tax, attributable to Conagra Brands, Inc. common stockholders",
+            "(1.9)",
+            "14.3",
+            "95.2"
+          ],
+          [
+            "Net income attributable to Conagra Brands, Inc. common stockholders",
+            "$678.3",
+            "$808.4",
+            "$639.3"
+          ],
+          [
+            "Less: Increase in redemption value of noncontrolling interests in excess of earnings allocated",
+            "\u2014",
+            "\u2014",
+            "0.8"
+          ],
+          [
+            "Net income available to Conagra Brands, Inc. common stockholders",
+            "$678.3",
+            "$808.4",
+            "$638.5"
+          ],
+          [
+            "Weighted average shares outstanding:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Basic weighted average shares outstanding",
+            "444.0",
+            "403.9",
+            "431.9"
+          ],
+          [
+            "Add: Dilutive effect of stock options, restricted stock unit awards, and other dilutive securities",
+            "1.6",
+            "3.5",
+            "4.1"
+          ],
+          [
+            "Diluted weighted average shares outstanding",
+            "445.6",
+            "407.4",
+            "436.0"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "9.38",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "(445.6-407.4)/407.4 "
+  },
+  {
+    "id": "tatqa_pnl_00329",
+    "question": "What is the change in sales in 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "Fiscal 2019",
+          "Fiscal 2018",
+          "% Change"
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "(in millions)",
+            ""
+          ],
+          [
+            "Sales",
+            "$ 328.8",
+            "$  207.0",
+            "59 %"
+          ],
+          [
+            "Operating income (loss)",
+            "7.8",
+            "(0.1)",
+            "n/a"
+          ],
+          [
+            "Adjusted EBITDA",
+            "34.4",
+            "26.2",
+            "31"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "121.8",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "328.8-207.0"
+  },
+  {
+    "id": "tatqa_pnl_00110",
+    "question": "How much do the top 3 contractual obligation terms add up to in 2020?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(In millions)",
+          "2020",
+          "2021-2022",
+          "2023-2024",
+          "Thereafter",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Long-term debt: (a)",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Principal payments",
+            "$ 5,518",
+            "$ 11,744",
+            "$ 8,000",
+            "$ 47,519",
+            "$ 72,781"
+          ],
+          [
+            "Interest payments",
+            "2,299",
+            "4,309",
+            "3,818",
+            "29,383",
+            "39,809"
+          ],
+          [
+            "Construction commitments (b)",
+            "3,443",
+            "515",
+            "0",
+            "0",
+            "3,958"
+          ],
+          [
+            "Operating leases, including imputed interest (c)",
+            "1,790",
+            "3,144",
+            "2,413",
+            "3,645",
+            "10,992"
+          ],
+          [
+            "Finance leases, including imputed interest (c)",
+            "797",
+            "2,008",
+            "2,165",
+            "9,872",
+            "14,842"
+          ],
+          [
+            "Transition tax (d)",
+            "1,180",
+            "2,900",
+            "4,168",
+            "8,155",
+            "16,403"
+          ],
+          [
+            "Purchase commitments (e)",
+            "17,478",
+            "1,185",
+            "159",
+            "339",
+            "19,161"
+          ],
+          [
+            "Other long-term liabilities (f)",
+            "0",
+            "72",
+            "29",
+            "324",
+            "425"
+          ],
+          [
+            "Total",
+            "$  32,505",
+            "$  25,877",
+            "$  20,752",
+            "$  99,237",
+            "$  178,371"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "26439",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "5,518 + 17,478+3,443"
+  },
+  {
+    "id": "tatqa_pnl_00150",
+    "question": "How much is the 2018 bonds and other liabilities, excluding the interest on foreign exchange derivatives?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "",
+            "\u20acm",
+            "\u20acm",
+            "\u20acm"
+          ],
+          [
+            "Investment income:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Amortised cost",
+            "286",
+            "339",
+            "426"
+          ],
+          [
+            "Fair value through profit and loss",
+            "147",
+            "24",
+            "20"
+          ],
+          [
+            "Foreign exchange",
+            "\u2013",
+            "322",
+            "28"
+          ],
+          [
+            "",
+            "433",
+            "685",
+            "474"
+          ],
+          [
+            "Financing costs:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Items in hedge relationships:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Other loans",
+            "17",
+            "74",
+            "170"
+          ],
+          [
+            "Interest rate and cross-currency interest rate swaps",
+            "(414)",
+            "(128)",
+            "(235)"
+          ],
+          [
+            "Fair value hedging instrument",
+            "(8)",
+            "48",
+            "22"
+          ],
+          [
+            "Fair value of hedged item",
+            "10",
+            "(36)",
+            "(16)"
+          ],
+          [
+            "Other financial liabilities held at amortised cost:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Bank loans and overdrafts",
+            "336",
+            "317",
+            "419"
+          ],
+          [
+            "Bonds and other liabilities1",
+            "1,567",
+            "885",
+            "1,243"
+          ],
+          [
+            "Interest (credit)/charge on settlement of tax issues",
+            "(1)",
+            "(11)",
+            "47"
+          ],
+          [
+            "Fair value through profit and loss:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Derivatives \u2013 options, forward starting swaps and futures",
+            "391",
+            "(75)",
+            "(244)"
+          ],
+          [
+            "Foreign exchange",
+            "190",
+            "\u2013",
+            "\u2013"
+          ],
+          [
+            "",
+            "2,088",
+            "1,074",
+            "1,406"
+          ],
+          [
+            "Net financing costs",
+            "1,655",
+            "389",
+            "932"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "698",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "885-187"
+  },
+  {
+    "id": "tatqa_pnl_00192",
+    "question": "What were the Receivables from related parties as reported in 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "As reported December 31, 2018",
+          "Effect of ASC 606 adoption",
+          "Amounts without adoption of ASC 606 December 31, 2018"
+        ],
+        "rows": [
+          [
+            "Trade receivables, net",
+            "$172.3",
+            "$6.9",
+            "$179.2"
+          ],
+          [
+            "Prepaid expenses and other current assets",
+            "67.3",
+            "(14.4)",
+            "52.9"
+          ],
+          [
+            "Receivables from related parties",
+            "6.2",
+            "4.8",
+            "11.0"
+          ],
+          [
+            "Computer software, net",
+            "405.6",
+            "(3.7)",
+            "401.9"
+          ],
+          [
+            "Deferred contract costs, net",
+            "161.3",
+            "(17.2)",
+            "144.1"
+          ],
+          [
+            "Other non-current assets",
+            "125.6",
+            "(7.0)",
+            "118.6"
+          ],
+          [
+            "Total assets",
+            "3,653.4",
+            "(30.6)",
+            "3,622.8"
+          ],
+          [
+            "Deferred revenues (current)",
+            "52.9",
+            "4.1",
+            "57.0"
+          ],
+          [
+            "Deferred revenues (non-current)",
+            "106.8",
+            "(4.3)",
+            "102.5"
+          ],
+          [
+            "Deferred income taxes",
+            "220.9",
+            "(8.1)",
+            "212.8"
+          ],
+          [
+            "Total liabilities",
+            "1,866.9",
+            "(8.3)",
+            "1,858.6"
+          ],
+          [
+            "Retained earnings",
+            "381.1",
+            "(22.3)",
+            "358.8"
+          ],
+          [
+            "Total equity",
+            "1,786.5",
+            "(22.3)",
+            "1,764.2"
+          ],
+          [
+            "Total liabilities and equity",
+            "3,653.4",
+            "(30.6)",
+            "3,622.8"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "6.2",
+    "answer_type": "span",
+    "answer_from": "table-text"
+  },
+  {
+    "id": "tatqa_pnl_00135",
+    "question": "What was the average Adjusted EBITDA for 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019 (IFRS 15)",
+          "2018 (IAS 18)",
+          "Change",
+          ""
+        ],
+        "rows": [
+          [
+            "Year to 31 March",
+            "\u00a3m",
+            "\u00a3m",
+            "\u00a3m",
+            "%"
+          ],
+          [
+            "Adjusted a revenue",
+            "4,735",
+            "5,013",
+            "(278)",
+            "(6)"
+          ],
+          [
+            "Adjusted a operating costs",
+            "4,230",
+            "4,579",
+            "(349)",
+            "(8)"
+          ],
+          [
+            "Adjusted a EBITDA",
+            "505",
+            "434",
+            "71",
+            "16"
+          ],
+          [
+            "Depreciation & amortisation",
+            "370",
+            "424",
+            "(54)",
+            "(13)"
+          ],
+          [
+            "Adjusted a operating profit",
+            "135",
+            "10",
+            "125",
+            "1,250"
+          ],
+          [
+            "Capital expenditure",
+            "245",
+            "278",
+            "(33)",
+            "(12)"
+          ],
+          [
+            "Normalised free cash flow b",
+            "296",
+            "118",
+            "178",
+            "151"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "469.5",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(505 + 434) / 2"
+  },
+  {
+    "id": "tatqa_pnl_00127",
+    "question": "What is the % change in carrying amount from 2017 to 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "",
+            "S$ Mil",
+            "S$ Mil",
+            "S$ Mil"
+          ],
+          [
+            "Statement of comprehensive income",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Revenue",
+            "250.1",
+            "353.9",
+            "144.1"
+          ],
+          [
+            "Profit after tax",
+            "451.7",
+            "488.2",
+            "166.1"
+          ],
+          [
+            "Other comprehensive (loss)/ income",
+            "(0.9)",
+            "10.9",
+            "(1.6)"
+          ],
+          [
+            "Total comprehensive income",
+            "450.8",
+            "499.1",
+            "164.5"
+          ],
+          [
+            "Statement of financial position",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Current assets",
+            "743.1",
+            "720.0",
+            "701.9"
+          ],
+          [
+            "Non-current assets",
+            "1,532.5",
+            "1,554.3",
+            "1,629.3"
+          ],
+          [
+            "Current liabilities",
+            "(305.1)",
+            "(444.4)",
+            "(483.6)"
+          ],
+          [
+            "Non-current liabilities",
+            "(205.5)",
+            "(313.4)",
+            "(395.3)"
+          ],
+          [
+            "Net assets",
+            "1,765.0",
+            "1,516.5",
+            "1,452.3"
+          ],
+          [
+            "Less: Non-controlling interests",
+            "(304.6)",
+            "(342.2)",
+            "(411.6)"
+          ],
+          [
+            "Net assets attributable to equity holders",
+            "1,460.4",
+            "1,174.3",
+            "1,040.7"
+          ],
+          [
+            "Proportion of the Group\u2019s ownership",
+            "21.0%",
+            "21.0%",
+            "21.0%"
+          ],
+          [
+            "Group\u2019s share of net assets",
+            "306.7",
+            "246.6",
+            "218.5"
+          ],
+          [
+            "Goodwill and other identifiable intangible assets",
+            "1,441.7",
+            "1,417.6",
+            "1,371.7"
+          ],
+          [
+            "Others (1)",
+            "(46.8)",
+            "(23.0)",
+            "(8.4)"
+          ],
+          [
+            "Carrying amount of the investment",
+            "1,701.6",
+            "1,641.2",
+            "1,581.8"
+          ],
+          [
+            "Other items",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Group\u2019s share of market value",
+            "1,653.2",
+            "1,639.6",
+            "1,525.0"
+          ],
+          [
+            "Dividends received during the year",
+            "78.5",
+            "77.8",
+            "-"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "7.57",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": " (1,701.6 - 1,581.8) / 1,581.8 * 100"
+  },
+  {
+    "id": "tatqa_pnl_00348",
+    "question": "What was the change in Other deferred tax liabilities between 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "April 26, 2019",
+          "April 27, 2018"
+        ],
+        "rows": [
+          [
+            "Deferred tax assets:",
+            "",
+            ""
+          ],
+          [
+            "Reserves and accruals",
+            "$ 50",
+            "$ 57"
+          ],
+          [
+            "Net operating loss and credit carryforwards",
+            "139",
+            "131"
+          ],
+          [
+            "Stock-based compensation",
+            "16",
+            "22"
+          ],
+          [
+            "Deferred revenue",
+            "205",
+            "156"
+          ],
+          [
+            "Other",
+            "16",
+            "29"
+          ],
+          [
+            "Gross deferred tax assets",
+            "426",
+            "395"
+          ],
+          [
+            "Valuation allowance",
+            "(123 )",
+            "(109 )"
+          ],
+          [
+            "Deferred tax assets, net of valuation allowance",
+            "303",
+            "286"
+          ],
+          [
+            "Deferred tax liabilities:",
+            "",
+            ""
+          ],
+          [
+            "Prepaids and accruals",
+            "31",
+            "21"
+          ],
+          [
+            "Acquired intangibles",
+            "32",
+            "29"
+          ],
+          [
+            "Property and equipment",
+            "31",
+            "25"
+          ],
+          [
+            "Other",
+            "10",
+            "14"
+          ],
+          [
+            "Total deferred tax liabilities",
+            "104",
+            "89"
+          ],
+          [
+            "Deferred tax assets, net of valuation allowance and deferred tax liabilities",
+            "$199",
+            "$197"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-13",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "16-29"
+  },
+  {
+    "id": "tatqa_pnl_00311",
+    "question": "What was the change in net debt from 2018 to 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018"
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m"
+          ],
+          [
+            "Adjusted operating profit",
+            "282.7",
+            "264.9"
+          ],
+          [
+            "Depreciation and amortisation of property, plant and equipment, software and development",
+            "34.3",
+            "32.9"
+          ],
+          [
+            "Earnings before interest, tax, depreciation and amortisation",
+            "317.0",
+            "297.8"
+          ],
+          [
+            "Net debt",
+            "295.2",
+            "235.8"
+          ],
+          [
+            "Net debt to EBITDA",
+            "0.9",
+            "0.8"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "59.4",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "295.2-235.8"
+  },
+  {
+    "id": "tatqa_pnl_00074",
+    "question": "What was the increase / (decrease) in revenue from 2018 to 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Three months ended August 31,",
+          "2019(1)",
+          "2018(2)",
+          "Change",
+          "Change in constant currency(3)",
+          "Foreign exchange impact(3)"
+        ],
+        "rows": [
+          [
+            "(in thousands of dollars, except percentages)",
+            "$",
+            "$",
+            "%",
+            "%",
+            "$"
+          ],
+          [
+            "Revenue",
+            "263,738",
+            "246,443",
+            "7.0",
+            "6.0",
+            "2,427"
+          ],
+          [
+            "Operating expenses",
+            "148,215",
+            "136,506",
+            "8.6",
+            "7.6",
+            "1,370"
+          ],
+          [
+            "Adjusted EBITDA",
+            "115,523",
+            "109,937",
+            "5.1",
+            "4.1",
+            "1,057"
+          ],
+          [
+            "Adjusted EBITDA margin",
+            "43.8%",
+            "44.6%",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Acquisitions of property, plant and equipment",
+            "65,967",
+            "72,914",
+            "(9.5)",
+            "(10.5)",
+            "704"
+          ],
+          [
+            "Capital intensity",
+            "25.0%",
+            "29.6%",
+            "",
+            "",
+            ""
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "17295",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "263,738 - 246,443"
+  },
+  {
+    "id": "tatqa_pnl_00235",
+    "question": "In which year was the amount of operating expenses the largest?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "USDm",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Reconciliation to revenue",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Revenue",
+            "692.6",
+            "635.4",
+            "657.0"
+          ],
+          [
+            "Port expenses, bunkers and commissions",
+            "-267.7",
+            "-283.0",
+            "-259.9"
+          ],
+          [
+            "Charter hire",
+            "-",
+            "-2.5",
+            "-8.5"
+          ],
+          [
+            "Operating expenses",
+            "-173.0",
+            "-180.4",
+            "-188.4"
+          ],
+          [
+            "Gross profit",
+            "251.9",
+            "169.5",
+            "200.2"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "2017",
+    "answer_type": "span",
+    "answer_from": "table",
+    "derivation": "|188.4|>|180.4|>|173.0|"
+  },
+  {
+    "id": "tatqa_pnl_00203",
+    "question": "What was the percentage change in Total segment Operating profit in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "(Restated) 2018"
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m"
+          ],
+          [
+            "Total segment Revenue",
+            "355.1",
+            "330.1"
+          ],
+          [
+            "Total segment Operating profit",
+            "243.7",
+            "221.3"
+          ],
+          [
+            "Finance costs \u2013 net",
+            "(10.2)",
+            "(10.6)"
+          ],
+          [
+            "Profit on the sale of subsidiary",
+            "8.7",
+            "\u2013"
+          ],
+          [
+            "Profit before tax",
+            "242.2",
+            "210.7"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "10.12",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(243.7-221.3)/221.3"
+  },
+  {
+    "id": "tatqa_pnl_00256",
+    "question": "What is the proportion of basic weighted average shares outstanding over diluted weighted average shares outstanding in 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Net income available to Conagra Brands, Inc. common stockholders:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Income from continuing operations attributable to Conagra Brands, Inc. common stockholders",
+            "$680.2",
+            "$794.1",
+            "$544.1"
+          ],
+          [
+            "Income (loss) from discontinued operations, net of tax, attributable to Conagra Brands, Inc. common stockholders",
+            "(1.9)",
+            "14.3",
+            "95.2"
+          ],
+          [
+            "Net income attributable to Conagra Brands, Inc. common stockholders",
+            "$678.3",
+            "$808.4",
+            "$639.3"
+          ],
+          [
+            "Less: Increase in redemption value of noncontrolling interests in excess of earnings allocated",
+            "\u2014",
+            "\u2014",
+            "0.8"
+          ],
+          [
+            "Net income available to Conagra Brands, Inc. common stockholders",
+            "$678.3",
+            "$808.4",
+            "$638.5"
+          ],
+          [
+            "Weighted average shares outstanding:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Basic weighted average shares outstanding",
+            "444.0",
+            "403.9",
+            "431.9"
+          ],
+          [
+            "Add: Dilutive effect of stock options, restricted stock unit awards, and other dilutive securities",
+            "1.6",
+            "3.5",
+            "4.1"
+          ],
+          [
+            "Diluted weighted average shares outstanding",
+            "445.6",
+            "407.4",
+            "436.0"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "0.99",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "403.9/407.4 "
+  },
+  {
+    "id": "tatqa_pnl_00266",
+    "question": "What is the percentage change in cost of revenue between 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Statements of Operations:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Revenue",
+            "$10,310",
+            "$12,629",
+            "$12,149"
+          ],
+          [
+            "Cost of revenue",
+            "4,405",
+            "6,295",
+            "6,627"
+          ],
+          [
+            "Gross profit",
+            "5,905",
+            "6,334",
+            "5,522"
+          ],
+          [
+            "Operating expenses:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Research and development",
+            "12,350",
+            "9,948",
+            "9,572"
+          ],
+          [
+            "Selling, general and administrative",
+            "8,918",
+            "9,982",
+            "9,900"
+          ],
+          [
+            "Loss from operations",
+            "(15,363)",
+            "(13,596)",
+            "(13,950)"
+          ],
+          [
+            "Interest expense",
+            "(350)",
+            "(108)",
+            "(115)"
+          ],
+          [
+            "Interest income and other expense, net",
+            "189",
+            "77",
+            "21"
+          ],
+          [
+            "Loss before income taxes",
+            "(15,524)",
+            "(13,627)",
+            "(14,044)"
+          ],
+          [
+            "(Benefit from) Provision for income taxes",
+            "(80)",
+            "152",
+            "87"
+          ],
+          [
+            "Net loss",
+            "$(15,444)",
+            "$(13,779)",
+            "$(14,131)"
+          ],
+          [
+            "Net loss per share: (1)",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Basic and diluted",
+            "$(2.02)",
+            "$(2.16)",
+            "$(2.56)"
+          ],
+          [
+            "Weighted average shares:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Basic and diluted",
+            "7,663",
+            "6,365",
+            "5,521"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-30.02",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(4,405 - 6,295)/6,295 "
+  },
+  {
+    "id": "tatqa_pnl_00270",
+    "question": "What was the difference in revenue between dry bulk vessel operations and logistics business?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "Dry Bulk Vessel Operations for the Year Ended December 31, 2019",
+          "Logistics Business for the Year Ended December 31, 2019",
+          "Total for the Year Ended December 31, 2019"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "$254,178",
+            "$228,271",
+            "$482,449"
+          ],
+          [
+            "Administrative fee revenue from affiliates",
+            "16,991",
+            "\u2014",
+            "16,991"
+          ],
+          [
+            "Interest income",
+            "9,610",
+            "1,052",
+            "10,662"
+          ],
+          [
+            "Interest expense and finance cost",
+            "(92,948)",
+            "(40,531)",
+            "(133,479)"
+          ],
+          [
+            "Depreciation and amortization",
+            "(52,288)",
+            "(29,435)",
+            "(81,723)"
+          ],
+          [
+            "Equity in net (losses)/earnings of affiliated companies",
+            "(9,185)",
+            "\u2014",
+            "(9,185)"
+          ],
+          [
+            "Net (loss)/ income attributable to Navios Holdings common",
+            "",
+            "",
+            ""
+          ],
+          [
+            "stockholders",
+            "(212,623)",
+            "20,513",
+            "(192,110)"
+          ],
+          [
+            "Total assets",
+            "1,511,517",
+            "631,338",
+            "2,142,855"
+          ],
+          [
+            "Goodwill",
+            "56,240",
+            "104,096",
+            "160,336"
+          ],
+          [
+            "Capital expenditures",
+            "(36,628)",
+            "(7,943)",
+            "(44,571)"
+          ],
+          [
+            "Investment in affiliates",
+            "64,352",
+            "\u2014",
+            "64,352"
+          ],
+          [
+            "Cash and cash equivalents",
+            "32,386",
+            "45,605",
+            "77,991"
+          ],
+          [
+            "Restricted cash",
+            "736",
+            "\u2014",
+            "736"
+          ],
+          [
+            "Long-term debt, net (including current and noncurrent portion)",
+            "$1,048,318",
+            "$514,929",
+            "1,563,247"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "25907",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "254,178-228,271"
+  },
+  {
+    "id": "tatqa_pnl_00109",
+    "question": "What is the percentage change in net debt in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018"
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m"
+          ],
+          [
+            "Total equity",
+            "826.3",
+            "766.9"
+          ],
+          [
+            "Net debt",
+            "334.1",
+            "235.8"
+          ],
+          [
+            "Total invested capital",
+            "1,160.4",
+            "1,002.7"
+          ],
+          [
+            "Average invested capital",
+            "1,081.6",
+            "992.9"
+          ],
+          [
+            "Average invested capital (excluding IFRS 16)",
+            "1,061.2",
+            "992.9"
+          ],
+          [
+            "Operating profit as reported under IFRS",
+            "245.0",
+            "299.1"
+          ],
+          [
+            "Adjustments (see adjusted operating profit)",
+            "37.7",
+            "(34.2)"
+          ],
+          [
+            "Adjusted operating profit",
+            "282.7",
+            "264.9"
+          ],
+          [
+            "Taxation",
+            "(80.6)",
+            "(73.1)"
+          ],
+          [
+            "Adjusted operating profit after tax",
+            "202.1",
+            "191.8"
+          ],
+          [
+            "Adjusted operating profit after tax (excluding IFRS 16)",
+            "201.2",
+            "191.8"
+          ],
+          [
+            "Return in invested capital",
+            "18.7%",
+            "19.3%"
+          ],
+          [
+            "Return in invested capital (excluding IFRS 16)",
+            "19.0%",
+            "19.3%"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "41.69",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(334.1-235.8)/235.8"
+  },
+  {
+    "id": "tatqa_pnl_00034",
+    "question": "What was the average income from operations for 2017-2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(In thousands)",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Total revenues",
+            "$ 349,640",
+            "$ 346,251",
+            "$ 350,611"
+          ],
+          [
+            "Income from operations",
+            "100,182",
+            "100,571",
+            "104,973"
+          ],
+          [
+            "Net income before taxes",
+            "99,146",
+            "99,408",
+            "103,497"
+          ],
+          [
+            "Net income",
+            "99,146",
+            "99,408",
+            "103,497"
+          ],
+          [
+            "Current assets",
+            "$ 80,655",
+            "$ 75,040",
+            "$ 78,782"
+          ],
+          [
+            "Non-current assets",
+            "156,672",
+            "103,996",
+            "95,959"
+          ],
+          [
+            "Current liabilities",
+            "33,292",
+            "24,719",
+            "22,472"
+          ],
+          [
+            "Non-current liabilities",
+            "92,477",
+            "51,840",
+            "51,463"
+          ],
+          [
+            "Partnership equity",
+            "111,558",
+            "102,478",
+            "100,806"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "101908.67",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(100,182 + 100,571 + 104,973) / 3"
+  },
+  {
+    "id": "tatqa_pnl_00138",
+    "question": "How much is the 2019 sales of goods and services to associates?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "",
+            "\u20acm",
+            "\u20acm",
+            "\u20acm"
+          ],
+          [
+            "Sales of goods and services to associates",
+            "27",
+            "19",
+            "37"
+          ],
+          [
+            "Purchase of goods and services from associates",
+            "3",
+            "1",
+            "90"
+          ],
+          [
+            "Sales of goods and services to joint arrangements",
+            "242",
+            "194",
+            "19"
+          ],
+          [
+            "Purchase of goods and services from joint arrangements",
+            "192",
+            "199",
+            "183"
+          ],
+          [
+            "Net interest income receivable from joint arrangements1",
+            "96",
+            "120",
+            "87"
+          ],
+          [
+            "Trade balances owed:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "by associates",
+            "1",
+            "4",
+            "\u2013"
+          ],
+          [
+            "to associates",
+            "3",
+            "2",
+            "1"
+          ],
+          [
+            "by joint arrangements",
+            "193",
+            "107",
+            "158"
+          ],
+          [
+            "to joint arrangements",
+            "25",
+            "28",
+            "15"
+          ],
+          [
+            "Other balances owed by joint arrangements1",
+            "997",
+            "1,328",
+            "1,209"
+          ],
+          [
+            "Other balances owed to joint arrangements1",
+            "169",
+            "150",
+            "127"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "27",
+    "answer_type": "span",
+    "answer_from": "table"
+  },
+  {
+    "id": "tatqa_pnl_00206",
+    "question": "What was the percentage change in trade payables in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "(Restated) 2018"
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m"
+          ],
+          [
+            "Trade payables",
+            "4.3",
+            "3.7"
+          ],
+          [
+            "Accruals",
+            "10.5",
+            "9.8"
+          ],
+          [
+            "Other taxes and social security",
+            "13.0",
+            "11.8"
+          ],
+          [
+            "Deferred income",
+            "13.2",
+            "1.8"
+          ],
+          [
+            "Other payables",
+            "0.3",
+            "0.9"
+          ],
+          [
+            "Accrued interest payable",
+            "0.5",
+            "0.5"
+          ],
+          [
+            "Total",
+            "41.8",
+            "28.5"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "16.22",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(4.3-3.7)/3.7"
+  },
+  {
+    "id": "tatqa_pnl_00162",
+    "question": "What was the difference between current and non-current deferred revenues after adjustment in 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "As reported December 31, 2017",
+          "Adjustments for ASC 606 adoption",
+          "Adjusted January 1, 2018"
+        ],
+        "rows": [
+          [
+            "Trade receivables, net",
+            "$201.8",
+            "$(6.2)",
+            "$195.6"
+          ],
+          [
+            "Prepaid expenses and other current assets",
+            "44.6",
+            "11.8",
+            "56.4"
+          ],
+          [
+            "Receivables from related parties",
+            "18.1",
+            "(3.7)",
+            "14.4"
+          ],
+          [
+            "Computer software, net",
+            "416.8",
+            "1.8",
+            "418.6"
+          ],
+          [
+            "Deferred contract costs, net",
+            "136.1",
+            "13.3",
+            "149.4"
+          ],
+          [
+            "Other non-current assets",
+            "104.0",
+            "3.3",
+            "107.3"
+          ],
+          [
+            "Total assets",
+            "3,655.9",
+            "20.3",
+            "3,676.2"
+          ],
+          [
+            "Deferred revenues (current)",
+            "59.6",
+            "(1.9)",
+            "57.7"
+          ],
+          [
+            "Deferred revenues (non-current)",
+            "100.7",
+            "6.8",
+            "107.5"
+          ],
+          [
+            "Deferred income taxes",
+            "224.6",
+            "4.2",
+            "228.8"
+          ],
+          [
+            "Total liabilities",
+            "1,947.1",
+            "9.1",
+            "1,956.2"
+          ],
+          [
+            "Retained earnings",
+            "201.4",
+            "11.2",
+            "212.6"
+          ],
+          [
+            "Total equity",
+            "1,708.8",
+            "11.2",
+            "1,720.0"
+          ],
+          [
+            "Total liabilities and equity",
+            "3,655.9",
+            "20.3",
+            "3,676.2"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "41.1",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "100.7-59.6"
+  },
+  {
+    "id": "tatqa_pnl_00342",
+    "question": "What was the average invested capital in 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018"
+        ],
+        "rows": [
+          [
+            "Adjusted operating income (tax effected)",
+            "$120.7",
+            "$118.6"
+          ],
+          [
+            "Average invested capital",
+            "923.1",
+            "$735.6"
+          ],
+          [
+            "After-tax ROIC ",
+            "13.1%",
+            "16.1%"
+          ],
+          [
+            "WACC ",
+            "9.0%",
+            "9.5%"
+          ],
+          [
+            "Economic Return ",
+            "4.1%",
+            "6.6%"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "735.6",
+    "answer_type": "span",
+    "answer_from": "table-text"
+  },
+  {
+    "id": "tatqa_pnl_00118",
+    "question": "What is the percentage change of the Number of shares held, end of year from 2017 to 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Changes in common stock:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Number of shares, beginning of year",
+            "231,619,037",
+            "230,080,944",
+            "227,638,738"
+          ],
+          [
+            "Restricted stock shares issued for new awards(1)",
+            "1,478",
+            "569,960",
+            "480,283"
+          ],
+          [
+            "Restricted stock shares, forfeited(1)",
+            "(110,984)",
+            "(86,518 )",
+            "(184,235)"
+          ],
+          [
+            "Shares issued for vested restricted stock units",
+            "164,347",
+            "151,280",
+            "607,231"
+          ],
+          [
+            "Shares issued as part of acquisition(2)",
+            "\u2014",
+            "20,000",
+            "\u2014"
+          ],
+          [
+            "Shares issued for 2014 Special Performance Stock Units (PSU) Awards",
+            "\u2014",
+            "658,783",
+            "749,653"
+          ],
+          [
+            "Shares issued for 2015 Three-Year PSU Awards",
+            "\u2014",
+            "129,139",
+            "\u2014"
+          ],
+          [
+            "Shares issued for 2014 Three-Year PSU Awards",
+            "\u2014",
+            "\u2014",
+            "636,723"
+          ],
+          [
+            "Shares issued for Stock Leverage Opportunity Awards (SLO)",
+            "6,321",
+            "109,841",
+            "136,783"
+          ],
+          [
+            "Shares granted and issued under the Omnibus Incentive Plan and Directors Stock Plan to Directors",
+            "123,824",
+            "10,841",
+            "15,768"
+          ],
+          [
+            "Canceled shares for tax netting(3)",
+            "(181,488)",
+            "\u2014",
+            "\u2014"
+          ],
+          [
+            "Other activity(4)",
+            "\u2014",
+            "(25,233 )",
+            "\u2014"
+          ],
+          [
+            "Number of shares issued, end of year(1)",
+            "231,622,535",
+            "231,619,037",
+            "230,080,944"
+          ],
+          [
+            "Changes in common stock in treasury:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Number of shares held, beginning of year",
+            "75,964,667",
+            "61,485,423",
+            "34,156,355"
+          ],
+          [
+            "Repurchase of common stock(5)",
+            "1,632,163",
+            "14,826,924",
+            "27,320,816"
+          ],
+          [
+            "Profit sharing contribution paid in stock",
+            "(487,108)",
+            "(538,524 )",
+            "(502,519)"
+          ],
+          [
+            "Shares withheld for taxes(3)",
+            "\u2014",
+            "190,844",
+            "510,771"
+          ],
+          [
+            "Number of shares held, end of year(5)",
+            "77,109,722",
+            "75,964,667",
+            "61,485,423"
+          ],
+          [
+            "Number of common stock outstanding, end of year",
+            "154,512,813",
+            "155,654,370",
+            "168,595,521"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "23.55",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(75,964,667-61,485,423)/61,485,423"
+  },
+  {
+    "id": "tatqa_pnl_00029",
+    "question": "How much is the ending projected benefit obligation outside of the US in 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(In Millions)",
+          "Dec 28, 2019",
+          "Dec 29, 2018"
+        ],
+        "rows": [
+          [
+            "Changes in projected benefit obligation:",
+            "",
+            ""
+          ],
+          [
+            "Beginning projected benefit obligation",
+            "$3,433",
+            "$3,842"
+          ],
+          [
+            "Service cost",
+            "54",
+            "65"
+          ],
+          [
+            "Interest cost",
+            "113",
+            "113"
+          ],
+          [
+            "Actuarial (gain) loss",
+            "829",
+            "(204)"
+          ],
+          [
+            "Currency exchange rate changes",
+            "(2)",
+            "(121)"
+          ],
+          [
+            "Plan curtailments",
+            "\u2014",
+            "(150)"
+          ],
+          [
+            "Plan settlements",
+            "(57)",
+            "(74)"
+          ],
+          [
+            "Other",
+            "(86)",
+            "(38)"
+          ],
+          [
+            "Ending projected benefit obligation 1",
+            "4,284",
+            "3,433"
+          ],
+          [
+            "Changes in fair value of plan assets:",
+            "",
+            ""
+          ],
+          [
+            "Beginning fair value of plan assets",
+            "2,551",
+            "2,287"
+          ],
+          [
+            "Actual return on plan assets",
+            "193",
+            "(38)"
+          ],
+          [
+            "Employer contributions",
+            "30",
+            "480"
+          ],
+          [
+            "Currency exchange rate changes",
+            "3",
+            "(62)"
+          ],
+          [
+            "Plan settlements",
+            "(57)",
+            "(74)"
+          ],
+          [
+            "Other",
+            "(66)",
+            "(42)"
+          ],
+          [
+            "Ending fair value of plan assets 2",
+            "2,654",
+            "2,551"
+          ],
+          [
+            "Net funded status",
+            "$1,630",
+            "$882"
+          ],
+          [
+            "Amounts recognized in the Consolidated Balance Sheets",
+            "",
+            ""
+          ],
+          [
+            "Other long-term assets",
+            "$\u2014",
+            "$244"
+          ],
+          [
+            "Other long-term liabilities",
+            "$1,630",
+            "$1,126"
+          ],
+          [
+            "Accumulated other comprehensive loss (income), before tax 3",
+            "$1,730",
+            "$1,038"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "2231.45",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "65% * 3,433 "
+  },
+  {
+    "id": "tatqa_pnl_00167",
+    "question": "What was the percentage change in total amortization of purchased intangible assets between 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Years Ended",
+          "July 27, 2019",
+          "July 28, 2018",
+          "July 29, 2017"
+        ],
+        "rows": [
+          [
+            "Amortization of purchased intangible assets:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Cost of sales .",
+            "$624",
+            "$640",
+            "$556"
+          ],
+          [
+            "Operating expenses",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Amortization of purchased intangible assets",
+            "150",
+            "221",
+            "259"
+          ],
+          [
+            "Restructuring and other charges",
+            "\u2014",
+            "\u2014",
+            "38"
+          ],
+          [
+            "Total  .",
+            "$774",
+            "$861",
+            "$853"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-10.1",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "(774-861)/861"
+  },
+  {
+    "id": "tatqa_pnl_00330",
+    "question": "What is the average adjusted EBITDA in 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "Fiscal 2019",
+          "Fiscal 2018",
+          "% Change"
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "(in millions)",
+            ""
+          ],
+          [
+            "Sales",
+            "$ 328.8",
+            "$  207.0",
+            "59 %"
+          ],
+          [
+            "Operating income (loss)",
+            "7.8",
+            "(0.1)",
+            "n/a"
+          ],
+          [
+            "Adjusted EBITDA",
+            "34.4",
+            "26.2",
+            "31"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "30.3",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "(34.4+26.2)/2"
+  },
+  {
+    "id": "tatqa_pnl_00139",
+    "question": "How much is the 2018 sales of goods and services to associates?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "",
+            "\u20acm",
+            "\u20acm",
+            "\u20acm"
+          ],
+          [
+            "Sales of goods and services to associates",
+            "27",
+            "19",
+            "37"
+          ],
+          [
+            "Purchase of goods and services from associates",
+            "3",
+            "1",
+            "90"
+          ],
+          [
+            "Sales of goods and services to joint arrangements",
+            "242",
+            "194",
+            "19"
+          ],
+          [
+            "Purchase of goods and services from joint arrangements",
+            "192",
+            "199",
+            "183"
+          ],
+          [
+            "Net interest income receivable from joint arrangements1",
+            "96",
+            "120",
+            "87"
+          ],
+          [
+            "Trade balances owed:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "by associates",
+            "1",
+            "4",
+            "\u2013"
+          ],
+          [
+            "to associates",
+            "3",
+            "2",
+            "1"
+          ],
+          [
+            "by joint arrangements",
+            "193",
+            "107",
+            "158"
+          ],
+          [
+            "to joint arrangements",
+            "25",
+            "28",
+            "15"
+          ],
+          [
+            "Other balances owed by joint arrangements1",
+            "997",
+            "1,328",
+            "1,209"
+          ],
+          [
+            "Other balances owed to joint arrangements1",
+            "169",
+            "150",
+            "127"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "19",
+    "answer_type": "span",
+    "answer_from": "table"
+  },
+  {
+    "id": "tatqa_pnl_00292",
+    "question": "What was the change in employee costs in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "Restated 2018",
+          ""
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m",
+            "% change"
+          ],
+          [
+            "Employee costs (see note 7 to the consolidated financial statements)",
+            "56.0",
+            "54.5",
+            "3%"
+          ],
+          [
+            "Average number of employees (see note 6 to the consolidated financial statements)",
+            "802",
+            "822",
+            "3%"
+          ],
+          [
+            "Revenue (see Consolidated income statement)",
+            "355.1",
+            "330.1",
+            "8%"
+          ],
+          [
+            "Operating profit",
+            "243.7",
+            "221.3",
+            "10%"
+          ],
+          [
+            "Dividends paid and proposed and share buybacks (see notes 26 and 27 to the consolidated financial statements)",
+            "156.4",
+            "152.8\u00b9",
+            "2%"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "1.5",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "56.0-54.5"
+  },
+  {
+    "id": "tatqa_pnl_00237",
+    "question": "What was the percentage change in gross profit in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "USDm",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Reconciliation to revenue",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Revenue",
+            "692.6",
+            "635.4",
+            "657.0"
+          ],
+          [
+            "Port expenses, bunkers and commissions",
+            "-267.7",
+            "-283.0",
+            "-259.9"
+          ],
+          [
+            "Charter hire",
+            "-",
+            "-2.5",
+            "-8.5"
+          ],
+          [
+            "Operating expenses",
+            "-173.0",
+            "-180.4",
+            "-188.4"
+          ],
+          [
+            "Gross profit",
+            "251.9",
+            "169.5",
+            "200.2"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "48.61",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(251.9-169.5)/169.5"
+  },
+  {
+    "id": "tatqa_pnl_00334",
+    "question": "What was the percentage change in the Share based compensation between 2017 and 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(in thousands of U.S. dollars)",
+          "Year Ended December 31, 2018",
+          "Year Ended December 31, 2017"
+        ],
+        "rows": [
+          [
+            "Net loss",
+            "$(265,511)",
+            "$(164,787)"
+          ],
+          [
+            "Adjustments to reconcile net loss to net cash provided by operating activities:",
+            "",
+            ""
+          ],
+          [
+            "Depreciation and amortization",
+            "102,839",
+            "104,112"
+          ],
+          [
+            "Amortization and write-off of deferred financing costs",
+            "7,880",
+            "6,391"
+          ],
+          [
+            "Amortization of deferred drydock and special survey costs",
+            "13,828",
+            "14,727"
+          ],
+          [
+            "Provision for losses on accounts receivable",
+            "575",
+            "269"
+          ],
+          [
+            "Share based compensation",
+            "4,556",
+            "4,296"
+          ],
+          [
+            "Gain on bond and debt extinguishment",
+            "(6,464)",
+            "(185)"
+          ],
+          [
+            "Bargain gain upon obtaining control",
+            "(58,313)",
+            "\u2014"
+          ],
+          [
+            "Income tax benefit",
+            "(1,108)",
+            "(3,192)"
+          ],
+          [
+            "Impairment losses",
+            "200,657",
+            "50,565"
+          ],
+          [
+            "Gain on sale of assets",
+            "(894)",
+            "(1,064)"
+          ],
+          [
+            "Loss/(equity) in affiliates, net of dividends received",
+            "84,317",
+            "4,610"
+          ],
+          [
+            "Net income adjusted for non-cash items",
+            "$82,362",
+            "$15,742"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "6.05",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(4,556-4,296)/4,296"
+  },
+  {
+    "id": "tatqa_pnl_00350",
+    "question": "What was the revenue for the quarter ended July 27, 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Quarters Ended",
+          "July 27, 2019 (1)",
+          "April 27, 2019",
+          "January 26, 2019",
+          "October 27, 2018"
+        ],
+        "rows": [
+          [
+            "Revenue .",
+            "$13,428",
+            "$12,958",
+            "$12,446",
+            "$13,072"
+          ],
+          [
+            "Gross margin",
+            "$8,574",
+            "$8,173",
+            "$7,773",
+            "$8,146"
+          ],
+          [
+            "Operating income",
+            "$3,690",
+            "$3,513",
+            "$3,211",
+            "$3,805"
+          ],
+          [
+            "Net income",
+            "$2,206",
+            "$3,044",
+            "$2,822",
+            "$3,549"
+          ],
+          [
+            "Net income per share - basic",
+            "$0.52",
+            "$0.70",
+            "$0.63",
+            "$0.78"
+          ],
+          [
+            "Net income per share - diluted",
+            "$0.51",
+            "$0.69",
+            "$0.63",
+            "$0.77"
+          ],
+          [
+            "Cash dividends declared per common share .",
+            "$0.35",
+            "$0.35",
+            "$0.33",
+            "$0.33"
+          ],
+          [
+            "Cash and cash equivalents and investments .",
+            "$33,413",
+            "$34,643",
+            "$40,383",
+            "$42,593"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "13,428",
+    "answer_type": "span",
+    "answer_from": "table-text"
+  },
+  {
+    "id": "tatqa_pnl_00274",
+    "question": "What was the average accrued liabilities for 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(In thousands)",
+          "2019",
+          "2018"
+        ],
+        "rows": [
+          [
+            "Deferred tax assets:",
+            "",
+            ""
+          ],
+          [
+            "Accrued liabilities",
+            "$3,944",
+            "$2,720"
+          ],
+          [
+            "Allowance for doubtful accounts",
+            "120",
+            "143"
+          ],
+          [
+            "Inventory valuation reserve",
+            "41",
+            "20"
+          ],
+          [
+            "Federal losses and credit carryforwards",
+            "45,227",
+            "42,713"
+          ],
+          [
+            "Foreign net operating losses",
+            "730",
+            "623"
+          ],
+          [
+            "State losses and credit carryforwards",
+            "9,886",
+            "9,592"
+          ],
+          [
+            "Deferred revenue",
+            "488",
+            "652"
+          ],
+          [
+            "Goodwill and other intangible assets",
+            "\u2014",
+            "286"
+          ],
+          [
+            "Other",
+            "65",
+            "96"
+          ],
+          [
+            "",
+            "60,501",
+            "56,845"
+          ],
+          [
+            "Less: valuation allowance",
+            "(57,852)",
+            "(54,260)"
+          ],
+          [
+            "Total",
+            "2,649",
+            "2,585"
+          ],
+          [
+            "Deferred tax liabilities:",
+            "",
+            ""
+          ],
+          [
+            "Property and equipment & software amortization",
+            "(361)",
+            "(412)"
+          ],
+          [
+            "Goodwill and other intangible assets",
+            "(2,706)",
+            "(2,277)"
+          ],
+          [
+            "Total",
+            "(3,067)",
+            "(2,689)"
+          ],
+          [
+            "Total deferred tax liabilities",
+            "$(418)",
+            "$(104)"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "3332",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(3,944 + 2,720) / 2"
+  },
+  {
+    "id": "tatqa_pnl_00088",
+    "question": "What was the change in total stock-based compensation expense between 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(In thousands)",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Stock-based compensation expense included in cost of sales",
+            "$369",
+            "$418",
+            "$379"
+          ],
+          [
+            "Selling, general and administrative expense",
+            "3,889",
+            "3,989",
+            "4,063"
+          ],
+          [
+            "Research and development expense",
+            "2,704",
+            "2,748",
+            "2,991"
+          ],
+          [
+            "Stock-based compensation expense included in operating expenses",
+            "6,593",
+            "6,737",
+            "7,054"
+          ],
+          [
+            "Total stock-based compensation expense",
+            "6,962",
+            "7,155",
+            "7,433"
+          ],
+          [
+            "Tax benefit for expense associated with non-qualified options, PSUs, RSUs and restricted stock",
+            "(1,659)",
+            "(1,432)",
+            "(1,699)"
+          ],
+          [
+            "Total stock-based compensation expense, net of tax",
+            "$5,303",
+            "$5,723",
+            "$5,734"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-193",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "6,962-7,155"
+  },
+  {
+    "id": "tatqa_pnl_00037",
+    "question": "What is the increase/ (decrease) in Guarantee liabilities from December 31, 2019 to December 31, 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "December 31, 2019",
+          "December 31, 2018"
+        ],
+        "rows": [
+          [
+            "",
+            "$",
+            "$"
+          ],
+          [
+            "Deferred revenues and gains (note 2)",
+            "28,612",
+            "31,324"
+          ],
+          [
+            "Guarantee liabilities",
+            "10,113",
+            "9,434"
+          ],
+          [
+            "Asset retirement obligation",
+            "31,068",
+            "27,759"
+          ],
+          [
+            "Pension liabilities",
+            "7,238",
+            "4,847"
+          ],
+          [
+            "In-process revenue contracts",
+            "11,866",
+            "17,800"
+          ],
+          [
+            "Derivative liabilities (note 16)",
+            "51,914",
+            "56,352"
+          ],
+          [
+            "Unrecognized tax benefits (note 22)",
+            "62,958",
+            "40,556"
+          ],
+          [
+            "Office lease liability \u2013 long-term (note 1)",
+            "10,254",
+            "\u2014"
+          ],
+          [
+            "Other",
+            "2,325",
+            "1,325"
+          ],
+          [
+            "",
+            "216,348",
+            "189,397"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "679",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "10,113-9,434"
+  },
+  {
+    "id": "tatqa_pnl_00137",
+    "question": "What is the average Adjusteda operating costs for 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019 (IFRS 15)",
+          "2018 (IAS 18)",
+          "Change",
+          ""
+        ],
+        "rows": [
+          [
+            "Year to 31 March",
+            "\u00a3m",
+            "\u00a3m",
+            "\u00a3m",
+            "%"
+          ],
+          [
+            "Adjusted a revenue",
+            "4,735",
+            "5,013",
+            "(278)",
+            "(6)"
+          ],
+          [
+            "Adjusted a operating costs",
+            "4,230",
+            "4,579",
+            "(349)",
+            "(8)"
+          ],
+          [
+            "Adjusted a EBITDA",
+            "505",
+            "434",
+            "71",
+            "16"
+          ],
+          [
+            "Depreciation & amortisation",
+            "370",
+            "424",
+            "(54)",
+            "(13)"
+          ],
+          [
+            "Adjusted a operating profit",
+            "135",
+            "10",
+            "125",
+            "1,250"
+          ],
+          [
+            "Capital expenditure",
+            "245",
+            "278",
+            "(33)",
+            "(12)"
+          ],
+          [
+            "Normalised free cash flow b",
+            "296",
+            "118",
+            "178",
+            "151"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "4404.5",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(4,230 + 4,579) / 2"
+  },
+  {
+    "id": "tatqa_pnl_00108",
+    "question": "What is the change in net debt in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018"
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m"
+          ],
+          [
+            "Total equity",
+            "826.3",
+            "766.9"
+          ],
+          [
+            "Net debt",
+            "334.1",
+            "235.8"
+          ],
+          [
+            "Total invested capital",
+            "1,160.4",
+            "1,002.7"
+          ],
+          [
+            "Average invested capital",
+            "1,081.6",
+            "992.9"
+          ],
+          [
+            "Average invested capital (excluding IFRS 16)",
+            "1,061.2",
+            "992.9"
+          ],
+          [
+            "Operating profit as reported under IFRS",
+            "245.0",
+            "299.1"
+          ],
+          [
+            "Adjustments (see adjusted operating profit)",
+            "37.7",
+            "(34.2)"
+          ],
+          [
+            "Adjusted operating profit",
+            "282.7",
+            "264.9"
+          ],
+          [
+            "Taxation",
+            "(80.6)",
+            "(73.1)"
+          ],
+          [
+            "Adjusted operating profit after tax",
+            "202.1",
+            "191.8"
+          ],
+          [
+            "Adjusted operating profit after tax (excluding IFRS 16)",
+            "201.2",
+            "191.8"
+          ],
+          [
+            "Return in invested capital",
+            "18.7%",
+            "19.3%"
+          ],
+          [
+            "Return in invested capital (excluding IFRS 16)",
+            "19.0%",
+            "19.3%"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "98.3",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "334.1-235.8"
+  },
+  {
+    "id": "tatqa_pnl_00182",
+    "question": "What was the change in Other in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "\u20ac millions, unless otherwise stated",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Profit before tax",
+            "4,596",
+            "5,600",
+            "5,029"
+          ],
+          [
+            "Tax expense at applicable tax rate of 26.4% rate of 26.4% (2018: 26.4%; 2017: 26.4%)",
+            "1,212",
+            "1,478",
+            "1,327"
+          ],
+          [
+            "Tax effect of:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Foreign tax rates",
+            "\u2013209",
+            "\u2013147",
+            "\u2013403"
+          ],
+          [
+            "Changes in tax laws and tax rates",
+            "10",
+            "0",
+            "\u2013212"
+          ],
+          [
+            "Non-deductible expenses",
+            "116",
+            "106",
+            "82"
+          ],
+          [
+            "Tax-exempt income",
+            "\u201393",
+            "\u201338",
+            "\u201395"
+          ],
+          [
+            "Withholding taxes",
+            "138",
+            "91",
+            "131"
+          ],
+          [
+            "Research and development and foreign tax credits",
+            "\u201389",
+            "\u201333",
+            "\u201326"
+          ],
+          [
+            "Prior-year taxes",
+            "80",
+            "\u201317",
+            "\u201326"
+          ],
+          [
+            "Reassessment of deferred tax assets, research and development tax credits, and foreign tax credits",
+            "48",
+            "58",
+            "185"
+          ],
+          [
+            "Other",
+            "13",
+            "13",
+            "20"
+          ],
+          [
+            "Total income tax expense",
+            "1,226",
+            "1,511",
+            "983"
+          ],
+          [
+            "Effective tax rate (in %)",
+            "26.7",
+            "27.0",
+            "19.5"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "0",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "13-13"
+  },
+  {
+    "id": "tatqa_pnl_00190",
+    "question": "What was the change in operating income in 2019 from 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019 (a)",
+          "2018(b)",
+          "2017(c)",
+          "2016(d)(f)",
+          "2015 (e)(f)"
+        ],
+        "rows": [
+          [
+            "Summary of Operations:",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Net sales",
+            "$2,380.2",
+            "$2,157.7",
+            "$1,797.6",
+            "$1,813.4",
+            "$2,226.7"
+          ],
+          [
+            "Operating income",
+            "$241.4",
+            "$189.3",
+            "$121.5",
+            "$70.8",
+            "$119.3"
+          ],
+          [
+            "Net income",
+            "$167.0",
+            "$188.5",
+            "$47.0",
+            "$11.3",
+            "$58.7"
+          ],
+          [
+            "Financial Position at Year-End:",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Cash and cash equivalents",
+            "$27.0",
+            "$56.2",
+            "$66.3",
+            "$82.0",
+            "$70.0"
+          ],
+          [
+            "Total assets",
+            "$3,187.8",
+            "$3,007.0",
+            "$2,878.1",
+            "$2,794.3",
+            "$2,902.6"
+          ],
+          [
+            "Long-term debt, net of current portion",
+            "$550.6",
+            "$545.7",
+            "$550.0",
+            "$611.3",
+            "$603.8"
+          ],
+          [
+            "Per Common Share:",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Net earnings:",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Basic",
+            "$3.46",
+            "$3.96",
+            "$0.99",
+            "$0.23",
+            "$1.11"
+          ],
+          [
+            "Diluted",
+            "$3.43",
+            "$3.92",
+            "$0.99",
+            "$0.23",
+            "$1.11"
+          ],
+          [
+            "Cash dividend-common",
+            "$0.80",
+            "$0.72",
+            "$0.72",
+            "$0.72",
+            "$0.72"
+          ],
+          [
+            "Weighted Average Common Shares outstanding:",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Basic",
+            "47.7",
+            "47.2",
+            "47.0",
+            "48.1",
+            "52.6"
+          ],
+          [
+            "Diluted",
+            "48.1",
+            "47.6",
+            "47.1",
+            "48.2",
+            "52.7"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "52.1",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "$241.4-$189.3"
+  },
+  {
+    "id": "tatqa_pnl_00084",
+    "question": "What is the change in sales and marketing expenses between 2018 and 2019 as a percentage of total revenues?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018"
+        ],
+        "rows": [
+          [
+            "Revenues",
+            "100.0%",
+            "100.0%"
+          ],
+          [
+            "Cost of revenues",
+            "10.6",
+            "11.0"
+          ],
+          [
+            "Gross profit",
+            "89.4",
+            "89.0"
+          ],
+          [
+            "Operating expenses:",
+            "",
+            ""
+          ],
+          [
+            "Sales and marketing",
+            "54.2",
+            "52.6"
+          ],
+          [
+            "Product development",
+            "6.2",
+            "8.1"
+          ],
+          [
+            "General and administrative",
+            "20.5",
+            "20.9"
+          ],
+          [
+            "Total operating expenses",
+            "80.9",
+            "81.6"
+          ],
+          [
+            "Income from operations",
+            "8.5",
+            "7.4"
+          ],
+          [
+            "Other income (loss), net",
+            "(0.5)",
+            "\u2014"
+          ],
+          [
+            "Income before income taxes",
+            "8.0",
+            "7.4"
+          ],
+          [
+            "Income tax expense",
+            "4.3",
+            "3.2"
+          ],
+          [
+            "Net income",
+            "3.7%",
+            "4.2%"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "1.6",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "54.2-52.6"
+  },
+  {
+    "id": "tatqa_pnl_00187",
+    "question": "What is the percentage change in EBITDA from 2017 to 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017",
+          "2016",
+          "2015"
+        ],
+        "rows": [
+          [
+            "",
+            "US$\u2019000",
+            "US$\u2019000",
+            "US$\u2019000",
+            "US$\u2019000",
+            "US$\u2019000"
+          ],
+          [
+            "Revenue",
+            "171,819",
+            "140,176",
+            "110,865",
+            "93,597",
+            "80,216"
+          ],
+          [
+            "EBITDA",
+            "62,721",
+            "44,869",
+            "33,254",
+            "27,430",
+            "22,697"
+          ],
+          [
+            "EPS",
+            "40.57",
+            "28.86",
+            "21.70",
+            "17.89",
+            "12.47 1"
+          ],
+          [
+            "Profit for the year",
+            "52,893",
+            "37,489",
+            "28,077",
+            "23,020",
+            "15,398 1"
+          ],
+          [
+            "Dividend declared - AU cents",
+            "34",
+            "27",
+            "23",
+            "20",
+            "16"
+          ],
+          [
+            "Share price - AU$",
+            "$34.2",
+            "22.51",
+            "8.57",
+            "6.46",
+            "4.43"
+          ],
+          [
+            "STI Achievement",
+            "100% - 150% 2",
+            "131%",
+            "103%",
+            "97%",
+            "63%"
+          ],
+          [
+            "STI performance hurdles",
+            "70% Revenue 30% EBITDA",
+            "50% Revenue 50% EBITDA",
+            "70% Revenue 30% EBITDA",
+            "50% Revenue 50% EBITDA",
+            "Different metrics related to subscriber related to subscriber growth, EPS and Product development related to subscriber growth, EPS and Product development related to subscriber growth, EPS and Product development"
+          ],
+          [
+            "LTI Achievement",
+            "100%",
+            "100%",
+            "100%",
+            "100%",
+            "50%"
+          ],
+          [
+            "LTI performance hurdles",
+            "50% Revenue",
+            "EPS",
+            "EPS",
+            "EPS",
+            "50% Subscriber growth 50% EPS"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "34.93",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "(44,869-33,254)/33,254"
+  },
+  {
+    "id": "tatqa_pnl_00233",
+    "question": "What was the percentage change in Net sales between Three Months Ended  September and December in 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Three Months Ended",
+          "March 31, 2019",
+          "June 30, 2019",
+          "September 30, 2019",
+          "December 31, 2019"
+        ],
+        "rows": [
+          [
+            "Net sales",
+            "$143,791",
+            "$156,391",
+            "$114,092",
+            "$115,787"
+          ],
+          [
+            "Gross profit",
+            "$60,612",
+            "$65,015",
+            "$46,331",
+            "$47,209"
+          ],
+          [
+            "Operating income (loss)",
+            "$(6,167)",
+            "$562",
+            "$(20,288)",
+            "$(14,070)"
+          ],
+          [
+            "Net income (loss)",
+            "$770",
+            "$3,995",
+            "$(46,123)",
+            "$(11,624)"
+          ],
+          [
+            "Earnings (loss) per common share - basic",
+            "$0.02",
+            "$0.08",
+            "$(0.96)",
+            "$(0.25)"
+          ],
+          [
+            "Earnings (loss) per common share - diluted",
+            "$0.02(1)",
+            "$0.08(1)",
+            "$(0.96)",
+            "$(0.25)"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "1.49",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "( $115,787 - $114,092 )/ $114,092 "
+  },
+  {
+    "id": "tatqa_pnl_00322",
+    "question": "What is the COGS for 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Fiscal Year ended",
+          "June 1, 2019",
+          "June 2, 2018",
+          "June 3, 2017"
+        ],
+        "rows": [
+          [
+            "Net income (loss) attributable to Cal-Maine Foods, Inc. - (in thousands)",
+            "$54,229",
+            "$125,932",
+            "$(74,278)"
+          ],
+          [
+            "Gross profit (in thousands)",
+            "222,859",
+            "361,046",
+            "45,550"
+          ],
+          [
+            "Net average shell egg selling price (rounded)",
+            "1.27",
+            "1.40",
+            "1.01"
+          ],
+          [
+            "Average Urner Barry Spot Egg Market Quotations 1",
+            "1.23",
+            "1.49",
+            "0.85"
+          ],
+          [
+            "Feed cost per dozen produced",
+            "0.415",
+            "0.394",
+            "0.399"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-168630",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "54,229 - 222,859"
+  },
+  {
+    "id": "tatqa_pnl_00316",
+    "question": "What were the total expenses in 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "(In millions, except percentages and per share amounts)",
+          "2019",
+          "2018",
+          "2017",
+          "Percentage Change 2019 Versus 2018",
+          "Percentage Change 2018 Versus 2017"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "$   125,843",
+            "$  110,360",
+            "$  96,571",
+            "14%",
+            "14%"
+          ],
+          [
+            "Gross margin",
+            "82,933",
+            "72,007",
+            "62,310",
+            "15%",
+            "16%"
+          ],
+          [
+            "Operating income",
+            "42,959",
+            "35,058",
+            "29,025",
+            "23%",
+            "21%"
+          ],
+          [
+            "Net income",
+            "39,240",
+            "16,571",
+            "25,489",
+            "137%",
+            "(35)%"
+          ],
+          [
+            "Diluted earnings per share",
+            "5.06",
+            "2.13",
+            "3.25",
+            "138%",
+            "(34)%"
+          ],
+          [
+            "Non-GAAP operating income",
+            "42,959",
+            "35,058",
+            "29,331",
+            "23%",
+            "20%"
+          ],
+          [
+            "Non-GAAP net income",
+            "36,830",
+            "30,267",
+            "25,732",
+            "22%",
+            "18%"
+          ],
+          [
+            "Non-GAAP diluted earnings per share",
+            "4.75",
+            "3.88",
+            "3.29",
+            "22%",
+            "18%"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "82884",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "125,843-42,959 "
+  },
+  {
+    "id": "tatqa_pnl_00052",
+    "question": "What was the effective rate of corporation tax in the UK?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "(Restated) 2018"
+        ],
+        "rows": [
+          [
+            "",
+            "\u00a3m",
+            "\u00a3m"
+          ],
+          [
+            "Profit before taxation",
+            "242.2",
+            "210.7"
+          ],
+          [
+            "Tax on profit on ordinary activities at the standard UK corporation tax rate of 19% (2018: 19%)",
+            "46.0",
+            "40.0"
+          ],
+          [
+            "Expenses not deductible for taxation purposes",
+            "0.3",
+            "0.8"
+          ],
+          [
+            "Income not taxable",
+            "(1.7)",
+            "\u2013"
+          ],
+          [
+            "Adjustments in respect of foreign tax rates",
+            "(0.1)",
+            "(0.1)"
+          ],
+          [
+            "Adjustments in respect of prior years",
+            "\u2013",
+            "(1.1)"
+          ],
+          [
+            "Total taxation charge",
+            "44.5",
+            "39.6"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "19%",
+    "answer_type": "span",
+    "answer_from": "table-text"
+  },
+  {
+    "id": "tatqa_pnl_00338",
+    "question": "What is the average other receivables for 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "December 31, 2019",
+          "December 31, 2018",
+          "January 1, 2018"
+        ],
+        "rows": [
+          [
+            "",
+            "$",
+            "$",
+            "$"
+          ],
+          [
+            "Indirect taxes receivable",
+            "36,821",
+            "3,774",
+            "832"
+          ],
+          [
+            "Unbilled revenues",
+            "31,629",
+            "12,653",
+            "7,616"
+          ],
+          [
+            "Trade receivables",
+            "9,660",
+            "11,191",
+            "7,073"
+          ],
+          [
+            "Accrued interest",
+            "5,754",
+            "5,109",
+            "2,015"
+          ],
+          [
+            "Other receivables",
+            "6,665",
+            "8,620",
+            "4,403"
+          ],
+          [
+            "",
+            "90,529",
+            "41,347",
+            "21,939"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "7642.5",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "(6,665+8,620)/2"
+  },
+  {
+    "id": "tatqa_pnl_00305",
+    "question": "What was the percentage change in Total Other operating expenses between 2018 and 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019 (1)",
+          "2018",
+          "2017 (2)"
+        ],
+        "rows": [
+          [
+            "Impairment charges",
+            "$94.2",
+            "$394.0",
+            "$211.4"
+          ],
+          [
+            "Net losses on sales or disposals of assets",
+            "45.1",
+            "85.6",
+            "32.8"
+          ],
+          [
+            "Other operating expenses",
+            "27.0",
+            "33.7",
+            "11.8"
+          ],
+          [
+            "Total Other operating expenses",
+            "$166.3",
+            "$513.3",
+            "$256.0"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-67.6",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "($166.3-$513.3)/$513.3"
+  },
+  {
+    "id": "tatqa_pnl_00149",
+    "question": "How much is the 2019 bonds and other liabilities, excluding the interest on foreign exchange derivatives?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "",
+            "\u20acm",
+            "\u20acm",
+            "\u20acm"
+          ],
+          [
+            "Investment income:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Amortised cost",
+            "286",
+            "339",
+            "426"
+          ],
+          [
+            "Fair value through profit and loss",
+            "147",
+            "24",
+            "20"
+          ],
+          [
+            "Foreign exchange",
+            "\u2013",
+            "322",
+            "28"
+          ],
+          [
+            "",
+            "433",
+            "685",
+            "474"
+          ],
+          [
+            "Financing costs:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Items in hedge relationships:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Other loans",
+            "17",
+            "74",
+            "170"
+          ],
+          [
+            "Interest rate and cross-currency interest rate swaps",
+            "(414)",
+            "(128)",
+            "(235)"
+          ],
+          [
+            "Fair value hedging instrument",
+            "(8)",
+            "48",
+            "22"
+          ],
+          [
+            "Fair value of hedged item",
+            "10",
+            "(36)",
+            "(16)"
+          ],
+          [
+            "Other financial liabilities held at amortised cost:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Bank loans and overdrafts",
+            "336",
+            "317",
+            "419"
+          ],
+          [
+            "Bonds and other liabilities1",
+            "1,567",
+            "885",
+            "1,243"
+          ],
+          [
+            "Interest (credit)/charge on settlement of tax issues",
+            "(1)",
+            "(11)",
+            "47"
+          ],
+          [
+            "Fair value through profit and loss:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Derivatives \u2013 options, forward starting swaps and futures",
+            "391",
+            "(75)",
+            "(244)"
+          ],
+          [
+            "Foreign exchange",
+            "190",
+            "\u2013",
+            "\u2013"
+          ],
+          [
+            "",
+            "2,088",
+            "1,074",
+            "1,406"
+          ],
+          [
+            "Net financing costs",
+            "1,655",
+            "389",
+            "932"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "1262",
+    "answer_type": "arithmetic",
+    "answer_from": "table-text",
+    "derivation": "1,567-305 "
+  },
+  {
+    "id": "tatqa_pnl_00117",
+    "question": "What is the Number of shares held, end of year expressed as a percentage of Number of common stock outstanding, end of year?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "rows": [
+          [
+            "Changes in common stock:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Number of shares, beginning of year",
+            "231,619,037",
+            "230,080,944",
+            "227,638,738"
+          ],
+          [
+            "Restricted stock shares issued for new awards(1)",
+            "1,478",
+            "569,960",
+            "480,283"
+          ],
+          [
+            "Restricted stock shares, forfeited(1)",
+            "(110,984)",
+            "(86,518 )",
+            "(184,235)"
+          ],
+          [
+            "Shares issued for vested restricted stock units",
+            "164,347",
+            "151,280",
+            "607,231"
+          ],
+          [
+            "Shares issued as part of acquisition(2)",
+            "\u2014",
+            "20,000",
+            "\u2014"
+          ],
+          [
+            "Shares issued for 2014 Special Performance Stock Units (PSU) Awards",
+            "\u2014",
+            "658,783",
+            "749,653"
+          ],
+          [
+            "Shares issued for 2015 Three-Year PSU Awards",
+            "\u2014",
+            "129,139",
+            "\u2014"
+          ],
+          [
+            "Shares issued for 2014 Three-Year PSU Awards",
+            "\u2014",
+            "\u2014",
+            "636,723"
+          ],
+          [
+            "Shares issued for Stock Leverage Opportunity Awards (SLO)",
+            "6,321",
+            "109,841",
+            "136,783"
+          ],
+          [
+            "Shares granted and issued under the Omnibus Incentive Plan and Directors Stock Plan to Directors",
+            "123,824",
+            "10,841",
+            "15,768"
+          ],
+          [
+            "Canceled shares for tax netting(3)",
+            "(181,488)",
+            "\u2014",
+            "\u2014"
+          ],
+          [
+            "Other activity(4)",
+            "\u2014",
+            "(25,233 )",
+            "\u2014"
+          ],
+          [
+            "Number of shares issued, end of year(1)",
+            "231,622,535",
+            "231,619,037",
+            "230,080,944"
+          ],
+          [
+            "Changes in common stock in treasury:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Number of shares held, beginning of year",
+            "75,964,667",
+            "61,485,423",
+            "34,156,355"
+          ],
+          [
+            "Repurchase of common stock(5)",
+            "1,632,163",
+            "14,826,924",
+            "27,320,816"
+          ],
+          [
+            "Profit sharing contribution paid in stock",
+            "(487,108)",
+            "(538,524 )",
+            "(502,519)"
+          ],
+          [
+            "Shares withheld for taxes(3)",
+            "\u2014",
+            "190,844",
+            "510,771"
+          ],
+          [
+            "Number of shares held, end of year(5)",
+            "77,109,722",
+            "75,964,667",
+            "61,485,423"
+          ],
+          [
+            "Number of common stock outstanding, end of year",
+            "154,512,813",
+            "155,654,370",
+            "168,595,521"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "49.91",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "77,109,722/154,512,813"
+  },
+  {
+    "id": "tatqa_pnl_00024",
+    "question": "What was the adjusted EBITDA margin in 2019?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Years ended August 31,",
+          "2019 (1)",
+          "2018 (2)",
+          "Change",
+          "Change in constant currency (3)",
+          "Foreign exchange impact (3)"
+        ],
+        "rows": [
+          [
+            "(in thousands of dollars, except percentages)",
+            "$",
+            "$",
+            "%",
+            "%",
+            "$"
+          ],
+          [
+            "Revenue",
+            "2,331,820",
+            "2,147,404",
+            "8.6",
+            "6.8",
+            "37,433"
+          ],
+          [
+            "Operating Expenses",
+            "1,203,980",
+            "1,121,625",
+            "7.3",
+            "5.4",
+            "21,636"
+          ],
+          [
+            "Management fees \u2013 Cogeco Inc.",
+            "19,900",
+            "18,961",
+            "5.0",
+            "5.0",
+            "-"
+          ],
+          [
+            "Adjusted EBITDA",
+            "1,107,940",
+            "1,006,818",
+            "10.0",
+            "8.5",
+            "15,797"
+          ],
+          [
+            "Adjusted EBITDA margin",
+            "47.5%",
+            "46.9%",
+            "",
+            "",
+            ""
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "47.5%",
+    "answer_type": "span",
+    "answer_from": "table"
+  },
+  {
+    "id": "tatqa_pnl_00036",
+    "question": "What is the increase/ (decrease) in Deferred revenues and gains from December 31, 2019 to December 31, 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "December 31, 2019",
+          "December 31, 2018"
+        ],
+        "rows": [
+          [
+            "",
+            "$",
+            "$"
+          ],
+          [
+            "Deferred revenues and gains (note 2)",
+            "28,612",
+            "31,324"
+          ],
+          [
+            "Guarantee liabilities",
+            "10,113",
+            "9,434"
+          ],
+          [
+            "Asset retirement obligation",
+            "31,068",
+            "27,759"
+          ],
+          [
+            "Pension liabilities",
+            "7,238",
+            "4,847"
+          ],
+          [
+            "In-process revenue contracts",
+            "11,866",
+            "17,800"
+          ],
+          [
+            "Derivative liabilities (note 16)",
+            "51,914",
+            "56,352"
+          ],
+          [
+            "Unrecognized tax benefits (note 22)",
+            "62,958",
+            "40,556"
+          ],
+          [
+            "Office lease liability \u2013 long-term (note 1)",
+            "10,254",
+            "\u2014"
+          ],
+          [
+            "Other",
+            "2,325",
+            "1,325"
+          ],
+          [
+            "",
+            "216,348",
+            "189,397"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "-2712",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "28,612-31,324"
+  },
+  {
+    "id": "tatqa_pnl_00099",
+    "question": "How much does amortization of developed technology account for total cost of revenue in 2018?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "",
+          "Fiscal year ended January 31, 2019",
+          "Change compared to prior fiscal year",
+          "",
+          "Fiscal year ended January 31, 2018",
+          "Management comments"
+        ],
+        "rows": [
+          [
+            "(in millions)",
+            "",
+            "$",
+            "%",
+            "",
+            ""
+          ],
+          [
+            "Cost of revenue:",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Subscription and maintenance",
+            "$216.0",
+            "$1.6",
+            "1%",
+            "$214.4",
+            "Up primarily due to an increase in cloud hosting costs partially offset by a decrease in royalty and depreciation expense."
+          ],
+          [
+            "Other (1)",
+            "54.4",
+            "(18.2)",
+            "(25)%",
+            "72.6",
+            "Down primarily due to lower employee-related costs from reduced headcount associated with the Fiscal 2018 Plan restructuring and lower professional fees."
+          ],
+          [
+            "Amortization of developed technology",
+            "15.5",
+            "(0.9)",
+            "(5)%",
+            "16.4",
+            "Down as previously acquired developed technologies continue to become fully amortized."
+          ],
+          [
+            "Total cost of revenue",
+            "$285.9",
+            "$(17.5)",
+            "(6)%",
+            "$303.4",
+            ""
+          ],
+          [
+            "Marketing and sales",
+            "$1,183.9",
+            "$96.6",
+            "9%",
+            "$1,087.3",
+            "Up due to increased employee-related costs driven by higher headcount, as well as higher cloud hosting costs and professional fees."
+          ],
+          [
+            "Research and development",
+            "725.0",
+            "(30.5)",
+            "(4)%",
+            "755.5",
+            "Down due to a decrease in employee-related costs from lower headcount associated with the Fiscal 2018 plan restructuring partially offset by higher professional fees."
+          ],
+          [
+            "General and administrative",
+            "340.1",
+            "34.9",
+            "11%",
+            "305.2",
+            "Up primarily due to higher professional fees, employee-related costs and facilities costs, partially offset by lower employee benefits costs."
+          ],
+          [
+            "Amortization of purchased intangibles",
+            "18.0",
+            "(2.2)",
+            "(11)%",
+            "20.2",
+            "Down as previously acquired intangible assets continue to become fully amortized."
+          ],
+          [
+            "Restructuring and other exit costs, net",
+            "41.9",
+            "(52.2)",
+            "(55)%",
+            "94.1",
+            "Down as we substantially completed the reduction in force and facilities consolidation of the Fiscal 2018 Plan."
+          ],
+          [
+            "",
+            "$ 2,308.9",
+            "$46.6",
+            "2%",
+            "$2,262.3",
+            ""
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "gold_answer": "5.42",
+    "answer_type": "arithmetic",
+    "answer_from": "table",
+    "derivation": "15.5/285.9 "
+  }
+]
