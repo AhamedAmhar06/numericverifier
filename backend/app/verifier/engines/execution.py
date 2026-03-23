@@ -51,7 +51,7 @@ def verify_execution(
     tol = 0.01
     computation_intent = False
     
-    # Check for percent change indicators
+    # Percent-change questions ALWAYS trigger recomputation; recomputed value is compared to LLM output
     if claim.unit == "percent" or any(keyword in claim_text for keyword in ['change', 'increase', 'decrease', 'growth', 'decline', '%']):
         computation_intent = True
 

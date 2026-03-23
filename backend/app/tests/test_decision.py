@@ -5,30 +5,37 @@ from app.verifier.decision_rules import make_decision
 
 
 def test_decision_accept():
-    """Test ACCEPT decision."""
+    """Test ACCEPT decision (P&L mode: pnl_table_detected=1, no P&L violations)."""
     signals = VerifierSignals(
         unsupported_claims_count=0,
         coverage_ratio=1.0,
         recomputation_fail_count=0,
         scale_mismatch_count=0,
-        period_mismatch_count=0
+        period_mismatch_count=0,
+        pnl_table_detected=1,
+        pnl_identity_fail_count=0,
+        pnl_margin_fail_count=0,
+        pnl_missing_baseline_count=0,
+        pnl_period_strict_mismatch_count=0,
     )
-    
     decision = make_decision(signals, [])
     assert decision.decision == "ACCEPT"
 
 
 def test_decision_repair():
-    """Test REPAIR decision."""
+    """Test REPAIR decision (P&L mode: identity/margin failures, good coverage)."""
     signals = VerifierSignals(
-        unsupported_claims_count=1,
+        unsupported_claims_count=0,
         coverage_ratio=0.8,
-        recomputation_fail_count=1,
-        scale_mismatch_count=1,
-        period_mismatch_count=0
+        recomputation_fail_count=0,
+        scale_mismatch_count=0,
+        period_mismatch_count=0,
+        pnl_table_detected=1,
+        pnl_identity_fail_count=1,
+        pnl_margin_fail_count=0,
+        pnl_missing_baseline_count=0,
+        pnl_period_strict_mismatch_count=0,
     )
-    
-    # Create multiple results so unsupported_claims_count is <= 30% of total
     results = [
         VerificationResult(
             claim=NumericClaim("test1", 100.0, (0, 5)),
@@ -53,16 +60,16 @@ def test_decision_repair():
 
 
 def test_decision_flag():
-    """Test FLAG decision."""
+    """Test FLAG decision (low coverage / non-P&L)."""
     signals = VerifierSignals(
         unsupported_claims_count=5,
         coverage_ratio=0.3,
         recomputation_fail_count=0,
         scale_mismatch_count=0,
         period_mismatch_count=0,
-        ambiguity_count=3
+        ambiguity_count=3,
+        pnl_table_detected=0,
     )
-    
     decision = make_decision(signals, [])
     assert decision.decision == "FLAG"
 

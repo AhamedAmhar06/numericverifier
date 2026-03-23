@@ -1,0 +1,1 @@
+{"question":"What was revenue in 2022?","evidence":{"type":"table","content":{"columns":["Line Item","2022","2023"],"rows":[["Revenue","100","120"],["COGS","40","50"],["Gross Profit","60","70"]],"units":{}}},"options":{"log_run":false}}

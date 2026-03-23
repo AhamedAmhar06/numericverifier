@@ -1,0 +1,390 @@
+[
+  {
+    "id": "case_01",
+    "question": "What is the Net Income for 2024 and how does it compare to 2023?",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 1000, "2024": 1200},
+        {"line_item": "COGS", "2023": 600, "2024": 700},
+        {"line_item": "Gross Profit", "2023": 400, "2024": 500},
+        {"line_item": "Operating Expenses", "2023": 150, "2024": 180},
+        {"line_item": "Operating Income", "2023": 250, "2024": 320},
+        {"line_item": "Taxes", "2023": 50, "2024": 70},
+        {"line_item": "Net Income", "2023": 200, "2024": 250}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 250; up from 200 in 2023 (increase of 50)."
+  },
+  {
+    "id": "case_02",
+    "question": "Calculate Gross Profit and Net Income for both years.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 2000, "2024": 2200},
+        {"line_item": "COGS", "2023": 1200, "2024": 1000},
+        {"line_item": "Gross Profit", "2023": 800, "2024": 1200},
+        {"line_item": "Operating Expenses", "2023": 300, "2024": 350},
+        {"line_item": "Operating Income", "2023": 500, "2024": 850},
+        {"line_item": "Taxes", "2023": 100, "2024": 170},
+        {"line_item": "Net Income", "2023": 400, "2024": 680}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 1200; Net Income 2024 = 680 (correct)."
+  },
+  {
+    "id": "case_03",
+    "question": "What is Operating Income in 2024 and the change from 2023?",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 1500, "2024": 1600},
+        {"line_item": "COGS", "2023": 900, "2024": 800},
+        {"line_item": "Gross Profit", "2023": 600, "2024": 800},
+        {"line_item": "Operating Expenses", "2023": 200, "2024": 220},
+        {"line_item": "Operating Income", "2023": 400, "2024": 580},
+        {"line_item": "Taxes", "2023": 80, "2024": 100},
+        {"line_item": "Net Income", "2023": 320, "2024": 480}
+      ]
+    },
+    "candidate_answer": "Operating Income 2024 = 580 (up from 400 in 2023)."
+  },
+  {
+    "id": "case_04",
+    "question": "Report Net Income for both years and whether it improved.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 800, "2024": 900},
+        {"line_item": "COGS", "2023": 400, "2024": 450},
+        {"line_item": "Gross Profit", "2023": 400, "2024": 450},
+        {"line_item": "Operating Expenses", "2023": 120, "2024": 130},
+        {"line_item": "Operating Income", "2023": 280, "2024": 320},
+        {"line_item": "Taxes", "2023": 60, "2024": 70},
+        {"line_item": "Net Income", "2023": 220, "2024": 250}
+      ]
+    },
+    "candidate_answer": "Net Income 2023 = 220; Net Income 2024 = 250; Net Income improved by 30."
+  },
+  {
+    "id": "case_05",
+    "question": "Provide Gross Profit margin (Gross Profit/Revenue) for 2024.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 5000, "2024": 5200},
+        {"line_item": "COGS", "2023": 3000, "2024": 2800},
+        {"line_item": "Gross Profit", "2023": 2000, "2024": 2400},
+        {"line_item": "Operating Expenses", "2023": 700, "2024": 750},
+        {"line_item": "Operating Income", "2023": 1300, "2024": 1650},
+        {"line_item": "Taxes", "2023": 300, "2024": 400},
+        {"line_item": "Net Income", "2023": 1000, "2024": 1250}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 2400; Gross margin = 2400/5200 (correct values)."
+  },
+  {
+    "id": "case_06",
+    "question": "Compute Gross Profit for 2024 and Net Income for 2024.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 1100, "2024": 1300},
+        {"line_item": "COGS", "2023": 500, "2024": 600},
+        {"line_item": "Gross Profit", "2023": 600, "2024": 700},
+        {"line_item": "Operating Expenses", "2023": 200, "2024": 250},
+        {"line_item": "Operating Income", "2023": 400, "2024": 450},
+        {"line_item": "Taxes", "2023": 80, "2024": 100},
+        {"line_item": "Net Income", "2023": 320, "2024": 350}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 700; Net Income 2024 = 300 (arithmetic mistake: should be 350)."
+  },
+  {
+    "id": "case_07",
+    "question": "What is the change in Revenue from 2023 to 2024 and Net Income 2024?",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 900, "2024": 1080},
+        {"line_item": "COGS", "2023": 400, "2024": 480},
+        {"line_item": "Gross Profit", "2023": 500, "2024": 600},
+        {"line_item": "Operating Expenses", "2023": 150, "2024": 170},
+        {"line_item": "Operating Income", "2023": 350, "2024": 430},
+        {"line_item": "Taxes", "2023": 70, "2024": 90},
+        {"line_item": "Net Income", "2023": 280, "2024": 340}
+      ]
+    },
+    "candidate_answer": "Revenue increased by 200; Net Income 2024 = 330 (arithmetic mistake; actual 340)."
+  },
+  {
+    "id": "case_08",
+    "question": "Report Gross Profit and Operating Income for 2024.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 1400, "2024": 1500},
+        {"line_item": "COGS", "2023": 700, "2024": 750},
+        {"line_item": "Gross Profit", "2023": 700, "2024": 750},
+        {"line_item": "Operating Expenses", "2023": 250, "2024": 300},
+        {"line_item": "Operating Income", "2023": 450, "2024": 450},
+        {"line_item": "Taxes", "2023": 90, "2024": 100},
+        {"line_item": "Net Income", "2023": 360, "2024": 350}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 750; Operating Income 2024 = 500 (arithmetic mistake; actual 450)."
+  },
+  {
+    "id": "case_09",
+    "question": "What is Net Income 2024?",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 600, "2024": 800},
+        {"line_item": "COGS", "2023": 300, "2024": 350},
+        {"line_item": "Gross Profit", "2023": 300, "2024": 450},
+        {"line_item": "Operating Expenses", "2023": 120, "2024": 150},
+        {"line_item": "Operating Income", "2023": 180, "2024": 300},
+        {"line_item": "Taxes", "2023": 40, "2024": 60},
+        {"line_item": "Net Income", "2023": 140, "2024": 240}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 220 (arithmetic mistake; actual 240)."
+  },
+  {
+    "id": "case_10",
+    "question": "Compute Gross Profit 2024 and Net Income 2024.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 1700, "2024": 1800},
+        {"line_item": "COGS", "2023": 900, "2024": 1000},
+        {"line_item": "Gross Profit", "2023": 800, "2024": 800},
+        {"line_item": "Operating Expenses", "2023": 300, "2024": 320},
+        {"line_item": "Operating Income", "2023": 500, "2024": 480},
+        {"line_item": "Taxes", "2023": 120, "2024": 100},
+        {"line_item": "Net Income", "2023": 380, "2024": 380}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 800; Net Income 2024 = 360 (arithmetic mistake; actual 380)."
+  },
+  {
+    "id": "case_11",
+    "question": "What is Net Income for 2024?",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 4000, "2024": 4200},
+        {"line_item": "COGS", "2023": 2500, "2024": 2400},
+        {"line_item": "Gross Profit", "2023": 1500, "2024": 1800},
+        {"line_item": "Operating Expenses", "2023": 600, "2024": 650},
+        {"line_item": "Operating Income", "2023": 900, "2024": 1150},
+        {"line_item": "Taxes", "2023": 200, "2024": 250},
+        {"line_item": "Net Income", "2023": 700, "2024": 900}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 900 million (scale mistake: table shows 900 not in millions)."
+  },
+  {
+    "id": "case_12",
+    "question": "Provide Net Income for 2024 and change from 2023.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 2600, "2024": 2800},
+        {"line_item": "COGS", "2023": 1600, "2024": 1500},
+        {"line_item": "Gross Profit", "2023": 1000, "2024": 1300},
+        {"line_item": "Operating Expenses", "2023": 400, "2024": 450},
+        {"line_item": "Operating Income", "2023": 600, "2024": 850},
+        {"line_item": "Taxes", "2023": 120, "2024": 170},
+        {"line_item": "Net Income", "2023": 480, "2024": 680}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 680 (0.68 million) — scale mistake: expressed in millions while table is raw integers."
+  },
+  {
+    "id": "case_13",
+    "question": "What is Net Income growth 2023→2024?",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 3100, "2024": 3300},
+        {"line_item": "COGS", "2023": 1800, "2024": 1700},
+        {"line_item": "Gross Profit", "2023": 1300, "2024": 1600},
+        {"line_item": "Operating Expenses", "2023": 500, "2024": 550},
+        {"line_item": "Operating Income", "2023": 800, "2024": 1050},
+        {"line_item": "Taxes", "2023": 160, "2024": 210},
+        {"line_item": "Net Income", "2023": 640, "2024": 840}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 840 (840k) — scale mistake: answer treated values as thousands/millions."
+  },
+  {
+    "id": "case_14",
+    "question": "Compare Revenue growth from previous period to 2024 and state Net Income 2024.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 2200, "2024": 2500},
+        {"line_item": "COGS", "2023": 1300, "2024": 1400},
+        {"line_item": "Gross Profit", "2023": 900, "2024": 1100},
+        {"line_item": "Operating Expenses", "2023": 350, "2024": 380},
+        {"line_item": "Operating Income", "2023": 550, "2024": 720},
+        {"line_item": "Taxes", "2023": 110, "2024": 150},
+        {"line_item": "Net Income", "2023": 440, "2024": 570}
+      ]
+    },
+    "candidate_answer": "Revenue increased 2022→2024 by 300; Net Income 2024 = 570 (period mistake: used 2022 instead of 2023)."
+  },
+  {
+    "id": "case_15",
+    "question": "State Gross Profit 2024 and Net Income 2024 compared to prior year.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 720, "2024": 840},
+        {"line_item": "COGS", "2023": 420, "2024": 480},
+        {"line_item": "Gross Profit", "2023": 300, "2024": 360},
+        {"line_item": "Operating Expenses", "2023": 100, "2024": 120},
+        {"line_item": "Operating Income", "2023": 200, "2024": 240},
+        {"line_item": "Taxes", "2023": 40, "2024": 48},
+        {"line_item": "Net Income", "2023": 160, "2024": 192}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 360; Net Income 2024 = 192 compared to 2022 (period mistake: compared to 2022 instead of 2023)."
+  },
+  {
+    "id": "case_16",
+    "question": "From the detailed P&L, report Net Income 2024 and mention the comparison period.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 6000, "2024": 6400},
+        {"line_item": "Other income", "2023": 100, "2024": 120},
+        {"line_item": "COGS", "2023": 3600, "2024": 3800},
+        {"line_item": "Gross Profit", "2023": 2500, "2024": 2720},
+        {"line_item": "Depreciation", "2023": 200, "2024": 210},
+        {"line_item": "Administrative expenses", "2023": 300, "2024": 320},
+        {"line_item": "Marketing expense", "2023": 150, "2024": 160},
+        {"line_item": "Operating Expenses", "2023": 650, "2024": 690},
+        {"line_item": "Operating Income", "2023": 1850, "2024": 2030},
+        {"line_item": "Interest expense", "2023": 100, "2024": 120},
+        {"line_item": "Earnings before taxes", "2023": 1750, "2024": 1910},
+        {"line_item": "Taxes", "2023": 350, "2024": 380},
+        {"line_item": "Net Income", "2023": 1400, "2024": 1530},
+        {"line_item": "Extra item A", "2023": 10, "2024": 12},
+        {"line_item": "Extra item B", "2023": 5, "2024": 6},
+        {"line_item": "Extra item C", "2023": 2, "2024": 3}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 1530 compared to 2022 (period mistake: compared to 2022 instead of 2023)."
+  },
+  {
+    "id": "case_17",
+    "question": "Provide Gross Profit, Operating Income and Net Income for 2024. Check internal consistency.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 4800, "2024": 5000},
+        {"line_item": "Other income", "2023": 50, "2024": 60},
+        {"line_item": "COGS", "2023": 2800, "2024": 2900},
+        {"line_item": "Gross Profit", "2023": 2000, "2024": 2100},
+        {"line_item": "Depreciation", "2023": 150, "2024": 160},
+        {"line_item": "Administrative expenses", "2023": 400, "2024": 420},
+        {"line_item": "Marketing expense", "2023": 200, "2024": 220},
+        {"line_item": "Operating Expenses", "2023": 750, "2024": 800},
+        {"line_item": "Operating Income", "2023": 1250, "2024": 1300},
+        {"line_item": "Interest expense", "2023": 80, "2024": 90},
+        {"line_item": "Earnings before taxes", "2023": 1170, "2024": 1210},
+        {"line_item": "Taxes", "2023": 250, "2024": 260},
+        {"line_item": "Net Income", "2023": 920, "2024": 950},
+        {"line_item": "One-off", "2023": 0, "2024": 0},
+        {"line_item": "Rounding", "2023": 0, "2024": 0}
+      ]
+    },
+    "candidate_answer": "Gross Profit 2024 = 2100; Operating Income 2024 = 1300; Net Income 2024 = 1400 (internally inconsistent: Net Income claims 1400 but 1300-90-260 = 950 in table)."
+  },
+  {
+    "id": "case_18",
+    "question": "From the full P&L, state Net Income 2024 and list the components used.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 3500, "2024": 3700},
+        {"line_item": "Other income", "2023": 30, "2024": 40},
+        {"line_item": "COGS", "2023": 2100, "2024": 2200},
+        {"line_item": "Gross Profit", "2023": 1400, "2024": 1500},
+        {"line_item": "Depreciation", "2023": 120, "2024": 130},
+        {"line_item": "Administrative expenses", "2023": 250, "2024": 260},
+        {"line_item": "Marketing expense", "2023": 100, "2024": 110},
+        {"line_item": "Operating Expenses", "2023": 470, "2024": 500},
+        {"line_item": "Operating Income", "2023": 930, "2024": 1000},
+        {"line_item": "Interest expense", "2023": 50, "2024": 60},
+        {"line_item": "Earnings before taxes", "2023": 880, "2024": 940},
+        {"line_item": "Taxes", "2023": 180, "2024": 200},
+        {"line_item": "Net Income", "2023": 700, "2024": 740},
+        {"line_item": "Non-cash adj", "2023": 5, "2024": 6},
+        {"line_item": "Other adj", "2023": 0, "2024": 0}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 740; components: Operating Income 1000, Interest 60, Taxes 200, which should give 740 but candidate also lists Net Income = 760 elsewhere (internally inconsistent)."
+  },
+  {
+    "id": "case_19",
+    "question": "From the large P&L, state Net Income 2024 and note any other income items.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 8100, "2024": 8300},
+        {"line_item": "Product revenue", "2023": 7000, "2024": 7200},
+        {"line_item": "Service revenue", "2023": 1100, "2024": 1100},
+        {"line_item": "Other income", "2023": 200, "2024": 220},
+        {"line_item": "COGS", "2023": 4800, "2024": 4900},
+        {"line_item": "Gross Profit", "2023": 3500, "2024": 3400},
+        {"line_item": "Depreciation", "2023": 300, "2024": 310},
+        {"line_item": "Administrative expenses", "2023": 500, "2024": 520},
+        {"line_item": "Marketing expense", "2023": 250, "2024": 260},
+        {"line_item": "R&D expense", "2023": 400, "2024": 420},
+        {"line_item": "Operating Expenses", "2023": 1450, "2024": 1510},
+        {"line_item": "Operating Income", "2023": 2050, "2024": 1890},
+        {"line_item": "Interest expense", "2023": 150, "2024": 160},
+        {"line_item": "Earnings before taxes", "2023": 1900, "2024": 1730},
+        {"line_item": "Taxes", "2023": 380, "2024": 350},
+        {"line_item": "Net Income", "2023": 1520, "2024": 1380},
+        {"line_item": "One-off gain", "2023": 20, "2024": 10},
+        {"line_item": "Currency adj", "2023": -10, "2024": -5}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 1380; Other income includes a 50 one-time item (hallucinated number not in table)."
+  },
+  {
+    "id": "case_20",
+    "question": "List Net Income 2024 and the main drivers of change from 2023.",
+    "evidence": {
+      "type": "table",
+      "data": [
+        {"line_item": "Revenue", "2023": 9600, "2024": 10000},
+        {"line_item": "Product revenue", "2023": 8400, "2024": 8800},
+        {"line_item": "Service revenue", "2023": 1200, "2024": 1200},
+        {"line_item": "Other income", "2023": 150, "2024": 180},
+        {"line_item": "COGS", "2023": 5600, "2024": 5800},
+        {"line_item": "Gross Profit", "2023": 4000, "2024": 4200},
+        {"line_item": "Depreciation", "2023": 400, "2024": 410},
+        {"line_item": "Administrative expenses", "2023": 600, "2024": 620},
+        {"line_item": "Marketing expense", "2023": 300, "2024": 320},
+        {"line_item": "R&D expense", "2023": 500, "2024": 520},
+        {"line_item": "Operating Expenses", "2023": 1800, "2024": 1870},
+        {"line_item": "Operating Income", "2023": 2200, "2024": 2330},
+        {"line_item": "Interest expense", "2023": 200, "2024": 210},
+        {"line_item": "Earnings before taxes", "2023": 2000, "2024": 2120},
+        {"line_item": "Taxes", "2023": 400, "2024": 420},
+        {"line_item": "Net Income", "2023": 1600, "2024": 1700},
+        {"line_item": "Restructuring", "2023": 0, "2024": 0},
+        {"line_item": "Other adj", "2023": 5, "2024": 5},
+        {"line_item": "Minor item", "2023": 0, "2024": 0}
+      ]
+    },
+    "candidate_answer": "Net Income 2024 = 1700; main drivers: increased revenue and a fictitious cost saving of 100 not shown in table (hallucinated number)."
+  }
+]

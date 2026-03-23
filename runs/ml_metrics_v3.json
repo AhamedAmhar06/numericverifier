@@ -1,0 +1,81 @@
+{
+  "model_version": "v3",
+  "model_type": "LogisticRegression",
+  "calibrated": true,
+  "imputer": "median",
+  "threshold_tuned": true,
+  "flag_recall_target": 0.95,
+  "best_threshold": 0.9,
+  "accuracy_test": 1.0,
+  "per_class_test": {
+    "ACCEPT": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 23.0
+    },
+    "FLAG": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 31.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    }
+  },
+  "confusion_matrix_test": [
+    [
+      23,
+      0,
+      0
+    ],
+    [
+      0,
+      31,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "class_labels": [
+    "ACCEPT",
+    "FLAG",
+    "REPAIR"
+  ],
+  "n_train": 305,
+  "n_dev": 66,
+  "n_test": 54,
+  "sklearn_version": "1.8.0",
+  "dataset_hash_train": "e6c270d409164941",
+  "n_features": 13,
+  "features_used": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "recomputation_fail_count",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "period_mismatch_count",
+    "ambiguity_count",
+    "pnl_table_detected",
+    "pnl_identity_fail_count",
+    "pnl_margin_fail_count",
+    "pnl_missing_baseline_count",
+    "pnl_period_strict_mismatch_count"
+  ],
+  "threshold_rationale": "Minimize False ACCEPT subject to FLAG recall >= 0.95 on dev"
+}

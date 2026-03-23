@@ -1,0 +1,7 @@
+config,accuracy,false_accept_rate,repair_success_rate,avg_latency_ms,ACCEPT_f1,REPAIR_f1,FLAG_f1,FLAG_recall
+full_rules,0.4259,0,0,0.32,0.5974,0,0,0
+no_constraints,0.4259,0,0,0.27,0.5974,0,0,0
+no_execution,0.3333,0,0,0.27,0.5,0,0,0
+no_lookup,0.4259,0,0,0.28,0.5974,0,0,0
+no_repair,0.4259,0,0,0.28,0.5974,0,0,0
+ml_full,0.4259,0,0,29.51,0.5974,0,0,0

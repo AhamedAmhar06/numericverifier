@@ -1,0 +1,10 @@
+Total cases: 20
+ACCEPT: 6
+REPAIR: 1
+FLAG: 13
+OTHER/UNKNOWN decisions: 0
+
+Scale mismatch count (sum of signals): 0
+Period mismatch count (sum of signals): 0
+Recomputation failures (sum of signals): 0
+Ambiguous groundings (sum of signals): 7

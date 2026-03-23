@@ -1,26 +1,17 @@
-"""Verification endpoint."""
+"""Verification endpoint. P&L-only: both endpoints call verifier/router.route_and_verify."""
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, Union
-from ..verifier.extract import extract_numeric_claims
-from ..verifier.normalize import normalize_claims
-from ..verifier.evidence import ingest_evidence
-from ..verifier.grounding import ground_claims
-from ..verifier.engines.lookup import verify_lookup
-from ..verifier.engines.execution import verify_execution
-from ..verifier.engines.constraints import verify_constraints
-from ..verifier.signals import compute_signals
-from ..verifier.decision_rules import make_decision
-from ..verifier.report import generate_report
-from ..verifier.types import VerificationResult
-from ..eval.logging import log_run, log_signals
+
+from ..verifier.router import route_and_verify
 from ..core.config import settings
+from ..llm.provider import generate_llm_answer
 
 router = APIRouter()
 
 
 class EvidenceRequest(BaseModel):
-    type: str  # "text" or "table"
+    type: str  # "text" or "table" — P&L verifier requires "table"
     content: Union[str, Dict[str, Any]]
 
 
@@ -31,106 +22,82 @@ class VerifyRequest(BaseModel):
     options: Optional[Dict[str, Any]] = None
 
 
+class VerifyWithLLMRequest(BaseModel):
+    question: str
+    evidence: EvidenceRequest
+    options: Optional[Dict[str, Any]] = None
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "question": "What was revenue in 2022?",
+                    "evidence": {
+                        "type": "table",
+                        "content": {
+                            "columns": ["Line Item", "2022", "2023"],
+                            "rows": [["Revenue", "100", "120"], ["COGS", "40", "50"]],
+                            "units": {},
+                        },
+                    },
+                    "options": {"tolerance": 0.01, "log_run": True},
+                }
+            ]
+        }
+    }
+
+
 @router.post("/verify-only")
 async def verify_only(request: VerifyRequest):
     """
-    Run the full verification pipeline on a provided candidate answer.
+    Run P&L verification pipeline on a provided candidate answer.
+    Evidence must be type=table and a P&L table; otherwise FLAG.
     """
-    # Get options with defaults
     options = request.options or {}
-    tolerance = options.get("tolerance", settings.tolerance)
-    log_run_flag = options.get("log_run", True)
-    
-    # Step 1: Extract numeric claims
-    claims = extract_numeric_claims(request.candidate_answer)
-    
-    # Step 2: Normalize claims
-    normalized_claims = normalize_claims(claims)
-    
-    # Step 3: Ingest evidence
-    evidence_items = ingest_evidence({
-        "type": request.evidence.type,
-        "content": request.evidence.content
-    })
-    
-    # Step 4: Ground claims to evidence
-    grounding = ground_claims(normalized_claims, evidence_items, tolerance)
-    
-    # Step 5: Run verification engines
-    verification_results = []
-    for claim in normalized_claims:
-        # Find grounding match for this claim
-        grounding_match = None
-        for g in grounding:
-            if g.claim == claim:
-                grounding_match = g
-                break
-        
-        # Create verification result
-        verification_result = VerificationResult(
-            claim=claim,
-            grounded=grounding_match is not None,
-            grounding_match=grounding_match
-        )
-        
-        # Run lookup engine
-        verification_result = verify_lookup(verification_result, grounding_match, tolerance)
-        
-        # Run execution engine
-        execution_result = verify_execution(
-            claim,
-            grounding_match,
-            normalized_claims,
-            evidence_items,
-            request.candidate_answer
-        )
-        verification_result.execution_supported = execution_result.execution_supported
-        verification_result.execution_result = execution_result.execution_result
-        verification_result.execution_error = execution_result.execution_error
-        
-        # Run constraint engine
-        constraint_result = verify_constraints(
-            claim,
-            grounding_match,
-            normalized_claims,
-            evidence_items
-        )
-        verification_result.constraint_violations = constraint_result.constraint_violations
-        
-        verification_results.append(verification_result)
-    
-    # Step 6: Compute signals
-    signals = compute_signals(normalized_claims, verification_results, tolerance)
-    
-    # Step 7: Make decision
-    decision = make_decision(signals, verification_results)
-    
-    # Step 8: Generate report
-    report = generate_report(
+    options.setdefault("tolerance", settings.tolerance)
+    options.setdefault("log_run", True)
+    return route_and_verify(
         question=request.question,
+        evidence=request.evidence,
         candidate_answer=request.candidate_answer,
-        evidence_type=request.evidence.type,
-        tolerance=tolerance,
-        claims=normalized_claims,
-        grounding=grounding,
-        verification=verification_results,
-        signals=signals,
-        decision=decision
+        options=options,
+        llm_used=False,
+        llm_fallback_reason=None,
     )
-    
-    # Step 9: Log if requested
-    if log_run_flag:
-        log_run(report)
-        log_signals(signals, decision.decision)
-    
-    # Return response
-    return {
-        "decision": decision.decision,
-        "rationale": decision.rationale,
-        "signals": signals.to_dict(),
-        "claims": [c.to_dict() for c in normalized_claims],
-        "grounding": [g.to_dict() for g in grounding],
-        "verification": [v.to_dict() for v in verification_results],
-        "report": report.to_dict()
-    }
 
+
+@router.post("/verify")
+async def verify_with_llm(request: VerifyWithLLMRequest):
+    """
+    Generate answer using LLM (or stub on quota/network failure), then run P&L verification.
+    Evidence must be type=table. Response includes llm_used and llm_fallback_reason.
+    """
+    if request.evidence.type != "table":
+        return {
+            "error": "P&L verifier requires table evidence.",
+            "decision": "FLAG",
+            "rationale": "P&L verifier requires table evidence.",
+        }
+    table_content = request.evidence.content
+    if not isinstance(table_content, dict):
+        return {
+            "error": "Table evidence content must be a dictionary with 'columns', 'rows', and 'units'.",
+        }
+
+    answer, llm_used, llm_fallback_reason = generate_llm_answer(request.question, table_content)
+
+    options = request.options or {}
+    options.setdefault("tolerance", settings.tolerance)
+    # Always log /verify (LLM) runs so signals_v2.csv gets every call from Swagger/API.
+    options["log_run"] = True
+    result = route_and_verify(
+        question=request.question,
+        evidence=request.evidence,
+        candidate_answer=answer,
+        options=options,
+        llm_used=llm_used,
+        llm_fallback_reason=llm_fallback_reason,
+        generated_answer=answer,
+    )
+    result["generated_answer"] = answer
+    return result

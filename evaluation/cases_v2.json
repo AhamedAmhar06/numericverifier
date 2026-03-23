@@ -1,0 +1,4878 @@
+[
+  {
+    "id": "case_001",
+    "question": "What was Revenue in 2022 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 500000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2022"
+  },
+  {
+    "id": "case_002",
+    "question": "What was COGS in 2022 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2022 was 200000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2022"
+  },
+  {
+    "id": "case_003",
+    "question": "What was Gross Profit in 2022 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2022 was 300000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2022"
+  },
+  {
+    "id": "case_004",
+    "question": "What was Operating Income in 2022 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2022 was 200000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2022"
+  },
+  {
+    "id": "case_005",
+    "question": "What was Net Income in 2022 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2022 was 150000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2022"
+  },
+  {
+    "id": "case_006",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 625000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 125000 (25%)"
+  },
+  {
+    "id": "case_007",
+    "question": "What was gross profit in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2022 was 390000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_008",
+    "question": "What was revenue in 2021 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 500000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_009",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 0.50 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_010",
+    "question": "What was Revenue in 2023 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 620000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2023"
+  },
+  {
+    "id": "case_011",
+    "question": "What was COGS in 2023 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2023 was 250000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2023"
+  },
+  {
+    "id": "case_012",
+    "question": "What was Gross Profit in 2023 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2023 was 370000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2023"
+  },
+  {
+    "id": "case_013",
+    "question": "What was Operating Income in 2023 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2023 was 250000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2023"
+  },
+  {
+    "id": "case_014",
+    "question": "What was Net Income in 2023 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2023 was 190000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2023"
+  },
+  {
+    "id": "case_015",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 930000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 310000 (50%)"
+  },
+  {
+    "id": "case_016",
+    "question": "What was gross profit in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2023 was 481000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_017",
+    "question": "What was revenue in 2021 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 620000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_018",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 0.62 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_019",
+    "question": "What was revenue for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Product",
+          "Sales"
+        ],
+        "rows": [
+          [
+            "Widget",
+            "100"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 100.",
+    "expected_decision": "FLAG",
+    "category": "missing_evidence",
+    "notes": "Non-P&L table"
+  },
+  {
+    "id": "case_020",
+    "question": "What were revenue and COGS in 2022 for AlphaCorp?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500000",
+            "620000"
+          ],
+          [
+            "COGS",
+            "200000",
+            "250000"
+          ],
+          [
+            "Gross Profit",
+            "300000",
+            "370000"
+          ],
+          [
+            "Operating Expenses",
+            "100000",
+            "120000"
+          ],
+          [
+            "Operating Income",
+            "200000",
+            "250000"
+          ],
+          [
+            "Taxes",
+            "30000",
+            "38000"
+          ],
+          [
+            "Interest",
+            "20000",
+            "22000"
+          ],
+          [
+            "Net Income",
+            "150000",
+            "190000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 500000 and COGS was 200000 in 2022.",
+    "expected_decision": "ACCEPT",
+    "category": "multi_claim",
+    "notes": "Two claims both correct"
+  },
+  {
+    "id": "case_021",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500",
+            "500"
+          ],
+          [
+            "COGS",
+            "200",
+            "200"
+          ],
+          [
+            "Gross Profit",
+            "300",
+            "300"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 500.",
+    "expected_decision": "ACCEPT",
+    "category": "ambiguous_grounding",
+    "notes": "Multiple cells have value 500; context-aware grounding resolves via line item + period"
+  },
+  {
+    "id": "case_022",
+    "question": "What was Revenue in 2022 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 800000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2022"
+  },
+  {
+    "id": "case_023",
+    "question": "What was COGS in 2022 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2022 was 350000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2022"
+  },
+  {
+    "id": "case_024",
+    "question": "What was Gross Profit in 2022 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2022 was 450000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2022"
+  },
+  {
+    "id": "case_025",
+    "question": "What was Operating Income in 2022 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2022 was 300000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2022"
+  },
+  {
+    "id": "case_026",
+    "question": "What was Net Income in 2022 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2022 was 225000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2022"
+  },
+  {
+    "id": "case_027",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 560000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 240000 (30%)"
+  },
+  {
+    "id": "case_028",
+    "question": "What was gross profit in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2022 was 585000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_029",
+    "question": "What was revenue in 2021 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 800000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_030",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 0.80 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_031",
+    "question": "What was Revenue in 2023 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 960000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2023"
+  },
+  {
+    "id": "case_032",
+    "question": "What was COGS in 2023 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2023 was 420000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2023"
+  },
+  {
+    "id": "case_033",
+    "question": "What was Gross Profit in 2023 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2023 was 540000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2023"
+  },
+  {
+    "id": "case_034",
+    "question": "What was Operating Income in 2023 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2023 was 360000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2023"
+  },
+  {
+    "id": "case_035",
+    "question": "What was Net Income in 2023 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2023 was 270000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2023"
+  },
+  {
+    "id": "case_036",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 1200000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 240000 (25%)"
+  },
+  {
+    "id": "case_037",
+    "question": "What was gross profit in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2023 was 702000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_038",
+    "question": "What was revenue in 2021 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 960000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_039",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 0.96 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_040",
+    "question": "What was revenue for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Product",
+          "Sales"
+        ],
+        "rows": [
+          [
+            "Widget",
+            "100"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 100.",
+    "expected_decision": "FLAG",
+    "category": "missing_evidence",
+    "notes": "Non-P&L table"
+  },
+  {
+    "id": "case_041",
+    "question": "What were revenue and COGS in 2022 for BetaInc?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "800000",
+            "960000"
+          ],
+          [
+            "COGS",
+            "350000",
+            "420000"
+          ],
+          [
+            "Gross Profit",
+            "450000",
+            "540000"
+          ],
+          [
+            "Operating Expenses",
+            "150000",
+            "180000"
+          ],
+          [
+            "Operating Income",
+            "300000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "50000",
+            "60000"
+          ],
+          [
+            "Interest",
+            "25000",
+            "30000"
+          ],
+          [
+            "Net Income",
+            "225000",
+            "270000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 800000 and COGS was 350000 in 2022.",
+    "expected_decision": "ACCEPT",
+    "category": "multi_claim",
+    "notes": "Two claims both correct"
+  },
+  {
+    "id": "case_042",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500",
+            "500"
+          ],
+          [
+            "COGS",
+            "200",
+            "200"
+          ],
+          [
+            "Gross Profit",
+            "300",
+            "300"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 500.",
+    "expected_decision": "ACCEPT",
+    "category": "ambiguous_grounding",
+    "notes": "Multiple cells have value 500; context-aware grounding resolves via line item + period"
+  },
+  {
+    "id": "case_043",
+    "question": "What was Revenue in 2022 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 1200000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2022"
+  },
+  {
+    "id": "case_044",
+    "question": "What was COGS in 2022 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2022 was 600000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2022"
+  },
+  {
+    "id": "case_045",
+    "question": "What was Gross Profit in 2022 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2022 was 600000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2022"
+  },
+  {
+    "id": "case_046",
+    "question": "What was Operating Income in 2022 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2022 was 400000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2022"
+  },
+  {
+    "id": "case_047",
+    "question": "What was Net Income in 2022 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2022 was 280000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2022"
+  },
+  {
+    "id": "case_048",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 600000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 600000 (50%)"
+  },
+  {
+    "id": "case_049",
+    "question": "What was gross profit in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2022 was 780000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_050",
+    "question": "What was revenue in 2021 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 1200000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_051",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 1.20 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_052",
+    "question": "What was Revenue in 2023 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 1100000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2023"
+  },
+  {
+    "id": "case_053",
+    "question": "What was COGS in 2023 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2023 was 550000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2023"
+  },
+  {
+    "id": "case_054",
+    "question": "What was Gross Profit in 2023 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2023 was 550000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2023"
+  },
+  {
+    "id": "case_055",
+    "question": "What was Operating Income in 2023 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2023 was 360000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2023"
+  },
+  {
+    "id": "case_056",
+    "question": "What was Net Income in 2023 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2023 was 252000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2023"
+  },
+  {
+    "id": "case_057",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 1375000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 275000 (25%)"
+  },
+  {
+    "id": "case_058",
+    "question": "What was gross profit in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2023 was 715000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_059",
+    "question": "What was revenue in 2021 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 1100000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_060",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 1.10 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_061",
+    "question": "What was revenue for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Product",
+          "Sales"
+        ],
+        "rows": [
+          [
+            "Widget",
+            "100"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 100.",
+    "expected_decision": "FLAG",
+    "category": "missing_evidence",
+    "notes": "Non-P&L table"
+  },
+  {
+    "id": "case_062",
+    "question": "What were revenue and COGS in 2022 for GammaLtd?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "1200000",
+            "1100000"
+          ],
+          [
+            "COGS",
+            "600000",
+            "550000"
+          ],
+          [
+            "Gross Profit",
+            "600000",
+            "550000"
+          ],
+          [
+            "Operating Expenses",
+            "200000",
+            "190000"
+          ],
+          [
+            "Operating Income",
+            "400000",
+            "360000"
+          ],
+          [
+            "Taxes",
+            "80000",
+            "72000"
+          ],
+          [
+            "Interest",
+            "40000",
+            "36000"
+          ],
+          [
+            "Net Income",
+            "280000",
+            "252000"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 1200000 and COGS was 600000 in 2022.",
+    "expected_decision": "ACCEPT",
+    "category": "multi_claim",
+    "notes": "Two claims both correct"
+  },
+  {
+    "id": "case_063",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500",
+            "500"
+          ],
+          [
+            "COGS",
+            "200",
+            "200"
+          ],
+          [
+            "Gross Profit",
+            "300",
+            "300"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 500.",
+    "expected_decision": "ACCEPT",
+    "category": "ambiguous_grounding",
+    "notes": "Multiple cells have value 500; context-aware grounding resolves via line item + period"
+  },
+  {
+    "id": "case_064",
+    "question": "What was Revenue in 2022 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 300000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2022"
+  },
+  {
+    "id": "case_065",
+    "question": "What was COGS in 2022 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2022 was 120000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2022"
+  },
+  {
+    "id": "case_066",
+    "question": "What was Gross Profit in 2022 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2022 was 180000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2022"
+  },
+  {
+    "id": "case_067",
+    "question": "What was Operating Income in 2022 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2022 was 120000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2022"
+  },
+  {
+    "id": "case_068",
+    "question": "What was Net Income in 2022 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2022 was 90000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2022"
+  },
+  {
+    "id": "case_069",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 210000.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 90000 (30%)"
+  },
+  {
+    "id": "case_070",
+    "question": "What was gross profit in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2022 was 234000.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_071",
+    "question": "What was revenue in 2021 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 300000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_072",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 0.30 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_073",
+    "question": "What was Revenue in 2023 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 345000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Revenue 2023"
+  },
+  {
+    "id": "case_074",
+    "question": "What was COGS in 2023 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "COGS in 2023 was 138000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup COGS 2023"
+  },
+  {
+    "id": "case_075",
+    "question": "What was Gross Profit in 2023 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross Profit in 2023 was 207000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Gross Profit 2023"
+  },
+  {
+    "id": "case_076",
+    "question": "What was Operating Income in 2023 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Operating Income in 2023 was 138000.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Operating Income 2023"
+  },
+  {
+    "id": "case_077",
+    "question": "What was Net Income in 2023 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Net Income in 2023 was 103500.",
+    "expected_decision": "ACCEPT",
+    "category": "correct",
+    "notes": "Direct lookup Net Income 2023"
+  },
+  {
+    "id": "case_078",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 431250.",
+    "expected_decision": "FLAG",
+    "category": "arithmetic_error",
+    "notes": "Off by 86250 (25%)"
+  },
+  {
+    "id": "case_079",
+    "question": "What was gross profit in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Gross profit in 2023 was 269100.",
+    "expected_decision": "FLAG",
+    "category": "identity_error",
+    "notes": "Identity violated: GP value wrong by 30%"
+  },
+  {
+    "id": "case_080",
+    "question": "What was revenue in 2021 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2021 was 345000.",
+    "expected_decision": "FLAG",
+    "category": "period_error",
+    "notes": "2021 not in evidence"
+  },
+  {
+    "id": "case_081",
+    "question": "What was revenue in 2023?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2023 was 0.34 million.",
+    "expected_decision": "FLAG",
+    "category": "scale_error",
+    "notes": "Claim uses 'million' scale but evidence is in raw units"
+  },
+  {
+    "id": "case_082",
+    "question": "What was revenue for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Product",
+          "Sales"
+        ],
+        "rows": [
+          [
+            "Widget",
+            "100"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 100.",
+    "expected_decision": "FLAG",
+    "category": "missing_evidence",
+    "notes": "Non-P&L table"
+  },
+  {
+    "id": "case_083",
+    "question": "What were revenue and COGS in 2022 for DeltaGroup?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "300000",
+            "345000"
+          ],
+          [
+            "COGS",
+            "120000",
+            "138000"
+          ],
+          [
+            "Gross Profit",
+            "180000",
+            "207000"
+          ],
+          [
+            "Operating Expenses",
+            "60000",
+            "69000"
+          ],
+          [
+            "Operating Income",
+            "120000",
+            "138000"
+          ],
+          [
+            "Taxes",
+            "18000",
+            "20700"
+          ],
+          [
+            "Interest",
+            "12000",
+            "13800"
+          ],
+          [
+            "Net Income",
+            "90000",
+            "103500"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue was 300000 and COGS was 120000 in 2022.",
+    "expected_decision": "ACCEPT",
+    "category": "multi_claim",
+    "notes": "Two claims both correct"
+  },
+  {
+    "id": "case_084",
+    "question": "What was revenue in 2022?",
+    "evidence": {
+      "type": "table",
+      "content": {
+        "columns": [
+          "Line Item",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            "500",
+            "500"
+          ],
+          [
+            "COGS",
+            "200",
+            "200"
+          ],
+          [
+            "Gross Profit",
+            "300",
+            "300"
+          ]
+        ],
+        "units": {}
+      }
+    },
+    "candidate_answer": "Revenue in 2022 was 500.",
+    "expected_decision": "ACCEPT",
+    "category": "ambiguous_grounding",
+    "notes": "Multiple cells have value 500; context-aware grounding resolves via line item + period"
+  }
+]
