@@ -9,6 +9,7 @@ from datetime import datetime
 # Violation codes (typed, for signals counting)
 # ---------------------------------------------------------------------------
 V_SCALE_MISMATCH = "SCALE_MISMATCH"
+V_SCALE_LABEL_MISMATCH = "SCALE_LABEL_MISMATCH"
 V_PERIOD_MISMATCH = "PERIOD_MISMATCH"
 V_PNL_PERIOD_STRICT = "PNL_PERIOD_STRICT"
 V_MISSING_PERIOD_IN_EVIDENCE = "MISSING_PERIOD_IN_EVIDENCE"

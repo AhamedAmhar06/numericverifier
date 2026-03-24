@@ -2,8 +2,8 @@
 from typing import List, Optional, Any
 from .types import (
     VerifierSignals, VerificationResult, NumericClaim, Violation,
-    V_SCALE_MISMATCH, V_PERIOD_MISMATCH, V_PNL_PERIOD_STRICT,
-    V_MISSING_PERIOD_IN_EVIDENCE,
+    V_SCALE_MISMATCH, V_SCALE_LABEL_MISMATCH, V_PERIOD_MISMATCH,
+    V_PNL_PERIOD_STRICT, V_MISSING_PERIOD_IN_EVIDENCE,
 )
 
 
@@ -82,7 +82,7 @@ def compute_signals(
 
         for v in (result.constraint_violations or []):
             code = _violation_code(v)
-            if code == V_SCALE_MISMATCH:
+            if code in (V_SCALE_MISMATCH, V_SCALE_LABEL_MISMATCH):
                 scale_mismatches += 1
             elif code == V_PERIOD_MISMATCH:
                 period_mismatches += 1
