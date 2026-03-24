@@ -30,6 +30,15 @@ def make_decision(
                 decision="FLAG",
                 rationale="Period strict mismatch between question and evidence. Requires review.",
             )
+        if getattr(signals, "scale_mismatch_count", 0) > 0:
+            return Decision(
+                decision="FLAG",
+                rationale=(
+                    "P&L scale integrity violation — the answer uses a "
+                    "different unit or scale than the evidence table. "
+                    "This is a data integrity issue, not a correctable mismatch."
+                ),
+            )
         if (
             signals.coverage_ratio >= 0.6
             and (getattr(signals, "pnl_identity_fail_count", 0) > 0 or getattr(signals, "pnl_margin_fail_count", 0) > 0)

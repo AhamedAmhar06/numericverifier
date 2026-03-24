@@ -87,7 +87,10 @@ def verify_constraints(
         question_periods = _strict_periods_in_text(question)
         pnl_periods_lower = {p.lower() for p in pnl_periods}
         for qp in question_periods:
-            if qp not in pnl_periods_lower:
+            # Bare year "2023" must match FY-prefixed label "fy2023" (substring).
+            # pnl_parser._normalize_period() may produce "FY2023" from "FY23"/"'23",
+            # so exact set membership would false-fire on every FY-labelled table.
+            if not any(qp in p for p in pnl_periods_lower):
                 violations.append(Violation(
                     code=V_MISSING_PERIOD_IN_EVIDENCE,
                     message="missing_period_in_evidence",
