@@ -16,6 +16,7 @@ from .engines.pnl_execution import (
     run_pnl_checks, execute_claim_against_table, PnLCheckResult,
 )
 from .signals import compute_signals
+from .audit import build_claim_audit, build_audit_summary
 from ..ml.decision_model import decide
 from .report import generate_report
 from .repair import attempt_repair
@@ -62,6 +63,18 @@ def _short_circuit_flag(
         "pnl_missing_baseline_count": 0,
         "pnl_period_strict_mismatch_count": 0,
     }
+    _empty_audit_summary = {
+        "total_claims": 0,
+        "supported_claims": 0,
+        "value_error_claims": 0,
+        "ungrounded_claims": 0,
+        "violation_claims": 0,
+        "repaired_claims": 0,
+        "coverage_ratio": 0.0,
+        "pipeline_passes": 0,
+        "repair_applied": False,
+        "overall_risk": "low",
+    }
     return {
         "decision": decision,
         "rationale": rationale,
@@ -78,6 +91,8 @@ def _short_circuit_flag(
         "corrected_answer": None,
         "repair_iterations": 0,
         "accepted_after_repair": False,
+        "claim_audit": [],
+        "audit_summary": _empty_audit_summary,
     }
 
 
@@ -310,6 +325,17 @@ def route_and_verify(
         }
 
     # ------------------------------------------------------------------
+    # Per-claim audit (computed from final pipeline state)
+    # ------------------------------------------------------------------
+    claim_audit = build_claim_audit(
+        normalized_claims, verification_results, tolerance,
+        repair_audit=repair_audit, accepted_after_repair=accepted_after_repair,
+    )
+    audit_summary = build_audit_summary(
+        claim_audit, signals.to_dict(), repair_audit, accepted_after_repair,
+    )
+
+    # ------------------------------------------------------------------
     # Report generation
     # Use the corrected answer for the report when repair succeeded, so
     # the report reflects the verified (repaired) state.
@@ -337,6 +363,8 @@ def route_and_verify(
             "engine_used": "pnl",
             "llm_used": llm_used,
             "llm_fallback_reason": llm_fallback_reason,
+            "claim_audit": claim_audit,
+            "audit_summary": audit_summary,
         }
         if generated_answer is not None:
             extra["generated_answer"] = generated_answer
@@ -366,6 +394,9 @@ def route_and_verify(
         "corrected_answer": corrected_answer,
         "repair_iterations": repair_iterations,
         "accepted_after_repair": accepted_after_repair,
+        # Per-claim structured audit
+        "claim_audit": claim_audit,
+        "audit_summary": audit_summary,
     }
     if repair_audit is not None:
         result["repair_audit"] = repair_audit

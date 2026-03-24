@@ -1,0 +1,167 @@
+{
+  "decision": "ACCEPT",
+  "run_logged": false,
+  "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations and P&L checks successful. Coverage meets threshold.",
+  "signals": {
+    "unsupported_claims_count": 0,
+    "coverage_ratio": 1.0,
+    "recomputation_fail_count": 0,
+    "max_relative_error": 0.0,
+    "mean_relative_error": 0.0,
+    "scale_mismatch_count": 0,
+    "period_mismatch_count": 0,
+    "ambiguity_count": 0,
+    "schema_version": 2,
+    "pnl_table_detected": 1,
+    "pnl_identity_fail_count": 0,
+    "pnl_margin_fail_count": 0,
+    "pnl_missing_baseline_count": 0,
+    "pnl_period_strict_mismatch_count": 0
+  },
+  "claims": [
+    {
+      "raw_text": "169148000000",
+      "parsed_value": 169148000000.0,
+      "char_span": [
+        33,
+        45
+      ],
+      "unit": null,
+      "scale_token": null,
+      "unit_type": "amount",
+      "scale_label": "raw"
+    }
+  ],
+  "grounding": [
+    {
+      "claim": {
+        "raw_text": "169148000000",
+        "parsed_value": 169148000000.0,
+        "char_span": [
+          33,
+          45
+        ],
+        "unit": null,
+        "scale_token": null,
+        "unit_type": "amount",
+        "scale_label": "raw"
+      },
+      "evidence": {
+        "value": 169148000000.0,
+        "source": "table",
+        "location": "row:1,col:1",
+        "context": "Gross Margin",
+        "row_label": "Gross Margin",
+        "col_label": "FY2023",
+        "period": "FY2023",
+        "canonical_line_item": "gross_profit"
+      },
+      "distance": 0.0,
+      "relative_error": 0.0,
+      "ambiguous": false,
+      "confidence": 0.925,
+      "confidence_margin": 0.2
+    }
+  ],
+  "verification": [
+    {
+      "claim": {
+        "raw_text": "169148000000",
+        "parsed_value": 169148000000.0,
+        "char_span": [
+          33,
+          45
+        ],
+        "unit": null,
+        "scale_token": null,
+        "unit_type": "amount",
+        "scale_label": "raw"
+      },
+      "grounded": true,
+      "grounding_match": {
+        "claim": {
+          "raw_text": "169148000000",
+          "parsed_value": 169148000000.0,
+          "char_span": [
+            33,
+            45
+          ],
+          "unit": null,
+          "scale_token": null,
+          "unit_type": "amount",
+          "scale_label": "raw"
+        },
+        "evidence": {
+          "value": 169148000000.0,
+          "source": "table",
+          "location": "row:1,col:1",
+          "context": "Gross Margin",
+          "row_label": "Gross Margin",
+          "col_label": "FY2023",
+          "period": "FY2023",
+          "canonical_line_item": "gross_profit"
+        },
+        "distance": 0.0,
+        "relative_error": 0.0,
+        "ambiguous": false,
+        "confidence": 0.925,
+        "confidence_margin": 0.2
+      },
+      "lookup_supported": false,
+      "execution_supported": true,
+      "execution_result": 169148000000.0,
+      "execution_error": null,
+      "execution_confidence": "medium",
+      "constraint_violations": []
+    }
+  ],
+  "domain": {
+    "table_type": "pnl",
+    "confidence": 0.3333333333333333
+  },
+  "engine_used": "pnl",
+  "llm_used": false,
+  "llm_fallback_reason": null,
+  "original_answer": "Apple gross margin in FY2023 was 169148000000.",
+  "corrected_answer": null,
+  "repair_iterations": 1,
+  "accepted_after_repair": false,
+  "claim_audit": [
+    {
+      "claim_id": 1,
+      "raw_text": "169148000000",
+      "parsed_value": 169148000000.0,
+      "unit_type": "amount",
+      "scale_label": "raw",
+      "grounding": {
+        "matched": true,
+        "evidence_label": "Gross Margin",
+        "evidence_period": "FY2023",
+        "evidence_value": 169148000000.0,
+        "relative_error": 0.0,
+        "ambiguous": false,
+        "confidence_margin": 0.2
+      },
+      "verification": {
+        "lookup_supported": false,
+        "execution_checked": true,
+        "execution_result": "identity_check_passed",
+        "constraint_violations": [],
+        "risk_level": "low"
+      },
+      "claim_decision": "supported"
+    }
+  ],
+  "audit_summary": {
+    "total_claims": 1,
+    "supported_claims": 1,
+    "value_error_claims": 0,
+    "ungrounded_claims": 0,
+    "violation_claims": 0,
+    "repaired_claims": 0,
+    "coverage_ratio": 1.0,
+    "pipeline_passes": 1,
+    "repair_applied": false,
+    "overall_risk": "low"
+  }
+}
