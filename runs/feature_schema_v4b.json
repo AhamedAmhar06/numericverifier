@@ -1,0 +1,20 @@
+{
+  "features": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count"
+  ],
+  "n_features": 8,
+  "dropped_zero_variance": [
+    "period_mismatch_count",
+    "pnl_margin_fail_count",
+    "pnl_missing_baseline_count",
+    "pnl_table_detected",
+    "recomputation_fail_count"
+  ]
+}
