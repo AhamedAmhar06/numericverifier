@@ -1,0 +1,29 @@
+{
+  "train_accuracy": 0.9176,
+  "val_accuracy": 0.9231,
+  "test_accuracy": 0.8462,
+  "overfit_gap": 0.0714,
+  "cv_mean": 0.9077,
+  "cv_std": 0.0144,
+  "cv_scores": [
+    0.9231,
+    0.8846,
+    0.9038,
+    0.9038,
+    0.9231
+  ],
+  "log_loss": 0.3906,
+  "brier_score": 0.0828,
+  "ml_gains_over_baseline": 17,
+  "n_train": 182,
+  "n_val": 39,
+  "n_test": 39,
+  "n_total": 260,
+  "label_distribution": {
+    "ACCEPT": 100,
+    "FLAG": 144,
+    "REPAIR": 16
+  },
+  "dataset": "signals_v4_complete.csv",
+  "model": "LogisticRegression(C=1.0, max_iter=1000, class_weight=balanced, solver=lbfgs)"
+}
