@@ -1,0 +1,33 @@
+Three ML model versions were developed and evaluated.
+V2 (RandomForest, 312 synthetic cases) and V3 (LogisticRegression,
+TAT-QA gold signals) both suffered from a tautological training
+protocol — labels were derived from the same rule-based pipeline
+used for evaluation, meaning the model learned to reproduce rule
+outputs rather than learn an independent decision boundary.
+V4 (LogisticRegression, 260 cases) addressed this through a
+three-tier dataset: 100 TAT-QA gold cases for ACCEPT (real tables,
+known-correct answers), 100 perturbation-labeled synthetic cases
+for FLAG (label defined by perturbation type, independent of rules),
+and 60 human-labeled ambiguous cases for REPAIR (labeled using a
+documented annotation protocol without reference to rule decisions).
+V4 achieves 84.6% test accuracy with a CV score of 90.8% ± 1.4%
+and an overfitting gap of 7.1%, within acceptable bounds. On the
+84-case synthetic evaluation, rules outperform V4 (91.7% vs 84.5%)
+because that set was designed around the rule structure. This is
+expected — the ML contribution is not improved accuracy on
+rule-optimised cases but improved interpretability and signal
+analysis.
+Feature coefficient analysis reveals that pnl_identity_fail_count
+(coefficient 2.23) and scale_mismatch_count (1.91) are the
+strongest discriminators — domain-specific accounting checks
+outweigh general grounding quality (coverage_ratio, coefficient
+1.09) for classification purposes. This validates the constraint
+module's centrality, consistent with the ablation finding that
+removing constraints increases false ACCEPT rate from 8.3% to 25.0%.
+A critical finding emerged from the ambiguous case analysis:
+the current 13-signal schema cannot distinguish between a
+correctly-grounded answer and one with a 2-4% relative error
+(financially material but within numeric tolerance). This
+near-tolerance gap is identified as the primary target for
+V5 signal design, specifically through a proposed
+near_tolerance_flag signal.

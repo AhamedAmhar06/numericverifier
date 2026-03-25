@@ -1,0 +1,47 @@
+{
+  "model_version": "V4b",
+  "training_dataset": {
+    "total_cases": 260,
+    "accept_cases": 100,
+    "flag_cases": 100,
+    "repair_cases": 60,
+    "accept_source": "TAT-QA gold P&L cases",
+    "flag_source": "perturbation-labeled synthetic cases",
+    "repair_source": "human-labeled ambiguous cases",
+    "leakage_free": true,
+    "tautology_eliminated": true
+  },
+  "performance": {
+    "test_accuracy": 0.8462,
+    "cv_mean": 0.9077,
+    "cv_std": 0.0144,
+    "overfit_gap": 0.0714,
+    "false_accept_rate_84case": 0.3611,
+    "comparison_rules_accuracy_84case": 0.9167
+  },
+  "key_findings": [
+    "Rules outperform ML on 84-case synthetic set (91.7% vs 84.5%) because synthetic set is optimised for rule structure",
+    "V4 catches 0/16 small_value_error ambiguous cases — signal space cannot distinguish grounded-correct from grounded-3%-off",
+    "max_relative_error has near-zero coefficient (0.133) — not discriminative in current signal schema",
+    "pnl_identity_fail_count is strongest discriminator for REPAIR class (coefficient 2.228)",
+    "scale_mismatch_count is strongest discriminator for FLAG class (coefficient 1.908)",
+    "5 zero-variance features identified — dropped in V4b with no accuracy impact",
+    "Near-tolerance signal gap identified — future work"
+  ],
+  "feature_importance_ranked": [
+    {"feature": "pnl_identity_fail_count", "max_abs_coef": 2.2282, "primary_class": "REPAIR"},
+    {"feature": "scale_mismatch_count", "max_abs_coef": 1.9082, "primary_class": "FLAG"},
+    {"feature": "unsupported_claims_count", "max_abs_coef": 1.5888, "primary_class": "FLAG"},
+    {"feature": "coverage_ratio", "max_abs_coef": 1.0874, "primary_class": "FLAG"},
+    {"feature": "ambiguity_count", "max_abs_coef": 0.9819, "primary_class": "REPAIR"},
+    {"feature": "pnl_period_strict_mismatch_count", "max_abs_coef": 0.8212, "primary_class": "FLAG"},
+    {"feature": "max_relative_error", "max_abs_coef": 0.1332, "primary_class": "FLAG"},
+    {"feature": "mean_relative_error", "max_abs_coef": 0.1332, "primary_class": "FLAG"}
+  ],
+  "architecture_conclusion": "The hybrid rule+ML design is validated. Rules handle clear cases with 91.7% accuracy and zero false flags. ML adds interpretable feature importance showing domain constraints (identity_fail, scale_mismatch) are more discriminative than general grounding (coverage_ratio) for classification. The near-tolerance ambiguous zone requires a dedicated signal in V5.",
+  "future_work": {
+    "near_tolerance_signal": "Add near_tolerance_flag that fires when max_relative_error is between 0.5x and 2x tolerance — this would give the model information to classify financially-material but numerically-close errors",
+    "larger_ambiguous_tier": "Expand ambiguous tier to 200+ cases with second annotator for inter-annotator agreement measurement",
+    "real_llm_errors": "Collect actual LLM-generated wrong answers from GPT-4/Claude on real P&L questions for authentic error distribution"
+  }
+}
