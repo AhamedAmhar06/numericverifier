@@ -1,10 +1,10 @@
 # Evaluation Metrics
 
 - **Total cases:** 84
-- **Accuracy:** 84.52%
+- **Accuracy:** 91.67%
 - **False ACCEPT rate:** 19.44% (7 false accepts)
-- **Repair success rate:** 0.00% (0/6)
-- **Avg latency:** 0.3 ms
+- **Repair success rate:** 0.00% (0/0)
+- **Avg latency:** 0.4 ms
 
 ## Per-Class Metrics
 
@@ -12,4 +12,4 @@
 |-------|-----------|--------|----|
 | ACCEPT | 0.8727 | 1.0000 | 0.9320 |
 | REPAIR | 0.0000 | 0.0000 | 0.0000 |
-| FLAG | 1.0000 | 0.6389 | 0.7797 |
+| FLAG | 1.0000 | 0.8056 | 0.8923 |
