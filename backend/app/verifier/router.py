@@ -195,6 +195,7 @@ def route_and_verify(
                 vr = verify_constraints(
                     claim, gm, norm_claims, evidence_items,
                     question=question, pnl_periods=pnl_periods,
+                    table_scale=getattr(getattr(pnl_table, 'metadata', None), 'scale_label', None),
                 )
             if not disable_execution:
                 exec_result = execute_claim_against_table(

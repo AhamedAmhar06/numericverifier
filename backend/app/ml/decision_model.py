@@ -26,7 +26,7 @@ _RUNS_DIR = _BACKEND_DIR.parent / "runs"
 
 # Artifact names (v2 default; v3 when ML_MODEL_VERSION=v3)
 def _model_version():
-    return os.environ.get("ML_MODEL_VERSION", "v2").strip().lower()
+    return os.environ.get("ML_MODEL_VERSION", "v5").strip().lower()
 
 
 def _artifact_names():
