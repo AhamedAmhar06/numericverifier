@@ -31,6 +31,12 @@ def _model_version():
 
 def _artifact_names():
     v = _model_version()
+    if v == "v5":
+        return "decision_model_v5.joblib", "feature_schema_v5.json", "label_mapping_v5.json"
+    if v == "v4b":
+        return "decision_model_v4b.joblib", "feature_schema_v4b.json", "label_mapping_v4.json"
+    if v == "v4":
+        return "decision_model_v4.joblib", "feature_schema_v4.json", "label_mapping_v4.json"
     if v == "v3":
         return "decision_model_v3.joblib", "feature_schema_v3.json", "label_mapping_v3.json"
     return "decision_model_v2.joblib", "feature_schema_v2.json", "label_mapping_v2.json"

@@ -184,9 +184,13 @@ class VerifierSignals:
     pnl_margin_fail_count: int = 0
     pnl_missing_baseline_count: int = 0
     pnl_period_strict_mismatch_count: int = 0
-    
+    # Schema v3 (near-tolerance, grounding quality, claim count)
+    near_tolerance_flag: int = 0        # 1 if any grounded claim has tolerance < rel_err < 0.10
+    grounding_confidence_score: float = 0.0  # avg composite grounding confidence (0.0–1.0)
+    claim_count: int = 0                # total numeric claims extracted from answer
+
     def to_dict(self) -> Dict[str, Any]:
-        """Convert to dictionary for JSON/CSV. Includes v2 fields."""
+        """Convert to dictionary for JSON/CSV. Includes v2 and v3 fields."""
         d = {
             "unsupported_claims_count": self.unsupported_claims_count,
             "coverage_ratio": self.coverage_ratio,
@@ -203,6 +207,9 @@ class VerifierSignals:
         d["pnl_margin_fail_count"] = self.pnl_margin_fail_count
         d["pnl_missing_baseline_count"] = self.pnl_missing_baseline_count
         d["pnl_period_strict_mismatch_count"] = self.pnl_period_strict_mismatch_count
+        d["near_tolerance_flag"] = self.near_tolerance_flag
+        d["grounding_confidence_score"] = self.grounding_confidence_score
+        d["claim_count"] = self.claim_count
         return d
 
 

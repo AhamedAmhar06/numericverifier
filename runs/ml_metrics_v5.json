@@ -1,0 +1,68 @@
+{
+  "model": "GradientBoostingClassifier(n_estimators=100,max_depth=3,lr=0.1,subsample=0.8)",
+  "n_estimators_used": 100,
+  "n_features": 10,
+  "features": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count",
+    "near_tolerance_flag",
+    "grounding_confidence_score"
+  ],
+  "leakage_dropped": [
+    "claim_count"
+  ],
+  "train_accuracy": 1.0,
+  "val_accuracy": 1.0,
+  "test_accuracy": 1.0,
+  "overfit_gap": 0.0,
+  "cv_mean": 0.9692,
+  "cv_std": 0.0357,
+  "cv_scores": [
+    1.0,
+    1.0,
+    0.9808,
+    0.9038,
+    0.9615
+  ],
+  "log_loss": 0.0205,
+  "brier_score": 0.0041,
+  "gate_passed": true,
+  "v5_wins_vs_rules_test": 17,
+  "rule_wins_vs_v5_test": 0,
+  "c2b_flag_count": 16,
+  "c2b_flag_pct": 1.0,
+  "label_distribution": {
+    "ACCEPT": 100,
+    "FLAG": 144,
+    "REPAIR": 16
+  },
+  "dataset": "signals_v5_complete.csv",
+  "n_train": 182,
+  "n_val": 39,
+  "n_test": 39,
+  "feature_importance": {
+    "unsupported_claims_count": 0.1082,
+    "coverage_ratio": 0.1121,
+    "max_relative_error": 0.0371,
+    "mean_relative_error": 0.0463,
+    "scale_mismatch_count": 0.1977,
+    "ambiguity_count": 0.0157,
+    "pnl_identity_fail_count": 0.1493,
+    "pnl_period_strict_mismatch_count": 0.1642,
+    "near_tolerance_flag": 0.0007,
+    "grounding_confidence_score": 0.1688
+  },
+  "shap_top3_overall": [
+    "unsupported_claims_count",
+    "pnl_identity_fail_count",
+    "coverage_ratio"
+  ],
+  "near_tolerance_rank_c2b": 10,
+  "grounding_conf_rank_c2b": 2
+}

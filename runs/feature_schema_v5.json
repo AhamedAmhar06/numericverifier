@@ -1,42 +1,41 @@
 {
-  "feature_names": [
-    "unsupported_claims_count",
-    "coverage_ratio",
-    "recomputation_fail_count",
-    "max_relative_error",
-    "mean_relative_error",
-    "scale_mismatch_count",
-    "period_mismatch_count",
-    "ambiguity_count",
-    "schema_version",
-    "pnl_table_detected",
-    "pnl_identity_fail_count",
-    "pnl_margin_fail_count",
-    "pnl_missing_baseline_count",
-    "pnl_period_strict_mismatch_count",
-    "near_tolerance_flag",
-    "grounding_confidence_score",
-    "claim_count"
-  ],
   "feature_order": [
     "unsupported_claims_count",
     "coverage_ratio",
-    "recomputation_fail_count",
     "max_relative_error",
     "mean_relative_error",
     "scale_mismatch_count",
-    "period_mismatch_count",
     "ambiguity_count",
-    "schema_version",
-    "pnl_table_detected",
     "pnl_identity_fail_count",
-    "pnl_margin_fail_count",
-    "pnl_missing_baseline_count",
     "pnl_period_strict_mismatch_count",
     "near_tolerance_flag",
-    "grounding_confidence_score",
+    "grounding_confidence_score"
+  ],
+  "features": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count",
+    "near_tolerance_flag",
+    "grounding_confidence_score"
+  ],
+  "n_features": 10,
+  "new_signals_added": [
+    "near_tolerance_flag",
+    "grounding_confidence_score"
+  ],
+  "dropped_leakage": [
     "claim_count"
   ],
-  "n_features": 17,
-  "schema_version": 2
+  "dropped_zero_variance_from_v4": [
+    "recomputation_fail_count",
+    "period_mismatch_count",
+    "pnl_table_detected",
+    "pnl_margin_fail_count",
+    "pnl_missing_baseline_count"
+  ]
 }

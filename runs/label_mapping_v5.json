@@ -1,0 +1,17 @@
+{
+  "classes": [
+    "ACCEPT",
+    "FLAG",
+    "REPAIR"
+  ],
+  "label_to_idx": {
+    "ACCEPT": 0,
+    "FLAG": 1,
+    "REPAIR": 2
+  },
+  "index_to_label": {
+    "0": "ACCEPT",
+    "1": "FLAG",
+    "2": "REPAIR"
+  }
+}
