@@ -202,6 +202,7 @@ def route_and_verify(
                     claim.parsed_value,
                     getattr(claim, "unit_type", "amount") or "amount",
                     question, pnl_table, tolerance,
+                    scale_token=getattr(claim, "scale_token", None),
                 )
                 if exec_result["supported"]:
                     vr.execution_supported = True

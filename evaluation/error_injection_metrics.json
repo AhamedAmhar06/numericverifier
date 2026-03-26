@@ -1,0 +1,75 @@
+{
+  "aggregate": {
+    "total": 270,
+    "false_accept_count": 12,
+    "false_accept_rate": 0.0444,
+    "detection_count": 258,
+    "detection_rate": 0.9556,
+    "repair_count": 0,
+    "repair_success_count": 0,
+    "repair_success_rate": 0,
+    "avg_latency_ms": 0.62
+  },
+  "per_type": {
+    "arithmetic_error": {
+      "total": 54,
+      "accept_count": 1,
+      "false_accept_rate": 0.0185,
+      "repair_count": 0,
+      "flag_count": 53,
+      "detection_count": 53,
+      "detection_rate": 0.9815,
+      "repair_success_count": 0,
+      "repair_success_rate": 0,
+      "avg_latency_ms": 0.57
+    },
+    "near_miss_error": {
+      "total": 54,
+      "accept_count": 4,
+      "false_accept_rate": 0.0741,
+      "repair_count": 0,
+      "flag_count": 50,
+      "detection_count": 50,
+      "detection_rate": 0.9259,
+      "repair_success_count": 0,
+      "repair_success_rate": 0,
+      "avg_latency_ms": 0.68
+    },
+    "percentage_error": {
+      "total": 54,
+      "accept_count": 5,
+      "false_accept_rate": 0.0926,
+      "repair_count": 0,
+      "flag_count": 49,
+      "detection_count": 49,
+      "detection_rate": 0.9074,
+      "repair_success_count": 0,
+      "repair_success_rate": 0,
+      "avg_latency_ms": 0.67
+    },
+    "period_error": {
+      "total": 54,
+      "accept_count": 2,
+      "false_accept_rate": 0.037,
+      "repair_count": 0,
+      "flag_count": 52,
+      "detection_count": 52,
+      "detection_rate": 0.963,
+      "repair_success_count": 0,
+      "repair_success_rate": 0,
+      "avg_latency_ms": 0.63
+    },
+    "scale_error": {
+      "total": 54,
+      "accept_count": 0,
+      "false_accept_rate": 0.0,
+      "repair_count": 0,
+      "flag_count": 54,
+      "detection_count": 54,
+      "detection_rate": 1.0,
+      "repair_success_count": 0,
+      "repair_success_rate": 0,
+      "avg_latency_ms": 0.53
+    }
+  }
+}

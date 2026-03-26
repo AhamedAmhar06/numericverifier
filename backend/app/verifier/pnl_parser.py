@@ -36,6 +36,13 @@ _SYNONYMS: Dict[str, List[str]] = {
         "selling general and administrative", "selling general administrative",
         "selling general and administrative expenses",
         "total operating expenses",
+        # Common P&L line items that contain "sales" or other revenue-like words
+        # but are NOT revenue — must be listed here so Pass 1 (exact match)
+        # catches them before Pass 2 can incorrectly map them to "revenue".
+        "sales and marketing", "selling and marketing", "marketing and sales",
+        "sales marketing and support", "selling marketing and administrative",
+        "research and development", "research development and engineering",
+        "general and administrative", "general and administrative expenses",
     ],
     "operating_income": [
         "operating income", "operating profit", "ebit",

@@ -130,6 +130,7 @@ def execute_claim_against_table(
     question: str,
     pnl_table: Any,
     tolerance: float = 0.01,
+    scale_token: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Attempt to verify a claim value by recomputing from the P&L table.
 
@@ -143,6 +144,17 @@ def execute_claim_against_table(
     items = getattr(pnl_table, "items", {}) or {}
     periods = getattr(pnl_table, "periods", []) or []
     q_lower = question.lower()
+
+    # pnl_parser multiplies all item values by the table's scale_multiplier
+    # (e.g. caption "In millions" → scale_multiplier=1_000_000).  Extracted
+    # claim values without a scale suffix are raw (e.g. "72,361"), so we must
+    # scale them up to match items.  But when the claim already carries a scale
+    # suffix ("211,915 million"), the extractor has already applied the multiplier,
+    # so skip normalization to avoid double-scaling.
+    scale_multiplier = getattr(getattr(pnl_table, "metadata", None), "scale_multiplier", 1) or 1
+    was_normalized = scale_multiplier != 1 and claim_unit_type != "percent" and scale_token is None
+    if was_normalized:
+        claim_value = claim_value * scale_multiplier
 
     # Determine target period from question (prefer the most recent year).
     # pnl_parser._normalize_period() may produce FY-prefixed labels ("FY2023"),
@@ -182,27 +194,108 @@ def execute_claim_against_table(
         if margin_result["supported"]:
             return margin_result
 
-    # Growth claims: require two periods for same line item
-    if claim_unit_type == "percent" or "growth" in q_lower or "yoy" in q_lower or "change" in q_lower:
+    # Growth / comparison claims: require two periods for same line item
+    if (claim_unit_type == "percent"
+            or "growth" in q_lower or "yoy" in q_lower or "change" in q_lower
+            or "difference" in q_lower or "differ" in q_lower):
         growth_result = _try_growth_execution(claim_value, items, periods, target_period, q_lower, tolerance)
         if growth_result["supported"]:
             return growth_result
 
+    # When normalization was applied (or claim has explicit scale suffix), tighten
+    # tolerance across all remaining checks to avoid wrong-period values matching
+    # via coincidental proximity (e.g. FY2022 $170,782M within 1% of FY2023 $169,148M).
+    effective_tolerance = tolerance / 10 if (scale_token is not None or was_normalized) else tolerance
+
     # Identity checks: try to match claim against computed identity
-    identity_result = _try_identity_execution(claim_value, items, target_period, tolerance)
+    identity_result = _try_identity_execution(claim_value, items, target_period, effective_tolerance)
     if identity_result["supported"]:
         return identity_result
 
-    # Direct lookup (already handled by grounding; low-confidence fallback here)
+    # Direct lookup (already handled by grounding; low-confidence fallback here).
+    direct_tolerance = effective_tolerance
     for key, period_values in items.items():
         if target_period in period_values:
             ev_val = period_values[target_period]
-            if ev_val != 0 and abs((claim_value - ev_val) / ev_val) <= tolerance:
+            if ev_val != 0 and abs((claim_value - ev_val) / ev_val) <= direct_tolerance:
                 return {"supported": True, "computed_value": ev_val, "confidence": "medium",
                         "formula": f"direct_lookup:{key}:{target_period}", "error": None}
 
+    # Generic derived-value fallback: check V ≈ A - B (or A + B for totals)
+    # for every ordered pair of evidence values in the table.  Only fires
+    # when the question contains a comparison keyword, so random coincidences
+    # in unrelated questions do not produce false positives.
+    derived_result = _try_derived_value_check(claim_value, items, q_lower, tolerance)
+    if derived_result["supported"]:
+        return derived_result
+
     return {"supported": False, "computed_value": None, "confidence": None,
             "formula": None, "error": "no_matching_formula"}
+
+
+_DERIVED_COMPARISON_KEYWORDS = frozenset([
+    "change", "changed", "difference", "differ", "increase", "decrease",
+    "compared", "by how much", "how much did", "grew", "fell", "dropped",
+    "rose", "year over year", "yoy",
+])
+
+
+def _try_derived_value_check(
+    claim_value: float,
+    items: Dict[str, Dict[str, float]],
+    q_lower: str,
+    tolerance: float,
+) -> Dict[str, Any]:
+    """Check whether claim_value equals A - B (or A + B) for any ordered pair
+    of evidence values from the P&L table.
+
+    - Only fires when the question contains a comparison keyword.
+    - Addition is only checked for totals keywords to limit false positives.
+    - Uses relative tolerance: abs(V - computed) / max(abs(computed), 1) < tolerance.
+    """
+    if not any(kw in q_lower for kw in _DERIVED_COMPARISON_KEYWORDS):
+        return {"supported": False, "computed_value": None, "confidence": None,
+                "formula": None, "error": "no_derived_keywords"}
+
+    check_addition = any(kw in q_lower for kw in ("total", "sum", "combined", "together"))
+
+    # Flatten items into (label, value) pairs
+    all_vals = []
+    for key, period_vals in items.items():
+        for period, val in period_vals.items():
+            if val is not None:
+                all_vals.append((f"{key}:{period}", float(val)))
+
+    for i, (label_a, val_a) in enumerate(all_vals):
+        for j, (label_b, val_b) in enumerate(all_vals):
+            if i == j:
+                continue
+            # Subtraction: V ≈ A - B  (also catches V ≈ abs(A-B) via reverse pair)
+            diff = val_a - val_b
+            denom = max(abs(diff), 1.0)
+            if abs(claim_value - diff) / denom < tolerance:
+                return {
+                    "supported": True,
+                    "computed_value": diff,
+                    "confidence": "medium",
+                    "formula": f"derived:{label_a} - {label_b}",
+                    "error": None,
+                }
+            # Addition: V ≈ A + B (only for total-type questions)
+            if check_addition:
+                total = val_a + val_b
+                denom_sum = max(abs(total), 1.0)
+                if abs(claim_value - total) / denom_sum < tolerance:
+                    return {
+                        "supported": True,
+                        "computed_value": total,
+                        "confidence": "medium",
+                        "formula": f"derived:{label_a} + {label_b}",
+                        "error": None,
+                    }
+
+    return {"supported": False, "computed_value": None, "confidence": None,
+            "formula": None, "error": "derived_check_not_matched"}
 
 
 _ITEM_SYNONYMS = {
@@ -284,20 +377,32 @@ def _try_growth_execution(claim_value, items, periods, target_period, q_lower, t
                 (growth_pct, "yoy_growth_pct"),
                 (diff, "yoy_diff"),
             ]:
-                if abs(claim_value - computed) <= max(tolerance * abs(computed), 0.5):
+                # growth_decimal values are tiny (e.g. -0.0096); use a tight minimum
+                # so a claim like "48%" (0.48) does not accidentally match within the
+                # broad 0.5 floor that makes sense for percentage-point and dollar diffs.
+                min_tol = 0.001 if label == "yoy_growth_decimal" else 0.5
+                if abs(claim_value - computed) <= max(tolerance * abs(computed), min_tol):
                     return {"supported": True, "computed_value": computed, "confidence": "high",
                             "formula": f"{label}:{key}:{baseline}->{target_period}", "error": None}
 
-    # Also try absolute difference for non-matched items (broader search)
-    if "change" in q_lower or "difference" in q_lower or "increase" in q_lower or "decrease" in q_lower:
+    # Also try absolute difference for non-matched items (broader search).
+    # Also check abs(diff): LLM may express a negative change as a positive
+    # magnitude ("decreased by 11,043") so the extracted claim is positive
+    # even though diff = curr - prev is negative.
+    if "change" in q_lower or "difference" in q_lower or "differ" in q_lower or "increase" in q_lower or "decrease" in q_lower:
         for key in items:
             curr = _get_val(items, key, target_period)
             prev = _get_val(items, key, baseline)
             if curr is not None and prev is not None:
                 diff = curr - prev
-                if abs(claim_value - diff) <= max(tolerance * abs(diff) if diff != 0 else tolerance, 0.5):
+                tol_diff = max(tolerance * abs(diff) if diff != 0 else tolerance, 0.5)
+                if abs(claim_value - diff) <= tol_diff:
                     return {"supported": True, "computed_value": diff, "confidence": "medium",
                             "formula": f"yoy_diff:{key}:{baseline}->{target_period}", "error": None}
+                # magnitude match: "decreased by X" → claim positive, diff negative
+                if abs(claim_value - abs(diff)) <= tol_diff:
+                    return {"supported": True, "computed_value": abs(diff), "confidence": "medium",
+                            "formula": f"yoy_diff_abs:{key}:{baseline}->{target_period}", "error": None}
                 growth_decimal = yoy_growth(curr, prev)
                 if growth_decimal is not None:
                     growth_pct = growth_decimal * 100.0

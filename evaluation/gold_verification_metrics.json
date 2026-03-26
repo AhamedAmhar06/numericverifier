@@ -1,0 +1,14 @@
+{
+  "total": 54,
+  "correct_accept_count": 22,
+  "correct_accept_rate": 0.4074,
+  "unsupported_but_correct_flag_count": 32,
+  "unsupported_but_correct_flag_rate": 0.5926,
+  "repair_count": 0,
+  "repair_rate": 0.0,
+  "grounding_coverage_count": 17,
+  "grounding_coverage": 0.3148,
+  "execution_coverage_count": 13,
+  "execution_coverage": 0.2407,
+  "avg_latency_ms": 0.6
+}
