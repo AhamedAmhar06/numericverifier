@@ -52,8 +52,13 @@
       "training_cases": 260,
       "label_source": "perturbation_plus_human",
       "tautological": false,
-      "leakage_dropped": ["claim_count"],
-      "new_signals": ["near_tolerance_flag", "grounding_confidence_score"],
+      "leakage_dropped": [
+        "claim_count"
+      ],
+      "new_signals": [
+        "near_tolerance_flag",
+        "grounding_confidence_score"
+      ],
       "status": "current",
       "artifacts": [
         "runs/decision_model_v5.joblib",
@@ -62,13 +67,54 @@
         "runs/label_mapping_v5.json",
         "runs/label_encoder_v5.joblib"
       ],
-      "test_accuracy_intrinsic": 1.0000,
+      "test_accuracy_intrinsic": 1.0,
       "cv_score": "0.9692 +/- 0.0357",
       "eval_84case_accuracy": 0.9167,
       "c2b_small_value_error_caught": "16/16",
-      "shap_top3": ["unsupported_claims_count", "pnl_identity_fail_count", "coverage_ratio"],
+      "shap_top3": [
+        "unsupported_claims_count",
+        "pnl_identity_fail_count",
+        "coverage_ratio"
+      ],
       "production_recommendation": "Use rules_full for deployment. Use V5 for signal interpretability + near-tolerance zone research. Activate via ML_MODEL_VERSION=v5 USE_ML_DECIDER=true.",
-      "notes": "100% intrinsic test acc reflects structured synthetic data, not overfit — CV min fold 90.4%. Matches rules on 84-case eval (91.67%). Key advance: catches all 16 small_value_error ambiguous cases via near_tolerance_flag + grounding_confidence_score signals."
+      "notes": "100% intrinsic test acc reflects structured synthetic data, not overfit \u2014 CV min fold 90.4%. Matches rules on 84-case eval (91.67%). Key advance: catches all 16 small_value_error ambiguous cases via near_tolerance_flag + grounding_confidence_score signals."
     }
-  ]
+  ],
+  "current": "v5b",
+  "v5b": {
+    "features": [
+      "unsupported_claims_count",
+      "coverage_ratio",
+      "max_relative_error",
+      "mean_relative_error",
+      "scale_mismatch_count",
+      "ambiguity_count",
+      "pnl_identity_fail_count",
+      "pnl_period_strict_mismatch_count",
+      "grounding_confidence_score"
+    ],
+    "n_features": 9,
+    "cv_mean": 0.9846153846153847,
+    "cv_std": 0.022426738057097318,
+    "train_acc": 1.0,
+    "val_acc": 0.9487179487179487,
+    "test_acc": 1.0
+  },
+  "v5": {
+    "features": [
+      "unsupported_claims_count",
+      "coverage_ratio",
+      "max_relative_error",
+      "mean_relative_error",
+      "scale_mismatch_count",
+      "ambiguity_count",
+      "pnl_identity_fail_count",
+      "pnl_period_strict_mismatch_count",
+      "near_tolerance_flag",
+      "grounding_confidence_score"
+    ],
+    "n_features": 10,
+    "cv_mean": 0.9692307692307691,
+    "cv_std": 0.03566776344421424
+  }
 }
