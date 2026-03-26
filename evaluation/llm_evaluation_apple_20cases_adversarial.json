@@ -1,0 +1,75 @@
+{
+  "description": "Apple FY2023 adversarial evaluation — 20 deliberately wrong answers, all should be FLAGged",
+  "dataset": "Apple Inc. FY2023 income statement (structured table: FY2023/FY2022 columns)",
+  "total_cases": 20,
+  "expected_decision_all": "FLAG",
+  "summary": {
+    "total": 20,
+    "correct": 20,
+    "accuracy": 1.0,
+    "false_accept": 0,
+    "false_flag": 0
+  },
+  "groups": {
+    "A_value_errors": {
+      "cases": 5,
+      "correct": 5,
+      "description": "Wrong dollar values — 1.7% to 30% off correct figure",
+      "cases_detail": [
+        {"id": "A1", "question": "Apple gross margin FY2023", "answer": "$165,000 million", "correct_value": "$169,148M", "error_pct": "2.5%", "decision": "FLAG"},
+        {"id": "A2", "question": "Apple net income FY2023", "answer": "$112,000 million", "correct_value": "$96,995M", "error_pct": "15.5%", "decision": "FLAG"},
+        {"id": "A3", "question": "Apple operating income FY2023", "answer": "$120,000 million", "correct_value": "$114,301M", "error_pct": "5.0%", "decision": "FLAG"},
+        {"id": "A4", "question": "Apple total net sales FY2023", "answer": "$390,000 million", "correct_value": "$383,285M", "error_pct": "1.7%", "decision": "FLAG"},
+        {"id": "A5", "question": "Apple cost of sales FY2023", "answer": "$220,000 million", "correct_value": "$214,137M", "error_pct": "2.7%", "decision": "FLAG"}
+      ]
+    },
+    "B_scale_errors": {
+      "cases": 5,
+      "correct": 5,
+      "description": "Billion vs million confusion — correct number, wrong scale",
+      "cases_detail": [
+        {"id": "B1", "question": "Apple gross margin FY2023", "answer": "$169 billion", "correct_value": "$169,148 million", "decision": "FLAG"},
+        {"id": "B2", "question": "Apple net income FY2023", "answer": "$97 billion", "correct_value": "$96,995 million", "decision": "FLAG"},
+        {"id": "B3", "question": "Apple revenue FY2023", "answer": "$383 billion", "correct_value": "$383,285 million", "decision": "FLAG"},
+        {"id": "B4", "question": "Apple operating income FY2023", "answer": "$114 billion", "correct_value": "$114,301 million", "decision": "FLAG"},
+        {"id": "B5", "question": "Apple tax provision FY2023", "answer": "$30 billion", "correct_value": "$29,749 million", "decision": "FLAG"}
+      ]
+    },
+    "C_period_errors": {
+      "cases": 5,
+      "correct": 5,
+      "description": "FY2022 values given as FY2023 answers — values close but from wrong year",
+      "cases_detail": [
+        {"id": "C1", "question": "Apple gross margin FY2023", "answer": "$170,782 million (FY2022 value)", "fy2023_correct": "$169,148M", "decision": "FLAG"},
+        {"id": "C2", "question": "Apple net income FY2023", "answer": "$99,803 million (FY2022 value)", "fy2023_correct": "$96,995M", "decision": "FLAG"},
+        {"id": "C3", "question": "Apple operating income FY2023", "answer": "$119,437 million (FY2022 value)", "fy2023_correct": "$114,301M", "decision": "FLAG"},
+        {"id": "C4", "question": "Apple revenue FY2023", "answer": "$394,328 million (FY2022 value)", "fy2023_correct": "$383,285M", "decision": "FLAG"},
+        {"id": "C5", "question": "Apple cost of sales FY2023", "answer": "$223,546 million (FY2022 value)", "fy2023_correct": "$214,137M", "decision": "FLAG"}
+      ]
+    },
+    "D_compound_errors": {
+      "cases": 5,
+      "correct": 5,
+      "description": "Multiple simultaneous errors — scale + value, wrong derived values, confabulated figures",
+      "cases_detail": [
+        {"id": "D1", "question": "Apple gross margin FY2023", "answer": "$170 billion (scale + value error)", "decision": "FLAG"},
+        {"id": "D2", "question": "Apple operating income FY2023", "answer": "computed incorrectly from wrong subtotals", "decision": "FLAG"},
+        {"id": "D3", "question": "Apple gross margin percentage FY2023", "answer": "48% (wrong margin rate)", "correct_value": "~44.1%", "decision": "FLAG", "note": "Fixed: growth_decimal min_tol 0.001 prevents near-zero growth rate coincidental match"},
+        {"id": "D4", "question": "Apple net sales FY2023", "answer": "confabulated value not in table", "decision": "FLAG"},
+        {"id": "D5", "question": "Apple operating expenses FY2023", "answer": "wrong subtotal calculation", "decision": "FLAG"}
+      ]
+    }
+  },
+  "bugs_found_during_adversarial": [
+    {
+      "case": "C1",
+      "bug": "FY2022 gross margin $170,782M within 1% of FY2023 $169,148M — passed direct_lookup at full tolerance",
+      "fix": "Tighten direct_tolerance to tolerance/10 when scale normalization was applied (was_normalized=True)"
+    },
+    {
+      "case": "D3",
+      "bug": "_try_growth_execution hardcoded 0.5 minimum tolerance allowed 48% to match yoy_growth_decimal=-0.00957",
+      "fix": "Use min_tol=0.001 for growth_decimal label, 0.5 only for pct/diff labels"
+    }
+  ]
+}
