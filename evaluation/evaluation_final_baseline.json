@@ -1,0 +1,103 @@
+{
+  "eval_84_case": {
+    "accuracy": "77/84",
+    "accuracy_pct": 91.7,
+    "false_accept_count": 7,
+    "false_accept_rate_pct": 8.3,
+    "false_flag_count": 0,
+    "scale_errors_flagged": "6/6",
+    "tc3_now_flagged": true,
+    "violation_code": "SCALE_LABEL_MISMATCH",
+    "repair_attempted": 0
+  },
+  "progression": {
+    "pre_repair_loop": {
+      "accuracy": "71/84",
+      "false_accept": 13,
+      "false_flag": 0
+    },
+    "post_repair_loop": {
+      "accuracy": "71/84",
+      "false_accept": 13,
+      "false_flag": 0,
+      "note": "repair loop converts REPAIR->ACCEPT"
+    },
+    "after_change_a": {
+      "accuracy": "77/84",
+      "false_accept": 7,
+      "false_flag": 0
+    },
+    "after_scale_label": {
+      "accuracy": "77/84",
+      "false_accept": 7,
+      "false_flag": 0,
+      "tc3_flagged": true
+    }
+  },
+  "apple_tc": {
+    "TC1": {
+      "expected": "ACCEPT",
+      "got": "ACCEPT",
+      "match": true,
+      "scale_mismatch_count": 0,
+      "violations": []
+    },
+    "TC2": {
+      "expected": "FLAG",
+      "got": "FLAG",
+      "match": true,
+      "scale_mismatch_count": 0,
+      "violations": []
+    },
+    "TC3": {
+      "expected": "FLAG",
+      "got": "FLAG",
+      "match": true,
+      "scale_mismatch_count": 1,
+      "violations": [
+        "SCALE_LABEL_MISMATCH"
+      ]
+    },
+    "TC4": {
+      "expected": "FLAG",
+      "got": "FLAG",
+      "match": true,
+      "scale_mismatch_count": 0,
+      "violations": []
+    }
+  },
+  "ablation": {
+    "rules_full": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 8.3,
+      "avg_latency_ms": 0.4
+    },
+    "rules_no_constraints": {
+      "accuracy": "63/84",
+      "accuracy_pct": 75.0,
+      "false_accept_count": 21,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 25.0,
+      "avg_latency_ms": 0.4
+    },
+    "rules_no_execution": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 8.3,
+      "avg_latency_ms": 0.4
+    },
+    "rules_no_repair": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 8.3,
+      "avg_latency_ms": 0.7
+    }
+  }
+}

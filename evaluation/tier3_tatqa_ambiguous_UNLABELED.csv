@@ -1,0 +1,9 @@
+case_id,coverage,rel_error,scale_mismatch,period_mismatch,identity_fail,rule_decision,gold_answer
+tatqa_pnl_00091,1.0,0.004702194357366727,0,0,2,FLAG,31.75
+tatqa_pnl_00092,1.0,0.04048582995951417,0,0,2,FLAG,25.7
+tatqa_pnl_00010,1.0,0.020171387979916047,0,0,2,FLAG,1171074.5
+tatqa_pnl_00008,1.0,0.018895909006334286,0,0,2,FLAG,3031930.5
+tatqa_pnl_00009,1.0,0.018091520318794053,0,0,2,FLAG,1860856
+tatqa_pnl_00083,1.0,0.01818181818181812,0,0,2,FLAG,10.8
+tatqa_pnl_00298,1.0,0.0,0,0,3,FLAG,36%
+tatqa_pnl_00084,1.0,0.0,0,0,2,FLAG,1.6

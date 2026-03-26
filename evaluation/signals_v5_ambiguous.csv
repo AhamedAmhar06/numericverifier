@@ -1,0 +1,61 @@
+case_id,case_type,case_description,gold_answer,rule_decision,human_label,unsupported_claims_count,coverage_ratio,recomputation_fail_count,max_relative_error,mean_relative_error,scale_mismatch_count,period_mismatch_count,ambiguity_count,pnl_table_detected,pnl_identity_fail_count,pnl_margin_fail_count,pnl_missing_baseline_count,pnl_period_strict_mismatch_count,near_tolerance_flag,grounding_confidence_score,claim_count
+tatqa_pnl_00091,tatqa_real,"coverage=1.0, identity_fail=2, gold=31.75",31.75,REPAIR,FLAG,0,1.0,0,0.004702194357366727,0.004702194357366727,0,0,0,1,2,0,0,0,0,0.88,1
+tatqa_pnl_00092,tatqa_real,"coverage=1.0, identity_fail=2, gold=25.7",25.7,REPAIR,FLAG,0,1.0,0,0.04048582995951417,0.04048582995951417,0,0,1,1,2,0,0,0,1,0.5439,1
+tatqa_pnl_00010,tatqa_real,"coverage=1.0, identity_fail=2, gold=1171074.5",1171074.5,REPAIR,FLAG,0,1.0,0,0.020171387979916047,0.020171387979916047,0,0,1,1,2,0,0,0,1,0.8729,1
+tatqa_pnl_00008,tatqa_real,"coverage=1.0, identity_fail=2, gold=3031930.5",3031930.5,REPAIR,FLAG,0,1.0,0,0.018895909006334286,0.018895909006334286,0,0,1,1,2,0,0,0,1,0.8888,1
+tatqa_pnl_00009,tatqa_real,"coverage=1.0, identity_fail=2, gold=1860856",1860856,REPAIR,FLAG,0,1.0,0,0.018091520318794053,0.018091520318794053,0,0,1,1,2,0,0,0,1,0.8989,1
+tatqa_pnl_00083,tatqa_real,"coverage=1.0, identity_fail=2, gold=10.8",10.8,REPAIR,FLAG,0,1.0,0,0.01818181818181812,0.01818181818181812,0,0,1,1,2,0,0,0,1,0.8977,1
+tatqa_pnl_00298,tatqa_real,"coverage=1.0, identity_fail=3, gold=36%",36%,REPAIR,FLAG,0,1.0,0,0.0,0.0,0,0,0,1,3,0,0,0,0,0.9,1
+tatqa_pnl_00084,tatqa_real,"coverage=1.0, identity_fail=2, gold=1.6",1.6,REPAIR,FLAG,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,0.0,1
+c2a_000,partial_grounding,2 claims: revenue=316739 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=316739, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_001,partial_grounding,2 claims: revenue=488389 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=488389, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_002,partial_grounding,2 claims: revenue=434053 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=434053, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_003,partial_grounding,2 claims: revenue=307473 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=307473, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_004,partial_grounding,2 claims: revenue=291161 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=291161, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_005,partial_grounding,2 claims: revenue=642417 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=642417, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_006,partial_grounding,2 claims: revenue=231244 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=231244, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_007,partial_grounding,2 claims: revenue=429258 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=429258, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_008,partial_grounding,2 claims: revenue=729903 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=729903, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_009,partial_grounding,2 claims: revenue=227824 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=227824, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_010,partial_grounding,2 claims: revenue=408496 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=408496, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_011,partial_grounding,2 claims: revenue=639898 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=639898, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_012,partial_grounding,2 claims: revenue=671029 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=671029, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_013,partial_grounding,2 claims: revenue=491704 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=491704, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_014,partial_grounding,2 claims: revenue=367414 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=367414, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_015,partial_grounding,2 claims: revenue=556778 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=556778, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_016,partial_grounding,2 claims: revenue=363032 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=363032, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_017,partial_grounding,2 claims: revenue=552944 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=552944, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_018,partial_grounding,2 claims: revenue=297251 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=297251, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2a_019,partial_grounding,2 claims: revenue=301414 grounds; gm%=120.0 wrong (actual=60.0),"Revenue=301414, GM%=60.0",FLAG,FLAG,1,0.5,0,0.0,0.0,0,0,0,1,0,0,0,0,0,1.0,2
+c2b_000,small_value_error,"Revenue 2.1% off: correct=560663, given=572436",560663,ACCEPT,FLAG,0,1.0,0,0.02099835373477472,0.02099835373477472,0,0,0,1,0,0,0,0,1,0.8625,2
+c2b_001,small_value_error,"Revenue 2.5% off: correct=477370, given=489304",477370,ACCEPT,FLAG,0,1.0,0,0.024999476297211807,0.024999476297211807,0,0,0,1,0,0,0,0,1,0.8125,2
+c2b_002,small_value_error,"Revenue 3.0% off: correct=681741, given=702193",681741,ACCEPT,FLAG,0,1.0,0,0.029999662628476212,0.029999662628476212,0,0,0,1,0,0,0,0,1,0.75,2
+c2b_003,small_value_error,"Revenue 3.4% off: correct=330889, given=342139",330889,ACCEPT,FLAG,0,1.0,0,0.03399931699149866,0.03399931699149866,0,0,0,1,0,0,0,0,1,0.7,2
+c2b_004,small_value_error,"Revenue 2.2% off: correct=282627, given=288844",282627,ACCEPT,FLAG,0,1.0,0,0.02199719064349832,0.02199719064349832,0,0,0,1,0,0,0,0,1,0.85,2
+c2b_005,small_value_error,"Revenue 2.8% off: correct=507419, given=521626",507419,ACCEPT,FLAG,0,1.0,0,0.027998557405221326,0.027998557405221326,0,0,0,1,0,0,0,0,1,0.775,2
+c2b_006,small_value_error,"Revenue 3.2% off: correct=579201, given=597735",579201,ACCEPT,FLAG,0,1.0,0,0.03199925414493414,0.03199925414493414,0,0,0,1,0,0,0,0,1,0.725,2
+c2b_007,small_value_error,"Revenue 3.8% off: correct=401629, given=416890",401629,ACCEPT,FLAG,0,1.0,0,0.03799775414623944,0.03799775414623944,0,0,0,1,0,0,0,0,1,0.65,2
+c2b_008,small_value_error,"Revenue 2.3% off: correct=248050, given=253755",248050,ACCEPT,FLAG,0,1.0,0,0.02299939528320903,0.02299939528320903,0,0,0,1,0,0,0,0,1,0.8375,2
+c2b_009,small_value_error,"Revenue 2.7% off: correct=503445, given=517038",503445,ACCEPT,FLAG,0,1.0,0,0.026999970205285582,0.026999970205285582,0,0,0,1,0,0,0,0,1,0.7875,2
+c2b_010,small_value_error,"Revenue 3.1% off: correct=444098, given=457865",444098,ACCEPT,FLAG,0,1.0,0,0.030999914433300756,0.030999914433300756,0,0,0,1,0,0,0,0,1,0.7375,2
+c2b_011,small_value_error,"Revenue 3.7% off: correct=598591, given=620738",598591,ACCEPT,FLAG,0,1.0,0,0.03699855159867088,0.03699855159867088,0,0,0,1,0,0,0,0,1,0.6625,2
+c2b_012,small_value_error,"Revenue 2.4% off: correct=675435, given=691645",675435,ACCEPT,FLAG,0,1.0,0,0.02399934856795991,0.02399934856795991,0,0,0,1,0,0,0,0,1,0.825,2
+c2b_013,small_value_error,"Revenue 2.6% off: correct=582554, given=597700",582554,ACCEPT,FLAG,0,1.0,0,0.02599930650205818,0.02599930650205818,0,0,0,1,0,0,0,0,1,0.8,2
+c2b_014,small_value_error,"Revenue 3.3% off: correct=588162, given=607571",588162,ACCEPT,FLAG,0,1.0,0,0.03299941172670115,0.03299941172670115,0,0,0,1,0,0,0,0,1,0.7125,2
+c2b_015,small_value_error,"Revenue 3.6% off: correct=419684, given=434792",419684,ACCEPT,FLAG,0,1.0,0,0.035998513167049495,0.035998513167049495,0,0,0,1,0,0,0,0,1,0.675,2
+c2c_000,identity_near_miss,GP=168550 but Rev-COGS differs by 2.2%,168550,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_001,identity_near_miss,GP=233362 but Rev-COGS differs by 2.5%,233362,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_002,identity_near_miss,GP=281694 but Rev-COGS differs by 2.8%,281694,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_003,identity_near_miss,GP=423564 but Rev-COGS differs by 3.1%,423564,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_004,identity_near_miss,GP=299690 but Rev-COGS differs by 3.4%,299690,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_005,identity_near_miss,GP=487807 but Rev-COGS differs by 3.7%,487807,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_006,identity_near_miss,GP=331473 but Rev-COGS differs by 2.3%,331473,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_007,identity_near_miss,GP=270971 but Rev-COGS differs by 2.6%,270971,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_008,identity_near_miss,GP=327701 but Rev-COGS differs by 2.9%,327701,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_009,identity_near_miss,GP=297678 but Rev-COGS differs by 3.2%,297678,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_010,identity_near_miss,GP=261584 but Rev-COGS differs by 3.5%,261584,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_011,identity_near_miss,GP=330061 but Rev-COGS differs by 3.8%,330061,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_012,identity_near_miss,GP=444507 but Rev-COGS differs by 2.4%,444507,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_013,identity_near_miss,GP=419719 but Rev-COGS differs by 2.7%,419719,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_014,identity_near_miss,GP=295247 but Rev-COGS differs by 3.0%,295247,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2
+c2c_015,identity_near_miss,GP=284245 but Rev-COGS differs by 3.3%,284245,REPAIR,REPAIR,0,1.0,0,0.0,0.0,0,0,0,1,2,0,0,0,0,1.0,2

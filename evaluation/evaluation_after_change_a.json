@@ -1,0 +1,93 @@
+{
+  "eval_84_case": {
+    "baseline": {
+      "accuracy": "71/84",
+      "accuracy_pct": 84.5,
+      "false_accept_count": 13,
+      "false_accept_rate_pct": 15.5,
+      "false_flag_count": 0,
+      "scale_errors_flagged": "0/6",
+      "repair_attempted": 6,
+      "repair_succeeded": 6
+    },
+    "after_change_a": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_accept_rate_pct": 8.3,
+      "false_flag_count": 0,
+      "scale_errors_flagged": "6/6",
+      "repair_attempted": 0,
+      "repair_succeeded": 0
+    }
+  },
+  "ablation": {
+    "rules_full": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 8.3,
+      "false_flag_rate_pct": 0.0,
+      "avg_latency_ms": 0.4
+    },
+    "rules_no_constraints": {
+      "accuracy": "63/84",
+      "accuracy_pct": 75.0,
+      "false_accept_count": 21,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 25.0,
+      "false_flag_rate_pct": 0.0,
+      "avg_latency_ms": 0.4
+    },
+    "rules_no_execution": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 8.3,
+      "false_flag_rate_pct": 0.0,
+      "avg_latency_ms": 0.4
+    },
+    "rules_no_repair": {
+      "accuracy": "77/84",
+      "accuracy_pct": 91.7,
+      "false_accept_count": 7,
+      "false_flag_count": 0,
+      "false_accept_rate_pct": 8.3,
+      "false_flag_rate_pct": 0.0,
+      "avg_latency_ms": 0.7
+    }
+  },
+  "apple_tc": {
+    "TC1": {
+      "expected": "ACCEPT",
+      "got": "ACCEPT",
+      "match": true,
+      "scale_mismatch_count": 0,
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations and P&L checks successful. Coverage meets threshold."
+    },
+    "TC2": {
+      "expected": "FLAG",
+      "got": "FLAG",
+      "match": true,
+      "scale_mismatch_count": 0,
+      "rationale": "Issues detected: low coverage (0.0%), many unsupported claims (1). Requires review."
+    },
+    "TC3": {
+      "expected": "FLAG",
+      "got": "ACCEPT",
+      "match": false,
+      "scale_mismatch_count": 0,
+      "rationale": "All claims are grounded and verified. No scale or period mismatches. All recomputations and P&L checks successful. Coverage meets threshold."
+    },
+    "TC4": {
+      "expected": "FLAG",
+      "got": "FLAG",
+      "match": true,
+      "scale_mismatch_count": 0,
+      "rationale": "Issues detected: low coverage (0.0%), many unsupported claims (1). Requires review."
+    }
+  },
+  "tc3_explanation": "TC3 has scale_mismatch_count=0. The claim '$383 billion' is parsed and scale-expanded to 383,000,000,000. The evidence value (383,285 million) is also expanded to 383,285,000,000. Both values are stored in absolute form after unit normalisation, so the grounding engine compares them numerically: relative_error = 285M/383285M = 0.074%, within the 1% tolerance window. No scale_mismatch signal is raised because the units were successfully reconciled during normalisation. The scale integrity FLAG rule requires scale_mismatch_count>0, which is never set here. Catching this case requires a label-level check: detecting that the answer's scale_label='B' (billion) disagrees with the evidence's scale_label='M' (million) even when the numeric values agree after expansion. This is a separate enhancement, tracked as Prompt 3 of tolerance/scale-label design."
+}

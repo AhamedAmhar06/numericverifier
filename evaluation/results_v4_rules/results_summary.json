@@ -33,5 +33,5 @@
   "repair_attempted": 0,
   "repair_success": 0,
   "repair_success_rate": 0,
-  "avg_latency_ms": 0.4
+  "avg_latency_ms": 0.83
 }

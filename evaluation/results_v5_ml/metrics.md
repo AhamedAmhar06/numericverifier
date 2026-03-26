@@ -4,7 +4,7 @@
 - **Accuracy:** 91.67%
 - **False ACCEPT rate:** 19.44% (7 false accepts)
 - **Repair success rate:** 0.00% (0/0)
-- **Avg latency:** 0.4 ms
+- **Avg latency:** 26.8 ms
 
 ## Per-Class Metrics
 

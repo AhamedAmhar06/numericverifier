@@ -1,0 +1,74 @@
+{
+  "models": [
+    {
+      "version": "V2",
+      "algorithm": "RandomForest",
+      "training_cases": 312,
+      "label_source": "rule_outputs",
+      "tautological": true,
+      "status": "deprecated",
+      "reason": "Labels derived from same rules used for evaluation"
+    },
+    {
+      "version": "V3",
+      "algorithm": "LogisticRegression",
+      "training_cases": 305,
+      "label_source": "tatqa_gold_protocol",
+      "tautological": true,
+      "status": "deprecated",
+      "reason": "Trained and tested on same evaluation protocol signals"
+    },
+    {
+      "version": "V4",
+      "algorithm": "LogisticRegression",
+      "features": 13,
+      "training_cases": 260,
+      "label_source": "perturbation_plus_human",
+      "tautological": false,
+      "status": "deprecated",
+      "reason": "Superseded by V4b (zero-variance features removed)"
+    },
+    {
+      "version": "V4b",
+      "algorithm": "LogisticRegression",
+      "features": 8,
+      "training_cases": 260,
+      "label_source": "perturbation_plus_human",
+      "tautological": false,
+      "status": "deprecated",
+      "reason": "Superseded by V5 GBM (new signals, improved c2b detection)",
+      "artifacts": [
+        "runs/decision_model_v4b.joblib",
+        "runs/feature_schema_v4b.json",
+        "runs/ml_metrics_v4.json"
+      ],
+      "test_accuracy": 0.8462,
+      "cv_score": "0.9077 +/- 0.0144"
+    },
+    {
+      "version": "V5",
+      "algorithm": "GradientBoostingClassifier",
+      "features": 10,
+      "training_cases": 260,
+      "label_source": "perturbation_plus_human",
+      "tautological": false,
+      "leakage_dropped": ["claim_count"],
+      "new_signals": ["near_tolerance_flag", "grounding_confidence_score"],
+      "status": "current",
+      "artifacts": [
+        "runs/decision_model_v5.joblib",
+        "runs/feature_schema_v5.json",
+        "runs/ml_metrics_v5.json",
+        "runs/label_mapping_v5.json",
+        "runs/label_encoder_v5.joblib"
+      ],
+      "test_accuracy_intrinsic": 1.0000,
+      "cv_score": "0.9692 +/- 0.0357",
+      "eval_84case_accuracy": 0.9167,
+      "c2b_small_value_error_caught": "16/16",
+      "shap_top3": ["unsupported_claims_count", "pnl_identity_fail_count", "coverage_ratio"],
+      "production_recommendation": "Use rules_full for deployment. Use V5 for signal interpretability + near-tolerance zone research. Activate via ML_MODEL_VERSION=v5 USE_ML_DECIDER=true.",
+      "notes": "100% intrinsic test acc reflects structured synthetic data, not overfit — CV min fold 90.4%. Matches rules on 84-case eval (91.67%). Key advance: catches all 16 small_value_error ambiguous cases via near_tolerance_flag + grounding_confidence_score signals."
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "model_version": "V5",
+  "algorithm": "GradientBoostingClassifier",
+  "training_dataset": {
+    "total_cases": 260,
+    "accept_cases": 100,
+    "flag_cases": 144,
+    "repair_cases": 16,
+    "ambiguous_tier_size": 60,
+    "accept_source": "TAT-QA gold P&L cases",
+    "flag_source": "perturbation-labeled synthetic cases (34 value_error + 33 period_error + 33 scale_error) + 44 human-labeled ambiguous FLAG",
+    "repair_source": "16 human-labeled identity_near_miss ambiguous cases",
+    "leakage_free": true,
+    "tautology_eliminated": true
+  },
+  "signal_schema": {
+    "version": 3,
+    "n_features": 10,
+    "features": [
+      "unsupported_claims_count", "coverage_ratio",
+      "max_relative_error", "mean_relative_error",
+      "scale_mismatch_count", "ambiguity_count",
+      "pnl_identity_fail_count", "pnl_period_strict_mismatch_count",
+      "near_tolerance_flag", "grounding_confidence_score"
+    ],
+    "new_vs_v4b": ["near_tolerance_flag", "grounding_confidence_score"],
+    "dropped_leakage": ["claim_count"],
+    "dropped_zero_variance": [
+      "recomputation_fail_count", "period_mismatch_count",
+      "pnl_table_detected", "pnl_margin_fail_count", "pnl_missing_baseline_count"
+    ]
+  },
+  "performance": {
+    "intrinsic_test_accuracy": 1.0,
+    "cv_mean": 0.9692,
+    "cv_std": 0.0357,
+    "cv_min_fold": 0.9038,
+    "overfit_gap": 0.0,
+    "log_loss": 0.0205,
+    "brier_score": 0.0041,
+    "eval_84case_accuracy": 0.9167,
+    "eval_84case_false_accept_rate": 0.1944,
+    "comparison_rules_accuracy_84case": 0.9167,
+    "comparison_v4b_accuracy_84case": 0.8452
+  },
+  "key_findings": [
+    "near_tolerance_flag fires on all 16/16 c2b small_value_error cases (rel_err 0.021-0.038 > tolerance 0.005)",
+    "V5 catches 16/16 c2b cases as FLAG — V4b caught 0/16; the near-tolerance signal gap is resolved",
+    "grounding_confidence_score is #2 SHAP driver for c2b FLAG predictions (0.163) — continuous confidence degrades from 0.863 at 2.1% error to 0.650 at 3.8% error",
+    "near_tolerance_flag ranks #10 overall by SHAP (0.001) — binary flag acts as gate, continuous grounding_confidence_score carries discrimination",
+    "claim_count leakage detected and removed: TAT-QA answers are bare numbers (count=1) vs synthetic answers include year token (count=2) — format artefact not real signal",
+    "REPAIR precision improves from 50% (V4b) to 100% (V5) — GBM learns identity_fail interaction correctly",
+    "V5 matches rules on 84-case eval (91.67%) — up from V4b 84.52%; no regression on clear-signal cases",
+    "100% intrinsic test accuracy reflects structured synthetic data boundaries, CV min fold 90.4% is honest estimate",
+    "V5 wins 17 cases vs rules on intrinsic test set — all are ACCEPT/REPAIR cases that rules over-flag"
+  ],
+  "feature_importance_gbm": [
+    {"feature": "scale_mismatch_count",              "importance": 0.1977, "rank": 1},
+    {"feature": "grounding_confidence_score",         "importance": 0.1688, "rank": 2},
+    {"feature": "pnl_period_strict_mismatch_count",  "importance": 0.1642, "rank": 3},
+    {"feature": "pnl_identity_fail_count",           "importance": 0.1493, "rank": 4},
+    {"feature": "coverage_ratio",                    "importance": 0.1121, "rank": 5},
+    {"feature": "unsupported_claims_count",          "importance": 0.1082, "rank": 6},
+    {"feature": "mean_relative_error",               "importance": 0.0463, "rank": 7},
+    {"feature": "max_relative_error",                "importance": 0.0371, "rank": 8},
+    {"feature": "ambiguity_count",                   "importance": 0.0157, "rank": 9},
+    {"feature": "near_tolerance_flag",               "importance": 0.0007, "rank": 10}
+  ],
+  "shap_analysis": {
+    "method": "PermutationExplainer (multiclass-safe; TreeExplainer does not support multiclass GBM)",
+    "top3_overall_mean_abs": ["unsupported_claims_count", "pnl_identity_fail_count", "coverage_ratio"],
+    "c2b_flag_class_top2": ["mean_relative_error", "grounding_confidence_score"],
+    "near_tolerance_flag_rank_c2b": 10,
+    "grounding_confidence_score_rank_c2b": 2
+  },
+  "vs_v4b_comparison": {
+    "c2b_caught_v4b": "0/16",
+    "c2b_caught_v5": "16/16",
+    "repair_precision_v4b": 0.500,
+    "repair_precision_v5": 1.000,
+    "eval_84case_v4b": 0.8452,
+    "eval_84case_v5": 0.9167,
+    "cv_mean_v4b": 0.9077,
+    "cv_mean_v5": 0.9692
+  },
+  "leakage_incident": {
+    "variable": "claim_count",
+    "cause": "TAT-QA ACCEPT answers are bare numbers (claim_count=1); synthetic FLAG answers include year token 'Revenue in YEAR was X.' (claim_count=2). Format artefact perfectly separated ACCEPT from FLAG by source, not by error type.",
+    "detection": "1.0000 train/test accuracy with claim_count present; feature_importance=0.714 for claim_count alone",
+    "resolution": "Dropped claim_count from training features. Performance retained (CV 96.9%)."
+  },
+  "architecture_conclusion": "V5 GBM resolves the near-tolerance gap identified in V4b. The combination of near_tolerance_flag (binary gate) and grounding_confidence_score (continuous quality signal) gives the model information to classify financially-material but numerically-within-tolerance errors. GBM's tree-based interactions enable it to learn that (near_tolerance=1 AND grounding_confidence<0.87) implies FLAG while (near_tolerance=0 AND coverage=1.0) implies ACCEPT — a non-linear boundary LR cannot represent with equal compactness.",
+  "future_work": {
+    "real_llm_errors": "Collect actual GPT-4/Claude P&L answers for authentic error distribution in training data",
+    "second_annotator": "Add second annotator for ambiguous tier to compute inter-annotator agreement (Cohen's kappa)",
+    "answer_format_normalisation": "Normalise answer format before signal extraction to prevent future claim_count-style leakage",
+    "grounding_confidence_calibration": "Investigate whether grounding_confidence_score thresholding (e.g. <0.75 = suspect) could replace near_tolerance_flag as a single continuous signal"
+  }
+}

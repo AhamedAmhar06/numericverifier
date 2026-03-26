@@ -1,14 +1,14 @@
 {
   "total": 84,
-  "correct": 77,
-  "accuracy": 0.9167,
+  "correct": 71,
+  "accuracy": 0.8452,
   "per_class": {
     "ACCEPT": {
-      "precision": 0.8727,
+      "precision": 0.7869,
       "recall": 1.0,
-      "f1": 0.932,
+      "f1": 0.8807,
       "tp": 48,
-      "fp": 7,
+      "fp": 13,
       "fn": 0
     },
     "REPAIR": {
@@ -21,17 +21,17 @@
     },
     "FLAG": {
       "precision": 1.0,
-      "recall": 0.8056,
-      "f1": 0.8923,
-      "tp": 29,
+      "recall": 0.6389,
+      "f1": 0.7797,
+      "tp": 23,
       "fp": 0,
-      "fn": 7
+      "fn": 13
     }
   },
-  "false_accept_count": 7,
-  "false_accept_rate": 0.1944,
+  "false_accept_count": 13,
+  "false_accept_rate": 0.3611,
   "repair_attempted": 0,
   "repair_success": 0,
   "repair_success_rate": 0,
-  "avg_latency_ms": 0.4
+  "avg_latency_ms": 90.2
 }

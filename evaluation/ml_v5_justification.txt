@@ -1,0 +1,42 @@
+GradientBoostingClassifier was selected over LogisticRegression for three reasons.
+First, the signal interactions in P&L verification are non-linear: (coverage=1.0 AND
+identity_fail=1) indicates REPAIR while (coverage=1.0 AND scale_mismatch=1) indicates
+FLAG — the same coverage value has opposite implications depending on which constraint
+fired. GBM learns these interactions through decision trees while LR treats them as
+independent additive effects. Second, GBM provides built-in feature importance through
+split frequency and gain, complemented by SHAP for per-prediction explanations —
+producing auditable ML decisions aligned with the system's transparency goals. Third,
+GBM is the standard approach in financial risk classification systems where tabular
+structured features and interpretability are both required.
+
+Signal design note: during V5 development, a leakage variable (claim_count) was
+detected and removed. The synthetic FLAG answers were formatted as "Item in YEAR was
+VALUE." producing claim_count=2 (year token + value token), while TAT-QA gold ACCEPT
+answers are bare numerics (claim_count=1). This format artefact perfectly separated
+classes by source rather than by error type, yielding spurious 100% accuracy.
+Removing claim_count reduced to 10 features; the model retained strong performance
+(CV 96.9% ± 3.6%) with no leakage.
+
+SHAP findings (PermutationExplainer, test set):
+- unsupported_claims_count (SHAP 0.176): strongest overall driver — ungrounded claims
+  are the clearest FLAG signal
+- pnl_identity_fail_count (SHAP 0.079 overall, dominant for REPAIR class): accounting
+  identity violations are the primary REPAIR discriminator
+- grounding_confidence_score (SHAP 0.045 overall, #2 for c2b FLAG cases at 0.163):
+  composite grounding quality degrades with error size (0.863 at 2.1% error → 0.650
+  at 3.8% error), providing the ML signal that enables V5 to catch all 16 c2b
+  small_value_error cases that V4b missed
+- near_tolerance_flag (SHAP 0.001 overall, #10 for c2b): fires correctly on all 16
+  c2b cases as a binary indicator, but SHAP shows grounding_confidence_score
+  carries more discriminative weight — the continuous confidence score is more
+  informative than the binary flag alone
+
+The near_tolerance_flag contributes as a binary gate (fires iff rel_err in
+(tolerance, 0.10)) while grounding_confidence_score provides continuous
+discrimination within the flagged region. Both signals together enabled V5 to
+correctly classify 16/16 small_value_error ambiguous cases as FLAG (V4b: 0/16).
+
+V5 on 84-case synthetic eval: 77/84 = 91.67%, matching rules-based system exactly.
+The 7 remaining errors are structurally identical between V5 and rules — cases where
+both rule triggers and signal patterns are ambiguous. V5's genuine advantage is on
+the near-tolerance ambiguous zone (c2b cases) which the 84-case set does not include.

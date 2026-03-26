@@ -87,6 +87,13 @@ def parse_table_evidence(table_data: Dict[str, Any]) -> List[EvidenceItem]:
         if not table_currency:
             table_currency = _detect_currency(str(v))
 
+    # Extract scale from caption if not found in columns/units
+    if table_scale is None:
+        caption = table_data.get("caption", "") or ""
+        table_scale = _detect_scale(caption)
+        if not table_currency:
+            table_currency = _detect_currency(caption)
+
     # Detect layout: Layout B has columns like [Period, Line Item, Value]
     col_lower = [str(c).lower() for c in columns]
     is_layout_b = False

@@ -1,0 +1,154 @@
+{
+  "dataset": "apple_fy2023_real_world",
+  "description": "Real-world Apple Inc. FY2023 income-statement test cases. Values sourced from Apple 10-K (FY2023). Used to validate the NumericVerifier P&L pipeline.",
+  "evidence": {
+    "source": "Apple Inc. Consolidated Statements of Operations (10-K FY2023)",
+    "columns": [
+      "Line Item",
+      "FY2023 (USD)",
+      "FY2022 (USD)"
+    ],
+    "values_unit": "dollars (absolute)",
+    "original_unit": "millions",
+    "line_items": {
+      "total_net_sales": {
+        "FY2023": 383285000000,
+        "FY2022": 394328000000
+      },
+      "cost_of_sales": {
+        "FY2023": 214137000000,
+        "FY2022": 223546000000
+      },
+      "gross_margin": {
+        "FY2023": 169148000000,
+        "FY2022": 170782000000
+      },
+      "operating_expenses": {
+        "FY2023": 54847000000,
+        "FY2022": 51345000000
+      },
+      "operating_income": {
+        "FY2023": 114301000000,
+        "FY2022": 119437000000
+      },
+      "provision_for_income_taxes": {
+        "FY2023": 29749000000,
+        "FY2022": 19300000000
+      },
+      "net_income": {
+        "FY2023": 96995000000,
+        "FY2022": 99803000000
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "id": "apple_tc1",
+      "description": "Correct value, correct period \u2014 should ACCEPT",
+      "question": "What was Apple's gross margin in FY2023?",
+      "candidate_answer": "Apple's gross margin in FY2023 was $169,148 million.",
+      "expected_decision": "ACCEPT",
+      "actual_decision": "FLAG",
+      "correct": false,
+      "rationale": "Period strict mismatch between question and evidence. Requires review.",
+      "latency_ms": 0.9,
+      "signals": {
+        "unsupported_claims_count": 0,
+        "coverage_ratio": 1.0,
+        "recomputation_fail_count": 0,
+        "max_relative_error": 0.0,
+        "mean_relative_error": 0.0,
+        "scale_mismatch_count": 1,
+        "period_mismatch_count": 0,
+        "ambiguity_count": 0,
+        "schema_version": 2,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 0,
+        "pnl_margin_fail_count": 0,
+        "pnl_missing_baseline_count": 0,
+        "pnl_period_strict_mismatch_count": 2
+      }
+    },
+    {
+      "id": "apple_tc2",
+      "description": "Wrong value ($112B instead of $97B) \u2014 should FLAG",
+      "question": "What was Apple's net income in FY2023?",
+      "candidate_answer": "Apple's net income in FY2023 was $112,000 million.",
+      "expected_decision": "FLAG",
+      "actual_decision": "FLAG",
+      "correct": true,
+      "rationale": "Period strict mismatch between question and evidence. Requires review.",
+      "latency_ms": 1.6,
+      "signals": {
+        "unsupported_claims_count": 0,
+        "coverage_ratio": 1.0,
+        "recomputation_fail_count": 0,
+        "max_relative_error": 0.020131057471063245,
+        "mean_relative_error": 0.020131057471063245,
+        "scale_mismatch_count": 1,
+        "period_mismatch_count": 0,
+        "ambiguity_count": 0,
+        "schema_version": 2,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 0,
+        "pnl_margin_fail_count": 0,
+        "pnl_missing_baseline_count": 0,
+        "pnl_period_strict_mismatch_count": 2
+      }
+    },
+    {
+      "id": "apple_tc3",
+      "description": "Scale mismatch ($383B \u2248 $383.285B but different magnitude) \u2014 should FLAG",
+      "question": "What was Apple's revenue in FY2023?",
+      "candidate_answer": "Apple's total net sales were $383 billion in FY2023.",
+      "expected_decision": "FLAG",
+      "actual_decision": "FLAG",
+      "correct": true,
+      "rationale": "Period strict mismatch between question and evidence. Requires review.",
+      "latency_ms": 1.0,
+      "signals": {
+        "unsupported_claims_count": 0,
+        "coverage_ratio": 1.0,
+        "recomputation_fail_count": 0,
+        "max_relative_error": 0.0007435720156019672,
+        "mean_relative_error": 0.0007435720156019672,
+        "scale_mismatch_count": 0,
+        "period_mismatch_count": 0,
+        "ambiguity_count": 0,
+        "schema_version": 2,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 0,
+        "pnl_margin_fail_count": 0,
+        "pnl_missing_baseline_count": 0,
+        "pnl_period_strict_mismatch_count": 2
+      }
+    },
+    {
+      "id": "apple_tc4",
+      "description": "Wrong period (FY2023 value stated for FY2022 question) \u2014 should FLAG",
+      "question": "What was Apple's operating income in FY2022?",
+      "candidate_answer": "Apple's operating income was $114,301 million.",
+      "expected_decision": "FLAG",
+      "actual_decision": "FLAG",
+      "correct": true,
+      "rationale": "Period strict mismatch between question and evidence. Requires review.",
+      "latency_ms": 0.8,
+      "signals": {
+        "unsupported_claims_count": 0,
+        "coverage_ratio": 1.0,
+        "recomputation_fail_count": 0,
+        "max_relative_error": 0.0,
+        "mean_relative_error": 0.0,
+        "scale_mismatch_count": 1,
+        "period_mismatch_count": 0,
+        "ambiguity_count": 0,
+        "schema_version": 2,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 0,
+        "pnl_margin_fail_count": 0,
+        "pnl_missing_baseline_count": 0,
+        "pnl_period_strict_mismatch_count": 2
+      }
+    }
+  ]
+}

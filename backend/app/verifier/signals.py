@@ -2,8 +2,8 @@
 from typing import List, Optional, Any
 from .types import (
     VerifierSignals, VerificationResult, NumericClaim, Violation,
-    V_SCALE_MISMATCH, V_PERIOD_MISMATCH, V_PNL_PERIOD_STRICT,
-    V_MISSING_PERIOD_IN_EVIDENCE,
+    V_SCALE_MISMATCH, V_SCALE_LABEL_MISMATCH, V_PERIOD_MISMATCH,
+    V_PNL_PERIOD_STRICT, V_MISSING_PERIOD_IN_EVIDENCE,
 )
 
 
@@ -82,7 +82,7 @@ def compute_signals(
 
         for v in (result.constraint_violations or []):
             code = _violation_code(v)
-            if code == V_SCALE_MISMATCH:
+            if code in (V_SCALE_MISMATCH, V_SCALE_LABEL_MISMATCH):
                 scale_mismatches += 1
             elif code == V_PERIOD_MISMATCH:
                 period_mismatches += 1
@@ -108,6 +108,29 @@ def compute_signals(
     if relative_errors:
         signals.max_relative_error = max(relative_errors)
         signals.mean_relative_error = sum(relative_errors) / len(relative_errors)
+
+    # Schema v3 signals
+    signals.claim_count = len(claims)
+
+    # near_tolerance_flag: fires when any grounded claim's relative error is in (tolerance, 0.10)
+    # Meaning: grounded but error is real and financially material
+    for result in verification_results:
+        if result.grounding_match is not None:
+            re = result.grounding_match.relative_error
+            if re > tolerance and re < 0.10:
+                signals.near_tolerance_flag = 1
+                break
+
+    # grounding_confidence_score: average composite grounding confidence across grounded claims
+    confidence_scores = [
+        result.grounding_match.confidence
+        for result in verification_results
+        if result.grounding_match is not None
+    ]
+    if confidence_scores:
+        signals.grounding_confidence_score = round(
+            sum(confidence_scores) / len(confidence_scores), 4
+        )
 
     if domain_table_type == "pnl":
         signals.pnl_table_detected = 1

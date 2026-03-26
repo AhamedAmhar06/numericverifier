@@ -144,10 +144,31 @@ def execute_claim_against_table(
     periods = getattr(pnl_table, "periods", []) or []
     q_lower = question.lower()
 
-    # Determine target period from question (prefer the most recent year)
+    # Determine target period from question (prefer the most recent year).
+    # pnl_parser._normalize_period() may produce FY-prefixed labels ("FY2023"),
+    # so bare year tokens from the question ("2023") must be resolved via
+    # substring matching before the period lookup.
+    #
+    # The \b anchor misses years embedded in FY-prefixed tokens ("FY2022")
+    # because "FY" and digits are both word chars — no word boundary exists
+    # before "2022" in "FY2022".  Add a second pass for FY notation.
     year_matches = re.findall(r"\b(20\d{2})\b", question)
+    fy_raw = re.findall(r"\bFY\s*(20\d{2}|\d{2})\b", question, re.IGNORECASE)
+    for fy in fy_raw:
+        normalized = f"20{fy}" if len(fy) == 2 else fy
+        if normalized not in year_matches:
+            year_matches.append(normalized)
     if year_matches:
-        valid_years = [y for y in year_matches if y in periods]
+        def _resolve(y):
+            """Map bare year 'YYYY' → actual period label, e.g. 'FY2023'."""
+            if y in periods:          # exact match (bare-year tables)
+                return y
+            for p in periods:
+                if y in p:            # substring match (FY-prefixed tables)
+                    return p
+            return None
+        resolved = [_resolve(y) for y in year_matches]
+        valid_years = [r for r in resolved if r is not None]
         target_period = max(valid_years) if valid_years else max(year_matches)
     else:
         target_period = periods[0] if periods else None
@@ -212,17 +233,33 @@ def _match_item_key(q_lower: str, items: dict) -> list:
 
 
 def _try_growth_execution(claim_value, items, periods, target_period, q_lower, tolerance):
-    # Find baseline period (the earlier of the two years mentioned in the question)
+    # Find baseline period (the earlier of the two years mentioned in the question).
+    # Also handle FY-prefixed tokens (fy2022 after lower()) that \b misses.
     year_matches = re.findall(r"\b(20\d{2})\b", q_lower)
+    fy_raw = re.findall(r"\bfy\s*(20\d{2}|\d{2})\b", q_lower)
+    for fy in fy_raw:
+        normalized = f"20{fy}" if len(fy) == 2 else fy
+        if normalized not in year_matches:
+            year_matches.append(normalized)
     baseline = None
     if len(year_matches) >= 2:
-        valid = sorted(set(y for y in year_matches if y in periods))
-        if len(valid) >= 2:
-            baseline = valid[0] if target_period == valid[-1] else min(y for y in valid if y != target_period)
+        # Resolve raw year strings to actual period labels via substring match.
+        def _res_baseline(y):
+            if y in periods: return y
+            for p in periods:
+                if y in p: return p
+            return None
+        resolved_bl = sorted(set(r for r in (_res_baseline(y) for y in year_matches) if r is not None))
+        if len(resolved_bl) >= 2:
+            baseline = resolved_bl[0] if target_period == resolved_bl[-1] else min(r for r in resolved_bl if r != target_period)
     if baseline is None:
-        try:
-            baseline = str(int(target_period) - 1)
-        except ValueError:
+        # Fall back: derive previous year from target_period's numeric part.
+        # Using regex avoids ValueError when target_period is "FY2023" not "2023".
+        tp_num = re.search(r"(20\d{2})", target_period)
+        if tp_num:
+            prev_year = str(int(tp_num.group(1)) - 1)
+            baseline = next((p for p in periods if prev_year in p), prev_year)
+        else:
             return {"supported": False, "computed_value": None, "confidence": None,
                     "formula": None, "error": "cannot_determine_baseline"}
 

@@ -1,0 +1,101 @@
+case_id,label,source,error_type,correct_answer,perturbed_answer,note,question_year,table_years,table_scale,answer_scale,unsupported_claims_count,coverage_ratio,recomputation_fail_count,max_relative_error,mean_relative_error,scale_mismatch_count,period_mismatch_count,ambiguity_count,pnl_table_detected,pnl_identity_fail_count,pnl_margin_fail_count,pnl_missing_baseline_count,pnl_period_strict_mismatch_count
+syn_ve_000,FLAG,synthetic_perturbed,value_error,316739,386421,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_001,FLAG,synthetic_perturbed,value_error,293034,361310,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_002,FLAG,synthetic_perturbed,value_error,86094,108392,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_003,FLAG,synthetic_perturbed,value_error,291161,370356,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_004,FLAG,synthetic_perturbed,value_error,385451,495304,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_005,FLAG,synthetic_perturbed,value_error,92499,120063,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_006,FLAG,synthetic_perturbed,value_error,120193,157573,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_007,FLAG,synthetic_perturbed,value_error,729903,966391,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_008,FLAG,synthetic_perturbed,value_error,136695,182761,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_009,FLAG,synthetic_perturbed,value_error,163399,199346,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_010,FLAG,synthetic_perturbed,value_error,179173,220920,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_011,FLAG,synthetic_perturbed,value_error,295023,371433,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_012,FLAG,synthetic_perturbed,value_error,363032,471215,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_013,FLAG,synthetic_perturbed,value_error,331767,434946,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_014,FLAG,synthetic_perturbed,value_error,118901,157424,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_015,FLAG,synthetic_perturbed,value_error,84398,112840,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_016,FLAG,synthetic_perturbed,value_error,560663,684008,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_017,FLAG,synthetic_perturbed,value_error,286422,353158,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_018,FLAG,synthetic_perturbed,value_error,272697,339780,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_019,FLAG,synthetic_perturbed,value_error,92651,116647,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_020,FLAG,synthetic_perturbed,value_error,282627,359501,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_021,FLAG,synthetic_perturbed,value_error,304452,391220,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_022,FLAG,synthetic_perturbed,value_error,231681,300721,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_023,FLAG,synthetic_perturbed,value_error,112458,147432,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_024,FLAG,synthetic_perturbed,value_error,248050,328418,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_025,FLAG,synthetic_perturbed,value_error,302067,403863,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_026,FLAG,synthetic_perturbed,value_error,177640,216720,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_027,FLAG,synthetic_perturbed,value_error,675435,841592,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_028,FLAG,synthetic_perturbed,value_error,349533,440062,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_029,FLAG,synthetic_perturbed,value_error,235266,299258,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_030,FLAG,synthetic_perturbed,value_error,117514,151005,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_031,FLAG,synthetic_perturbed,value_error,483060,589333,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_032,FLAG,synthetic_perturbed,value_error,470403,580006,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_ve_033,FLAG,synthetic_perturbed,value_error,530776,675147,coverage=0; grounding fails when value >5*tolerance off,,,,,1,0.0,0,0.0,0.0,0,0,0,1,0,0,0,0
+syn_pe_000,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,1,1,0,0,0,4
+syn_pe_001,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_002,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_003,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_004,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_005,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_006,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_007,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_008,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_009,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_010,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_011,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_012,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_013,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_014,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_015,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_016,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_017,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_018,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_019,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_020,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_021,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_022,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,1,1,0,0,0,4
+syn_pe_023,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_024,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_025,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_026,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_027,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_028,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_029,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_030,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_031,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_pe_032,FLAG,synthetic_perturbed,period_error,,,V_MISSING_PERIOD_IN_EVIDENCE: 2024 not in pnl_periods,2024,"2022,2023",,,0,1.0,0,0.0,0.0,0,0,0,1,0,0,0,4
+syn_se_000,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_001,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_002,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,9.832745007423722e-06,9.832745007423722e-06,1,0,0,1,0,0,0,0
+syn_se_003,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,2.7589936294837094e-06,2.7589936294837094e-06,1,0,0,1,0,0,0,0
+syn_se_004,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_005,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,6.498460514704066e-07,6.498460514704066e-07,1,0,0,1,0,0,0,0
+syn_se_006,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,6.827588372890104e-07,6.827588372890104e-07,1,0,0,1,0,0,0,0
+syn_se_007,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,3.846139053311333e-06,3.846139053311333e-06,1,0,0,1,0,0,0,0
+syn_se_008,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_009,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,8.708006184425992e-07,8.708006184425992e-07,1,0,0,1,0,0,0,0
+syn_se_010,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,7.477604574299972e-06,7.477604574299972e-06,1,0,0,1,0,0,0,0
+syn_se_011,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,3.7043759793443996e-06,3.7043759793443996e-06,1,0,0,1,0,0,0,0
+syn_se_012,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_013,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,5.741068619548568e-07,5.741068619548568e-07,1,0,0,1,0,0,0,0
+syn_se_014,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,1.1084434571908052e-06,1.1084434571908052e-06,1,0,0,1,0,0,0,0
+syn_se_015,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,1.2626246684031965e-06,1.2626246684031965e-06,1,0,0,1,0,0,0,0
+syn_se_016,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_017,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,4.6975020093564844e-07,4.6975020093564844e-07,1,0,0,1,0,0,0,0
+syn_se_018,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,2.6364980977666223e-06,2.6364980977666223e-06,1,0,0,1,0,0,0,0
+syn_se_019,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,8.965179243817015e-06,8.965179243817015e-06,1,0,0,1,0,0,0,0
+syn_se_020,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_021,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,6.974492884622359e-07,6.974492884622359e-07,1,0,0,1,0,0,0,0
+syn_se_022,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,3.1070760550076745e-06,3.1070760550076745e-06,1,0,0,1,0,0,0,0
+syn_se_023,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,3.545805461436193e-06,3.545805461436193e-06,1,0,0,1,0,0,0,0
+syn_se_024,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_025,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,1.126965639381138e-06,1.126965639381138e-06,1,0,0,1,0,0,0,0
+syn_se_026,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,2.6928157023469234e-06,2.6928157023469234e-06,1,0,0,1,0,0,0,0
+syn_se_027,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,1.0488712833901617e-05,1.0488712833901617e-05,1,0,0,1,0,0,0,0
+syn_se_028,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0
+syn_se_029,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,2.4045339892902057e-06,2.4045339892902057e-06,1,0,0,1,0,0,0,0
+syn_se_030,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,6.403458892355294e-07,6.403458892355294e-07,1,0,0,1,0,0,0,0
+syn_se_031,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,7.624988479636971e-06,7.624988479636971e-06,1,0,0,1,0,0,0,0
+syn_se_032,FLAG,synthetic_perturbed,scale_error,,,"V_SCALE_MISMATCH: evidence>=1B suggests billion, claim says million",,,raw_billions,million,0,1.0,0,0.0,0.0,1,0,0,1,0,0,0,0

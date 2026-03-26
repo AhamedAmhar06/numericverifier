@@ -2,9 +2,29 @@
 from typing import List, Optional, Set
 from ..types import (
     VerificationResult, NumericClaim, GroundingMatch, Violation,
-    V_SCALE_MISMATCH, V_PERIOD_MISMATCH, V_PNL_PERIOD_STRICT,
-    V_MISSING_PERIOD_IN_EVIDENCE,
+    V_SCALE_MISMATCH, V_SCALE_LABEL_MISMATCH, V_PERIOD_MISMATCH,
+    V_PNL_PERIOD_STRICT, V_MISSING_PERIOD_IN_EVIDENCE,
 )
+
+# Canonical scale family → set of tokens that belong to it.
+# Used for label-based scale disagreement detection (TC3-style: "$383 billion"
+# vs a table declared "in millions").
+_SCALE_DENOMINATION_MAP = {
+    "billion":  {"B", "b", "billion",  "billions"},
+    "million":  {"M", "m", "million",  "millions"},
+    "thousand": {"K", "k", "thousand", "thousands", "000s"},
+}
+
+
+def _scale_family(token: Optional[str]) -> Optional[str]:
+    """Return canonical family ('billion'/'million'/'thousand') or None."""
+    if not token:
+        return None
+    t = token.lower().strip()
+    for family, variants in _SCALE_DENOMINATION_MAP.items():
+        if t in variants:
+            return family
+    return None
 
 _TIME_KEYWORDS = [
     '2020', '2021', '2022', '2023', '2024', '2025',
@@ -38,6 +58,7 @@ def verify_constraints(
     evidence_items: List,
     question: Optional[str] = None,
     pnl_periods: Optional[List[str]] = None,
+    table_scale: Optional[str] = None,
 ) -> VerificationResult:
     result = VerificationResult(
         claim=claim,
@@ -47,11 +68,42 @@ def verify_constraints(
 
     violations = []
 
-    if grounding_match:
-        claim_scale = claim.scale_token
-        evidence_value = grounding_match.evidence.value
-
-        if claim_scale:
+    # Two-tier scale denomination check.
+    #
+    # Tier 1 — Label comparison (preferred): when the table declares its denomination
+    # via caption (e.g. "in millions"), compare scale family tokens directly.  This is
+    # robust regardless of whether evidence values are stored as raw units or pre-
+    # expanded absolute dollars, because no magnitude arithmetic is involved.
+    # Fires: "$383 billion" vs "in millions" table → FLAG (TC3).
+    # Safe: "$169,148 million" vs "in millions" table → same family → no violation (TC1).
+    #
+    # Tier 2 — Magnitude fallback: when no caption-declared scale is available, infer
+    # the expected scale from the raw magnitude of the evidence value and compare
+    # against the claim's scale token.  This handles synthetic test cases where the
+    # table has no caption but stores values in raw units (e.g. 500000 ≈ thousands),
+    # and the claim uses the wrong scale (e.g. "0.50 million").
+    if grounding_match and claim.scale_token:
+        if table_scale:
+            # Tier 1: label comparison
+            table_scale_family = _scale_family(table_scale)
+            claim_scale_family = _scale_family(claim.scale_token)
+            if (table_scale_family is not None
+                    and claim_scale_family is not None
+                    and table_scale_family != claim_scale_family):
+                violations.append(Violation(
+                    code=V_SCALE_LABEL_MISMATCH,
+                    message=(
+                        f"Scale label mismatch: answer uses '{claim.scale_token}' "
+                        f"but table is declared in {table_scale_family}s"
+                    ),
+                    metadata={
+                        "claim_scale": claim.scale_token,
+                        "table_scale": table_scale,
+                    },
+                ))
+        else:
+            # Tier 2: magnitude fallback (no caption — raw-unit evidence assumed)
+            evidence_value = grounding_match.evidence.value
             if abs(evidence_value) >= 1_000_000_000:
                 expected_scale = "billion"
             elif abs(evidence_value) >= 1_000_000:
@@ -60,14 +112,23 @@ def verify_constraints(
                 expected_scale = "thousand"
             else:
                 expected_scale = None
-            scale_map = {'K': 'thousand', 'k': 'thousand', 'M': 'million', 'm': 'million',
-                         'B': 'billion', 'b': 'billion'}
-            claim_scale_normalized = scale_map.get(claim_scale, claim_scale)
+            scale_map = {
+                'K': 'thousand', 'k': 'thousand',
+                'M': 'million',  'm': 'million',
+                'B': 'billion',  'b': 'billion',
+            }
+            claim_scale_normalized = scale_map.get(claim.scale_token, claim.scale_token)
             if expected_scale and claim_scale_normalized != expected_scale:
                 violations.append(Violation(
                     code=V_SCALE_MISMATCH,
-                    message=f"Scale mismatch: claim uses {claim_scale}, evidence suggests {expected_scale}",
-                    metadata={"claim_scale": claim_scale, "expected_scale": expected_scale},
+                    message=(
+                        f"Scale mismatch: claim uses '{claim.scale_token}' "
+                        f"but evidence magnitude suggests {expected_scale}"
+                    ),
+                    metadata={
+                        "claim_scale": claim.scale_token,
+                        "expected_scale": expected_scale,
+                    },
                 ))
 
     if grounding_match and grounding_match.evidence.context:
@@ -87,7 +148,10 @@ def verify_constraints(
         question_periods = _strict_periods_in_text(question)
         pnl_periods_lower = {p.lower() for p in pnl_periods}
         for qp in question_periods:
-            if qp not in pnl_periods_lower:
+            # Bare year "2023" must match FY-prefixed label "fy2023" (substring).
+            # pnl_parser._normalize_period() may produce "FY2023" from "FY23"/"'23",
+            # so exact set membership would false-fire on every FY-labelled table.
+            if not any(qp in p for p in pnl_periods_lower):
                 violations.append(Violation(
                     code=V_MISSING_PERIOD_IN_EVIDENCE,
                     message="missing_period_in_evidence",
