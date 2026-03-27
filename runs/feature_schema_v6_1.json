@@ -1,0 +1,74 @@
+{
+  "model_version": "v6_1",
+  "version": "v6_1",
+  "algorithm": "XGBClassifier",
+  "citation": "Chen and Guestrin (2016). XGBoost: A Scalable Tree Boosting System. KDD 2016.",
+  "n_features": 10,
+  "features": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count",
+    "grounding_confidence_score",
+    "unverifiable_claim_count"
+  ],
+  "feature_order": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count",
+    "grounding_confidence_score",
+    "unverifiable_claim_count"
+  ],
+  "feature_names": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count",
+    "grounding_confidence_score",
+    "unverifiable_claim_count"
+  ],
+  "num_features": 10,
+  "label_classes": [
+    "ACCEPT",
+    "FLAG",
+    "REPAIR"
+  ],
+  "label_map": {
+    "ACCEPT": 0,
+    "FLAG": 1,
+    "REPAIR": 2
+  },
+  "dropped_from_v5": [
+    "near_tolerance_flag",
+    "claim_count"
+  ],
+  "added_vs_v5b": [
+    "unverifiable_claim_count"
+  ],
+  "vs_v6": "balanced dataset -- TAT-QA gold ACCEPT cases restored, FLAG capped at 200",
+  "training_cases": 364,
+  "training_rows": 364,
+  "training_label_distribution": {
+    "FLAG": 200,
+    "ACCEPT": 148,
+    "REPAIR": 16
+  },
+  "label_distribution": {
+    "FLAG": 200,
+    "ACCEPT": 148,
+    "REPAIR": 16
+  }
+}

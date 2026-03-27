@@ -93,7 +93,8 @@
         "near_tolerance_flag",
         "claim_count"
       ],
-      "status": "current",
+      "status": "deprecated",
+      "reason": "Superseded by V6.1 (balanced training data, TAT-QA gold ACCEPT cases restored)",
       "artifacts": [
         "runs/decision_model_v6.joblib",
         "runs/feature_schema_v6.json",
@@ -104,9 +105,38 @@
       "cv_std": 0.0158,
       "flag_recall": 0.9869,
       "gate_passed": true
+    },
+    {
+      "version": "v6_1",
+      "algorithm": "XGBClassifier",
+      "features": 10,
+      "training_cases": 364,
+      "label_source": "perturbation_plus_cases_v2_plus_tatqa_gold",
+      "tautological": false,
+      "new_signals": [
+        "unverifiable_claim_count"
+      ],
+      "leakage_dropped": [
+        "near_tolerance_flag",
+        "claim_count"
+      ],
+      "vs_v6": "balanced dataset -- TAT-QA gold ACCEPT cases restored (100), FLAG capped at 200",
+      "status": "current",
+      "artifacts": [
+        "runs/decision_model_v6_1.joblib",
+        "runs/feature_schema_v6_1.json",
+        "runs/ml_metrics_v6_1.json",
+        "runs/label_mapping_v5.json"
+      ],
+      "cv_mean": 0.9890,
+      "cv_std": 0.0104,
+      "flag_recall": 0.9850,
+      "accept_recall": 0.9932,
+      "overfit_gap": 0.0142,
+      "gate_passed": true
     }
   ],
-  "current": "v6",
+  "current": "v6_1",
   "v5b": {
     "features": [
       "unsupported_claims_count",
