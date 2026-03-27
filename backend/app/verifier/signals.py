@@ -48,6 +48,7 @@ def compute_signals(
 
     unsupported_value = 0
     supported_value_count = 0
+    unverifiable_count = 0
     recomputation_failures = 0
     relative_errors = []
     scale_mismatches = 0
@@ -68,6 +69,11 @@ def compute_signals(
                     ambiguity_count += 1
                 if result.grounding_match:
                     relative_errors.append(result.grounding_match.relative_error)
+            elif getattr(result, "unverifiable_claim", False):
+                # Graceful scope limit: claim is a % formula outside the ratio library.
+                # Do NOT count as unsupported — that would falsely penalise correct
+                # answers to questions the verifier has no formula for.
+                unverifiable_count += 1
             else:
                 unsupported_value += 1
 
@@ -109,8 +115,9 @@ def compute_signals(
         signals.max_relative_error = max(relative_errors)
         signals.mean_relative_error = sum(relative_errors) / len(relative_errors)
 
-    # Schema v3 signals
+    # Schema v3 + v4 signals
     signals.claim_count = len(claims)
+    signals.unverifiable_claim_count = unverifiable_count
 
     # near_tolerance_flag: fires when any grounded claim's relative error is in (tolerance, 0.10)
     # Meaning: grounded but error is real and financially material

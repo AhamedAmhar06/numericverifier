@@ -210,8 +210,11 @@ def route_and_verify(
                     vr.execution_confidence = exec_result["confidence"]
                     if not vr.grounded:
                         vr.grounded = True
-                elif exec_result["error"]:
-                    vr.execution_error = exec_result["error"]
+                else:
+                    if exec_result.get("error"):
+                        vr.execution_error = exec_result["error"]
+                    if exec_result.get("unverifiable_claim"):
+                        vr.unverifiable_claim = True
             vrs.append(vr)
 
         if not disable_execution:

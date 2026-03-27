@@ -9,6 +9,43 @@ from .finance_formulas import (
 )
 
 
+# ---------------------------------------------------------------------------
+# Standard P&L ratio library (Layer 2)
+# ---------------------------------------------------------------------------
+
+# Single-period ratios: (numerator_key, denominator_key, ratio_name)
+STANDARD_PNL_RATIOS = [
+    ("gross_profit",        "revenue",          "gross_margin_pct"),
+    ("operating_income",    "revenue",          "operating_margin_pct"),
+    ("net_income",          "revenue",          "net_margin_pct"),
+    ("tax_expense",         "operating_income", "effective_tax_rate_pct"),
+    ("cogs",                "revenue",          "cogs_ratio_pct"),
+    ("operating_expenses",  "revenue",          "opex_ratio_pct"),
+    ("operating_expenses",  "gross_profit",     "opex_to_gp_pct"),
+    ("r_and_d",             "revenue",          "rd_ratio_pct"),
+    ("sga",                 "revenue",          "sga_ratio_pct"),
+    ("net_income",          "operating_income", "ni_to_op_pct"),
+]
+
+# YoY change ratios: (line_item_key, ratio_name)
+STANDARD_YOY_RATIOS = [
+    ("revenue",             "revenue_yoy_pct"),
+    ("gross_profit",        "gross_profit_yoy_pct"),
+    ("operating_income",    "operating_income_yoy_pct"),
+    ("net_income",          "net_income_yoy_pct"),
+    ("operating_expenses",  "opex_yoy_pct"),
+    ("cogs",                "cogs_yoy_pct"),
+    ("tax_expense",         "tax_yoy_pct"),
+]
+
+# Maps ratio-library key names → pnl_parser canonical item keys (where they differ)
+_RATIO_KEY_MAP: Dict[str, str] = {
+    "tax_expense": "taxes",
+    "r_and_d":     "research_and_development",
+    "sga":         "selling_general_administrative",
+}
+
+
 @dataclass
 class PnLCheckResult:
     """Result of P&L domain checks."""
@@ -202,6 +239,17 @@ def execute_claim_against_table(
         if growth_result["supported"]:
             return growth_result
 
+    # Standard P&L ratio library (Layer 2): single-period and YoY ratio formulas.
+    # Runs for all percent-unit claims not already handled by margin or growth above.
+    # Catches derived metrics like effective_tax_rate, cogs_ratio, opex_to_gp, etc.
+    if claim_unit_type == "percent":
+        ratio_result = _try_ratio_execution(claim_value, items, target_period, periods, q_lower, tolerance)
+        if ratio_result["supported"]:
+            return ratio_result
+        # Propagate unverifiable flag for downstream signal counting
+        if ratio_result.get("unverifiable_claim"):
+            return {**ratio_result, "formula": None, "error": "unverifiable_pct_claim"}
+
     # When normalization was applied (or claim has explicit scale suffix), tighten
     # tolerance across all remaining checks to avoid wrong-period values matching
     # via coincidental proximity (e.g. FY2022 $170,782M within 1% of FY2023 $169,148M).
@@ -231,6 +279,118 @@ def execute_claim_against_table(
 
     return {"supported": False, "computed_value": None, "confidence": None,
             "formula": None, "error": "no_matching_formula"}
+
+
+def _resolve_ratio_key(ratio_key: str, items: dict) -> Optional[str]:
+    """Map a ratio-library key to the actual key present in the pnl_table items dict."""
+    candidates = [ratio_key, _RATIO_KEY_MAP.get(ratio_key, ratio_key)]
+    for k in candidates:
+        if k in items:
+            return k
+    return None
+
+
+def _try_ratio_execution(
+    claim_value: float,
+    items: Dict[str, Dict[str, float]],
+    target_period: str,
+    periods: List[str],
+    q_lower: str,
+    tolerance: float,
+) -> Dict[str, Any]:
+    """Verify a percentage claim against the standard P&L ratio library.
+
+    Tries single-period ratios first (e.g. effective_tax_rate = tax/op_income),
+    then YoY change ratios when two periods are detectable in the question.
+
+    For each formula both the decimal form (0.2603) and the percent form (26.03)
+    of the computed ratio are tested, matching however the claim extractor stored
+    the value.
+
+    Returns a result dict with an extra ``unverifiable_claim`` key set to True
+    when no formula in the library can be applied (both numerator and denominator
+    exist in the table but no formula matched), signalling graceful scope-limit
+    rather than a hard unsupported error.
+    """
+    _not_found = {"supported": False, "computed_value": None, "confidence": None,
+                  "formula": None, "error": "ratio_not_matched",
+                  "unverifiable_claim": False}
+
+    # ── Single-period ratios ──────────────────────────────────────────────────
+    for (num_key, den_key, ratio_name) in STANDARD_PNL_RATIOS:
+        actual_num = _resolve_ratio_key(num_key, items)
+        actual_den = _resolve_ratio_key(den_key, items)
+        if actual_num is None or actual_den is None:
+            continue
+        num_val = _get_val(items, actual_num, target_period)
+        den_val = _get_val(items, actual_den, target_period)
+        if num_val is None or den_val is None or den_val == 0:
+            continue
+        ratio_dec = num_val / den_val          # e.g. 0.2603
+        ratio_pct = ratio_dec * 100.0          # e.g. 26.03
+        for cv in (ratio_dec, ratio_pct):
+            rel_err = abs(claim_value - cv) / abs(cv) if cv != 0 else abs(claim_value)
+            if rel_err <= tolerance:
+                return {
+                    "supported": True, "computed_value": cv, "confidence": "high",
+                    "formula": f"ratio:{ratio_name}:{target_period}",
+                    "derived_from": [actual_num, actual_den],
+                    "error": None, "unverifiable_claim": False,
+                }
+
+    # ── YoY change ratios ─────────────────────────────────────────────────────
+    # Determine the two periods from the question or fall back to consecutive years.
+    year_tokens = re.findall(r"\b(20\d{2})\b", q_lower)
+    fy_raw = re.findall(r"\bfy\s*(20\d{2}|\d{2})\b", q_lower)
+    for fy in fy_raw:
+        n = f"20{fy}" if len(fy) == 2 else fy
+        if n not in year_tokens:
+            year_tokens.append(n)
+
+    def _res(y: str) -> Optional[str]:
+        if y in periods:
+            return y
+        for p in periods:
+            if y in p:
+                return p
+        return None
+
+    resolved = sorted(set(r for r in (_res(y) for y in year_tokens) if r is not None))
+    if len(resolved) >= 2:
+        period_t, period_t1 = resolved[-1], resolved[-2]
+    else:
+        tp_num = re.search(r"(20\d{2})", target_period)
+        if tp_num:
+            prev = str(int(tp_num.group(1)) - 1)
+            period_t  = target_period
+            period_t1 = next((p for p in periods if prev in p), None)
+        else:
+            period_t1 = None
+
+    if period_t1 is not None and period_t1 in periods:
+        for (item_key, ratio_name) in STANDARD_YOY_RATIOS:
+            actual_key = _resolve_ratio_key(item_key, items)
+            if actual_key is None:
+                continue
+            val_t  = _get_val(items, actual_key, period_t)
+            val_t1 = _get_val(items, actual_key, period_t1)
+            if val_t is None or val_t1 is None or val_t1 == 0:
+                continue
+            yoy_dec = (val_t - val_t1) / abs(val_t1)   # e.g. -0.043
+            yoy_pct = yoy_dec * 100.0                   # e.g. -4.30
+            for cv in (yoy_dec, yoy_pct):
+                rel_err = abs(claim_value - cv) / abs(cv) if cv != 0 else abs(claim_value)
+                if rel_err <= tolerance:
+                    return {
+                        "supported": True, "computed_value": cv, "confidence": "high",
+                        "formula": f"yoy_ratio:{ratio_name}:{period_t1}->{period_t}",
+                        "derived_from": [actual_key],
+                        "error": None, "unverifiable_claim": False,
+                    }
+
+    # No formula matched — mark as unverifiable (honest scope limit)
+    _not_found["unverifiable_claim"] = True
+    return _not_found
 
 
 _DERIVED_COMPARISON_KEYWORDS = frozenset([
