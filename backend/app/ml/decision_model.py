@@ -26,11 +26,13 @@ _RUNS_DIR = _BACKEND_DIR.parent / "runs"
 
 # Artifact names (v5b default; override with ML_MODEL_VERSION env var)
 def _model_version():
-    return os.environ.get("ML_MODEL_VERSION", "v5b").strip().lower()
+    return os.environ.get("ML_MODEL_VERSION", "v6").strip().lower()
 
 
 def _artifact_names():
     v = _model_version()
+    if v == "v6":
+        return "decision_model_v6.joblib", "feature_schema_v6.json", "label_mapping_v5.json"
     if v == "v5b":
         return "decision_model_v5b.joblib", "feature_schema_v5b.json", "label_mapping_v5.json"
     if v == "v5":

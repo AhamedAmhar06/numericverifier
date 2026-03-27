@@ -78,9 +78,35 @@
       ],
       "production_recommendation": "Use rules_full for deployment. Use V5 for signal interpretability + near-tolerance zone research. Activate via ML_MODEL_VERSION=v5 USE_ML_DECIDER=true.",
       "notes": "100% intrinsic test acc reflects structured synthetic data, not overfit \u2014 CV min fold 90.4%. Matches rules on 84-case eval (91.67%). Key advance: catches all 16 small_value_error ambiguous cases via near_tolerance_flag + grounding_confidence_score signals."
+    },
+    {
+      "version": "v6",
+      "algorithm": "XGBClassifier",
+      "features": 10,
+      "training_cases": 370,
+      "label_source": "perturbation_plus_cases_v2",
+      "tautological": false,
+      "new_signals": [
+        "unverifiable_claim_count"
+      ],
+      "leakage_dropped": [
+        "near_tolerance_flag",
+        "claim_count"
+      ],
+      "status": "current",
+      "artifacts": [
+        "runs/decision_model_v6.joblib",
+        "runs/feature_schema_v6.json",
+        "runs/ml_metrics_v6.json",
+        "runs/label_mapping_v5.json"
+      ],
+      "cv_mean": 0.9892,
+      "cv_std": 0.0158,
+      "flag_recall": 0.9869,
+      "gate_passed": true
     }
   ],
-  "current": "v5b",
+  "current": "v6",
   "v5b": {
     "features": [
       "unsupported_claims_count",
