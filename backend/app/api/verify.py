@@ -100,4 +100,6 @@ async def verify_with_llm(request: VerifyWithLLMRequest):
         generated_answer=answer,
     )
     result["generated_answer"] = answer
+    # Alias for frontend consistency: candidate_answer = the LLM-generated answer
+    result["candidate_answer"] = answer
     return result
