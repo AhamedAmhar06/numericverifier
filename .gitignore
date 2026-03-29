@@ -40,3 +40,9 @@ htmlcov/
 
 # Local ML deps
 .pip-ml/
+
+
+.claude/
+
+frontend/node_modules/
+frontend/*.tsbuildinfo 
