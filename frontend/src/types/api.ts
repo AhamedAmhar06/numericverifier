@@ -70,6 +70,9 @@ export interface VerifyResponse {
   accepted_after_repair?: boolean;
   ingestion?: IngestionResult;
   generated_answer?: string;
+  candidate_answer?: string;
   llm_used?: boolean;
   llm_fallback_reason?: string;
+  /** Which endpoint was used: "llm-verified" (/verify) or "manual" (/verify-only) */
+  _mode?: string;
 }

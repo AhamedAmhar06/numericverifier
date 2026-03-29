@@ -54,10 +54,34 @@ export function DecisionPanel({ response, error, loading }: DecisionPanelProps) 
 
       {response && (
         <div className="decision-content">
+          {/* Mode and LLM indicator */}
+          <div className="inline-meta">
+            <span className="meta-label">Mode</span>
+            <span className="meta-value">
+              {response._mode === 'llm-verified' ? 'LLM-Verified' : 'Manual Verification'}
+            </span>
+          </div>
+          {response.llm_used !== undefined && (
+            <div className="inline-meta">
+              <span className="meta-label">LLM Used</span>
+              <span className="meta-value">
+                {response.llm_used ? 'Yes (OpenAI)' : `No${response.llm_fallback_reason ? ` — ${response.llm_fallback_reason}` : ''}`}
+              </span>
+            </div>
+          )}
+
           {rationale && (
             <div className="card">
               <h3>Rationale</h3>
               <p>{rationale}</p>
+            </div>
+          )}
+
+          {/* LLM-generated answer (from /verify) */}
+          {(response.generated_answer || response.candidate_answer) && response._mode === 'llm-verified' && (
+            <div className="card">
+              <h3>LLM-Generated Answer</h3>
+              <p>{response.generated_answer || response.candidate_answer}</p>
             </div>
           )}
 
