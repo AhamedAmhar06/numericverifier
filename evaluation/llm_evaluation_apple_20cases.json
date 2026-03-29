@@ -3,7 +3,7 @@
   "dataset": "Apple Inc. FY2023 Annual Report — Consolidated Statements of Operations (In millions)",
   "total_cases": 20,
   "llm_used": true,
-  "model": "claude-sonnet (via /verify endpoint with LLM fallback enabled)",
+  "model": "gpt-4o-mini (via OpenAI, /verify endpoint)",
   "phases": {
     "before_derived_value_fix": {
       "correct": 17,
