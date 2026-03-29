@@ -29,6 +29,7 @@ Thumbs.db
 # Python build
 build/
 dist/
+!frontend/dist/
 
 # Secrets
 .env
