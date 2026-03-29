@@ -1,0 +1,201 @@
+{
+    "decision": "FLAG",
+    "run_logged": true,
+    "rationale": "Issues detected: low coverage (0.0%), many unsupported claims (1). Requires review.",
+    "signals": {
+        "unsupported_claims_count": 1,
+        "coverage_ratio": 0.0,
+        "recomputation_fail_count": 0,
+        "max_relative_error": 0.0,
+        "mean_relative_error": 0.0,
+        "scale_mismatch_count": 0,
+        "period_mismatch_count": 0,
+        "ambiguity_count": 0,
+        "schema_version": 2,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 0,
+        "pnl_margin_fail_count": 0,
+        "pnl_missing_baseline_count": 0,
+        "pnl_period_strict_mismatch_count": 0,
+        "near_tolerance_flag": 0,
+        "grounding_confidence_score": 0.0,
+        "claim_count": 1,
+        "unverifiable_claim_count": 0
+    },
+    "claims": [
+        {
+            "raw_text": "383,285",
+            "parsed_value": 383285000000.0,
+            "char_span": [
+                39,
+                46
+            ],
+            "unit": null,
+            "scale_token": null,
+            "unit_type": "amount",
+            "scale_label": "M"
+        }
+    ],
+    "grounding": [],
+    "verification": [
+        {
+            "claim": {
+                "raw_text": "383,285",
+                "parsed_value": 383285000000.0,
+                "char_span": [
+                    39,
+                    46
+                ],
+                "unit": null,
+                "scale_token": null,
+                "unit_type": "amount",
+                "scale_label": "M"
+            },
+            "grounded": false,
+            "grounding_match": null,
+            "lookup_supported": false,
+            "execution_supported": false,
+            "execution_result": null,
+            "execution_error": "no_matching_formula",
+            "execution_confidence": null,
+            "constraint_violations": []
+        }
+    ],
+    "report": {
+        "timestamp": "2026-03-29T16:59:01.296999",
+        "question": "What was Apple total net sales in FY2023?",
+        "candidate_answer": "Apple's total net sales in FY2023 were 383,285.",
+        "evidence_type": "table",
+        "tolerance": 0.01,
+        "claims": [
+            {
+                "raw_text": "383,285",
+                "parsed_value": 383285000000.0,
+                "char_span": [
+                    39,
+                    46
+                ],
+                "unit": null,
+                "scale_token": null,
+                "unit_type": "amount",
+                "scale_label": "M"
+            }
+        ],
+        "grounding": [],
+        "verification": [
+            {
+                "claim": {
+                    "raw_text": "383,285",
+                    "parsed_value": 383285000000.0,
+                    "char_span": [
+                        39,
+                        46
+                    ],
+                    "unit": null,
+                    "scale_token": null,
+                    "unit_type": "amount",
+                    "scale_label": "M"
+                },
+                "grounded": false,
+                "grounding_match": null,
+                "lookup_supported": false,
+                "execution_supported": false,
+                "execution_result": null,
+                "execution_error": "no_matching_formula",
+                "execution_confidence": null,
+                "constraint_violations": []
+            }
+        ],
+        "signals": {
+            "unsupported_claims_count": 1,
+            "coverage_ratio": 0.0,
+            "recomputation_fail_count": 0,
+            "max_relative_error": 0.0,
+            "mean_relative_error": 0.0,
+            "scale_mismatch_count": 0,
+            "period_mismatch_count": 0,
+            "ambiguity_count": 0,
+            "schema_version": 2,
+            "pnl_table_detected": 1,
+            "pnl_identity_fail_count": 0,
+            "pnl_margin_fail_count": 0,
+            "pnl_missing_baseline_count": 0,
+            "pnl_period_strict_mismatch_count": 0,
+            "near_tolerance_flag": 0,
+            "grounding_confidence_score": 0.0,
+            "claim_count": 1,
+            "unverifiable_claim_count": 0
+        },
+        "decision": {
+            "decision": "FLAG",
+            "rationale": "Issues detected: low coverage (0.0%), many unsupported claims (1). Requires review."
+        }
+    },
+    "domain": {
+        "table_type": "pnl",
+        "confidence": 0.5
+    },
+    "engine_used": "pnl",
+    "llm_used": true,
+    "llm_fallback_reason": null,
+    "original_answer": "Apple's total net sales in FY2023 were 383,285.",
+    "corrected_answer": null,
+    "repair_iterations": 1,
+    "accepted_after_repair": false,
+    "claim_audit": [
+        {
+            "claim_id": 1,
+            "raw_text": "383,285",
+            "parsed_value": 383285000000.0,
+            "unit_type": "amount",
+            "scale_label": "M",
+            "grounding": {
+                "matched": false,
+                "evidence_label": null,
+                "evidence_period": null,
+                "evidence_value": null,
+                "relative_error": null,
+                "ambiguous": null,
+                "confidence_margin": null
+            },
+            "verification": {
+                "lookup_supported": false,
+                "execution_checked": true,
+                "execution_result": "no_matching_formula",
+                "constraint_violations": [],
+                "risk_level": "high"
+            },
+            "claim_decision": "ungrounded"
+        }
+    ],
+    "audit_summary": {
+        "total_claims": 1,
+        "supported_claims": 0,
+        "value_error_claims": 0,
+        "ungrounded_claims": 1,
+        "violation_claims": 0,
+        "repaired_claims": 0,
+        "coverage_ratio": 0.0,
+        "pipeline_passes": 1,
+        "repair_applied": false,
+        "overall_risk": "high"
+    },
+    "ingestion": {
+        "mode": "rule_based",
+        "coverage": 1.0,
+        "matched_rows": [
+            "Net sales",
+            "Cost of sales",
+            "Gross margin",
+            "Operating expenses",
+            "Operating income",
+            "Provision for income taxes",
+            "Net income"
+        ],
+        "unmapped_rows": [],
+        "llm_suggestions": {},
+        "confidence": 1.0
+    },
+    "generated_answer": "Apple's total net sales in FY2023 were 383,285.",
+    "candidate_answer": "Apple's total net sales in FY2023 were 383,285."
+}
