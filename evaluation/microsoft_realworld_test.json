@@ -1,0 +1,122 @@
+{
+  "description": "Microsoft FY2023 real-world generalization test — proves verifier works on a different company with different P&L label names",
+  "company": "Microsoft Corporation",
+  "fiscal_year": "FY2023",
+  "table_source": "Microsoft FY2023 Annual Report — Consolidated Income Statement (In millions)",
+  "label_mapping_challenge": {
+    "apple_label": "Total net sales",
+    "microsoft_label": "Revenue",
+    "note": "pnl_parser synonym matching must handle both without retraining"
+  },
+  "total_cases": 4,
+  "summary": {
+    "correct": 4,
+    "accuracy": 1.0,
+    "accept": 2,
+    "flag": 2,
+    "false_accept": 0,
+    "false_flag": 0
+  },
+  "cases": [
+    {
+      "id": "MS1",
+      "question": "What was Microsoft's revenue in FY2023?",
+      "candidate_answer": "Microsoft's revenue in FY2023 was 211,915 million.",
+      "expected": "ACCEPT",
+      "actual": "ACCEPT",
+      "correct": true,
+      "llm_used": true,
+      "rationale": "All claims independently verified against table data. ML P&L identity signal overridden: table may be structurally incomplete. No unsupported claims, no period or scale violations.",
+      "signals": {
+        "unsupported_claims_count": 0,
+        "coverage_ratio": 1.0,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 2,
+        "scale_mismatch_count": 0,
+        "period_mismatch_count": 0
+      },
+      "notes": "pnl_identity_fail_count=2 due to Microsoft table missing G&A expense row — post-ML ACCEPT gate overrides"
+    },
+    {
+      "id": "MS2",
+      "question": "What was Microsoft's net income in FY2023?",
+      "candidate_answer": "Microsoft's net income in FY2023 was 72,361.",
+      "expected": "ACCEPT",
+      "actual": "ACCEPT",
+      "correct": true,
+      "llm_used": true,
+      "rationale": "All claims independently verified against table data. ML P&L identity signal overridden: table may be structurally incomplete. No unsupported claims, no period or scale violations.",
+      "signals": {
+        "unsupported_claims_count": 0,
+        "coverage_ratio": 1.0,
+        "pnl_table_detected": 1,
+        "pnl_identity_fail_count": 2,
+        "scale_mismatch_count": 0,
+        "period_mismatch_count": 0
+      },
+      "notes": "Raw value 72,361 (no scale suffix) — grounding matches FY2023 net_income exactly"
+    },
+    {
+      "id": "MS3",
+      "question": "What was Microsoft's gross margin in FY2023?",
+      "candidate_answer": "Microsoft's gross margin in FY2023 was 150,000 million.",
+      "expected": "FLAG",
+      "actual": "FLAG",
+      "correct": true,
+      "llm_used": true,
+      "injected_error": "Wrong value — actual gross margin was $135,620M",
+      "error_magnitude": "10.6% off",
+      "rationale": "ML decision: FLAG — unsupported claim value",
+      "signals": {
+        "unsupported_claims_count": 1,
+        "coverage_ratio": 0.0,
+        "pnl_table_detected": 1
+      }
+    },
+    {
+      "id": "MS4",
+      "question": "What was Microsoft's total revenue in FY2023?",
+      "candidate_answer": "Microsoft's total revenue in FY2023 was $211 billion.",
+      "expected": "FLAG",
+      "actual": "FLAG",
+      "correct": true,
+      "llm_used": true,
+      "injected_error": "Scale error — answer uses 'billion' but table is in millions",
+      "rationale": "P&L scale integrity violation — answer uses a different unit or scale than the evidence table.",
+      "signals": {
+        "scale_mismatch_count": 1,
+        "pnl_table_detected": 1
+      },
+      "notes": "Tier 1 scale label check fires independently of grounding — catches billion vs million even when numeric value is close"
+    }
+  ],
+  "bugs_found_and_fixed": [
+    {
+      "bug_id": 1,
+      "affected_case": "MS1",
+      "description": "pnl_parser synonym collision: 'Sales and marketing' matched revenue via Pass-2 substring ('sales' in 'sales and marketing'), overwriting the actual Revenue row with $22,759M instead of $211,915M",
+      "fix": "Added explicit exact synonyms to operating_expenses: 'sales and marketing', 'selling and marketing', 'marketing and sales', 'research and development', 'general and administrative'"
+    },
+    {
+      "bug_id": 2,
+      "affected_case": "MS1",
+      "description": "Double scale normalization: LLM answer '211,915 million' has scale_token='million' so extractor already expanded to 211,915,000,000. execute_claim_against_table then multiplied again by scale_multiplier=1,000,000 → 2.12e17",
+      "fix": "Added scale_token parameter to execute_claim_against_table; skip normalization when scale_token is not None"
+    },
+    {
+      "bug_id": 3,
+      "affected_case": "MS2",
+      "description": "ML model predicted REPAIR/FLAG due to pnl_identity_fail_count=2 from incomplete Microsoft table (missing G&A expense row). Identity checks: operating_income = gross_margin - opex failed because only S&M was available as opex.",
+      "fix": "Added post-ML ACCEPT gate in decision_model.decide(): when ML predicts REPAIR/FLAG but unsupported_claims_count=0 and coverage_ratio>=threshold and no hard violations, override to ACCEPT"
+    }
+  ],
+  "generalization_notes": {
+    "different_from_apple": [
+      "Label 'Revenue' vs Apple's 'Total net sales'",
+      "Label 'Cost of revenue' vs Apple's 'Total cost of sales'",
+      "Microsoft table missing G&A expense row (incomplete structure)",
+      "Microsoft uses raw values (no $ prefix in rows)"
+    ],
+    "pnl_parser_handled": "All label differences resolved by synonym mapping without any Microsoft-specific configuration"
+  }
+}

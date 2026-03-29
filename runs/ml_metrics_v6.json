@@ -1,0 +1,48 @@
+{
+  "model_version": "v6",
+  "algorithm": "XGBClassifier",
+  "cv_folds": 5,
+  "cv_mean": 0.9891891891891891,
+  "cv_std": 0.01575932944552785,
+  "cv_scores": [
+    0.9594594594594594,
+    1.0,
+    0.9864864864864865,
+    1.0,
+    1.0
+  ],
+  "train_accuracy": 0.9922480620155039,
+  "val_accuracy": 0.9821428571428571,
+  "test_accuracy": 1.0,
+  "overfit_gap": -0.007751937984496138,
+  "flag_recall": 0.9869281045751634,
+  "repair_recall": 1.0,
+  "accept_recall": 1.0,
+  "leakage_detected": false,
+  "training_rows": 370,
+  "label_distribution": {
+    "FLAG": 306,
+    "ACCEPT": 48,
+    "REPAIR": 16
+  },
+  "gate_passed": true,
+  "n_features": 10,
+  "features": [
+    "unsupported_claims_count",
+    "coverage_ratio",
+    "max_relative_error",
+    "mean_relative_error",
+    "scale_mismatch_count",
+    "ambiguity_count",
+    "pnl_identity_fail_count",
+    "pnl_period_strict_mismatch_count",
+    "grounding_confidence_score",
+    "unverifiable_claim_count"
+  ],
+  "hyperparams": {
+    "n_estimators": 100,
+    "max_depth": 3,
+    "learning_rate": 0.1,
+    "subsample": 0.8
+  }
+}

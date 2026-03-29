@@ -144,6 +144,7 @@ class VerificationResult:
     execution_error: Optional[str] = None
     execution_confidence: Optional[str] = None  # high | medium | low
     constraint_violations: List[Union[str, Violation]] = field(default_factory=list)
+    unverifiable_claim: bool = False    # True when claim is a % outside ratio library scope
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
@@ -188,6 +189,8 @@ class VerifierSignals:
     near_tolerance_flag: int = 0        # 1 if any grounded claim has tolerance < rel_err < 0.10
     grounding_confidence_score: float = 0.0  # avg composite grounding confidence (0.0–1.0)
     claim_count: int = 0                # total numeric claims extracted from answer
+    # Schema v4 (ratio library)
+    unverifiable_claim_count: int = 0   # % claims outside ratio library scope (graceful unknown)
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON/CSV. Includes v2 and v3 fields."""
@@ -210,6 +213,7 @@ class VerifierSignals:
         d["near_tolerance_flag"] = self.near_tolerance_flag
         d["grounding_confidence_score"] = self.grounding_confidence_score
         d["claim_count"] = self.claim_count
+        d["unverifiable_claim_count"] = self.unverifiable_claim_count
         return d
 
 

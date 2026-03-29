@@ -71,7 +71,15 @@ def parse_table_evidence(table_data: Dict[str, Any]) -> List[EvidenceItem]:
     items = []
     columns = table_data.get("columns", [])
     rows = table_data.get("rows", [])
-    units = table_data.get("units", {})
+    units_raw = table_data.get("units", {})
+    # Normalize: if units is a plain string (e.g. "millions USD"), wrap it for
+    # uniform iteration; if it is neither dict nor string, default to empty dict.
+    if isinstance(units_raw, dict):
+        units = units_raw
+    elif isinstance(units_raw, str):
+        units = {"_table": units_raw} if units_raw else {}
+    else:
+        units = {}
 
     table_currency = None
     table_scale = None

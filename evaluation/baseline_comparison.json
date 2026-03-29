@@ -1,0 +1,745 @@
+{
+  "dataset": "evaluation/cases_v2.json",
+  "total_cases": 84,
+  "ground_truth": {
+    "accept": 48,
+    "flag": 36
+  },
+  "baselines": {
+    "A_no_verification": {
+      "correct": 48,
+      "accuracy": 0.5714,
+      "false_accept": 36,
+      "false_flag": 0,
+      "description": "Accept everything \u2014 trust LLM blindly"
+    },
+    "B_exact_match": {
+      "correct": 79,
+      "accuracy": 0.9405,
+      "false_accept": 5,
+      "false_flag": 0,
+      "description": "Accept if all answer numbers appear somewhere in evidence table"
+    },
+    "C_numericverifier_v5": {
+      "correct": 77,
+      "accuracy": 0.9167,
+      "false_accept": 7,
+      "false_flag": 0,
+      "description": "Full pipeline: pnl_parser + ML v5 + constraints + execution"
+    }
+  },
+  "analysis": {
+    "q1_exact_match_false_accepts": 5,
+    "q2_exact_match_false_flags": 0,
+    "q3_fa_reduction": {
+      "no_verification_to_nv": "36 -> 7 (80.6% reduction)",
+      "exact_match_to_nv": {
+        "note": "NV has more FAs (7) than exact match (5) on this 84-case set",
+        "exact_match_fa_ids": [
+          "case_019",
+          "case_040",
+          "case_048",
+          "case_061",
+          "case_082"
+        ],
+        "nv_fa_ids": [
+          "case_006",
+          "case_016",
+          "case_027",
+          "case_048",
+          "case_051",
+          "case_060",
+          "case_069"
+        ],
+        "only_nv_fails": [
+          "case_069",
+          "case_027",
+          "case_006",
+          "case_060",
+          "case_051",
+          "case_016"
+        ],
+        "only_b_fails": [
+          "case_040",
+          "case_082",
+          "case_061",
+          "case_019"
+        ]
+      }
+    }
+  },
+  "per_case": [
+    {
+      "id": "case_001",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_002",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_003",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_004",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_005",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_006",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_007",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_008",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_009",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_010",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_011",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_012",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_013",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_014",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_015",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_016",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_017",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_018",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_019",
+      "category": "missing_evidence",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_020",
+      "category": "multi_claim",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_021",
+      "category": "ambiguous_grounding",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_022",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_023",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_024",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_025",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_026",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_027",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_028",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_029",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_030",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_031",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_032",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_033",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_034",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_035",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_036",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_037",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_038",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_039",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_040",
+      "category": "missing_evidence",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_041",
+      "category": "multi_claim",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_042",
+      "category": "ambiguous_grounding",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_043",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_044",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_045",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_046",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_047",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_048",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_049",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_050",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_051",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_052",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_053",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_054",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_055",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_056",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_057",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_058",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_059",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_060",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_061",
+      "category": "missing_evidence",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_062",
+      "category": "multi_claim",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_063",
+      "category": "ambiguous_grounding",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_064",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_065",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_066",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_067",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_068",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_069",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_070",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_071",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_072",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_073",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_074",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_075",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_076",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_077",
+      "category": "correct",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_078",
+      "category": "arithmetic_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_079",
+      "category": "identity_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_080",
+      "category": "period_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_081",
+      "category": "scale_error",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "FLAG",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_082",
+      "category": "missing_evidence",
+      "expected": "FLAG",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "FLAG"
+    },
+    {
+      "id": "case_083",
+      "category": "multi_claim",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    },
+    {
+      "id": "case_084",
+      "category": "ambiguous_grounding",
+      "expected": "ACCEPT",
+      "baseline_a": "ACCEPT",
+      "baseline_b": "ACCEPT",
+      "numericverifier": "ACCEPT"
+    }
+  ]
+}

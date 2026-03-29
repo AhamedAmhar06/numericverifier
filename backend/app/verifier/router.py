@@ -6,6 +6,7 @@ from .domain import classify_table_type, DomainContext
 
 logger = logging.getLogger(__name__)
 from .pnl_parser import parse_pnl_table
+from .ingestion import assess_ingestion
 from .extract import extract_numeric_claims
 from .normalize import normalize_claims
 from .evidence import ingest_evidence
@@ -152,6 +153,9 @@ def route_and_verify(
             llm_fallback_reason=llm_fallback_reason,
         )
 
+    # Ingestion confidence assessment (additive metadata — does not alter pipeline)
+    ingestion_meta = assess_ingestion(content)
+
     pnl_table = parse_pnl_table(content)
     if pnl_table is None:
         return _short_circuit_flag(
@@ -202,6 +206,7 @@ def route_and_verify(
                     claim.parsed_value,
                     getattr(claim, "unit_type", "amount") or "amount",
                     question, pnl_table, tolerance,
+                    scale_token=getattr(claim, "scale_token", None),
                 )
                 if exec_result["supported"]:
                     vr.execution_supported = True
@@ -209,8 +214,11 @@ def route_and_verify(
                     vr.execution_confidence = exec_result["confidence"]
                     if not vr.grounded:
                         vr.grounded = True
-                elif exec_result["error"]:
-                    vr.execution_error = exec_result["error"]
+                else:
+                    if exec_result.get("error"):
+                        vr.execution_error = exec_result["error"]
+                    if exec_result.get("unverifiable_claim"):
+                        vr.unverifiable_claim = True
             vrs.append(vr)
 
         if not disable_execution:
@@ -398,6 +406,8 @@ def route_and_verify(
         # Per-claim structured audit
         "claim_audit": claim_audit,
         "audit_summary": audit_summary,
+        # Ingestion layer metadata
+        "ingestion": ingestion_meta,
     }
     if repair_audit is not None:
         result["repair_audit"] = repair_audit

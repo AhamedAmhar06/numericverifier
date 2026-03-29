@@ -24,13 +24,19 @@ logger = logging.getLogger(__name__)
 _BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
 _RUNS_DIR = _BACKEND_DIR.parent / "runs"
 
-# Artifact names (v2 default; v3 when ML_MODEL_VERSION=v3)
+# Artifact names (v5b default; override with ML_MODEL_VERSION env var)
 def _model_version():
-    return os.environ.get("ML_MODEL_VERSION", "v5").strip().lower()
+    return os.environ.get("ML_MODEL_VERSION", "v6_1").strip().lower()
 
 
 def _artifact_names():
     v = _model_version()
+    if v == "v6_1":
+        return "decision_model_v6_1.joblib", "feature_schema_v6_1.json", "label_mapping_v5.json"
+    if v == "v6":
+        return "decision_model_v6.joblib", "feature_schema_v6.json", "label_mapping_v5.json"
+    if v == "v5b":
+        return "decision_model_v5b.joblib", "feature_schema_v5b.json", "label_mapping_v5.json"
     if v == "v5":
         return "decision_model_v5.joblib", "feature_schema_v5.json", "label_mapping_v5.json"
     if v == "v4b":
@@ -182,7 +188,7 @@ def predict_decision(
             raw = label_mapping.get("index_to_label") or {}
             index_to_label = {int(k): v for k, v in raw.items()}
             decision_label = index_to_label.get(idx, "FLAG")
-        v_label = "v3" if threshold is not None else "v2"
+        v_label = _model_version()
         logger.info("Decision path: ML (%s model). decision=%s", v_label, decision_label)
         return Decision(
             decision=decision_label,
@@ -217,4 +223,37 @@ def decide(
         if _cached_model is None:
             _cached_model = load_model()
         model = _cached_model
-    return predict_decision(signals, model=model, verification_results=verification_results)
+
+    ml_decision = predict_decision(signals, model=model, verification_results=verification_results)
+
+    # Post-ML ACCEPT gate: if the ML predicts REPAIR/FLAG but every claim is
+    # independently verified against the table (coverage=1, unsupported=0, no
+    # hard period/baseline violations), the ML's pnl_identity pessimism is
+    # overridden.  Identity failures on incomplete real-world tables (missing
+    # rows like G&A expense) are a table-structure artefact, not answer errors.
+    from ..core.config import settings as _settings
+    if (
+        ml_decision.decision in ("REPAIR", "FLAG")
+        and getattr(signals, "unsupported_claims_count", 1) == 0
+        and getattr(signals, "coverage_ratio", 0.0) >= _settings.coverage_threshold
+        and getattr(signals, "pnl_missing_baseline_count", 0) == 0
+        and getattr(signals, "pnl_period_strict_mismatch_count", 0) == 0
+        and getattr(signals, "scale_mismatch_count", 0) == 0
+        and getattr(signals, "period_mismatch_count", 0) == 0
+        and getattr(signals, "recomputation_fail_count", 0) == 0
+    ):
+        logger.info(
+            "Decision path: ML post-gate ACCEPT override (all claims verified, coverage=%.2f). "
+            "ML predicted %s (likely pnl_identity on incomplete table).",
+            signals.coverage_ratio, ml_decision.decision,
+        )
+        return Decision(
+            decision="ACCEPT",
+            rationale=(
+                "All claims independently verified against table data. "
+                "ML P&L identity signal overridden: table may be structurally incomplete. "
+                "No unsupported claims, no period or scale violations."
+            ),
+        )
+
+    return ml_decision

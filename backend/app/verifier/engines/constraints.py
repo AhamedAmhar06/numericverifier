@@ -82,54 +82,59 @@ def verify_constraints(
     # against the claim's scale token.  This handles synthetic test cases where the
     # table has no caption but stores values in raw units (e.g. 500000 ≈ thousands),
     # and the claim uses the wrong scale (e.g. "0.50 million").
-    if grounding_match and claim.scale_token:
-        if table_scale:
-            # Tier 1: label comparison
-            table_scale_family = _scale_family(table_scale)
-            claim_scale_family = _scale_family(claim.scale_token)
-            if (table_scale_family is not None
-                    and claim_scale_family is not None
-                    and table_scale_family != claim_scale_family):
-                violations.append(Violation(
-                    code=V_SCALE_LABEL_MISMATCH,
-                    message=(
-                        f"Scale label mismatch: answer uses '{claim.scale_token}' "
-                        f"but table is declared in {table_scale_family}s"
-                    ),
-                    metadata={
-                        "claim_scale": claim.scale_token,
-                        "table_scale": table_scale,
-                    },
-                ))
+    # Tier 1: label comparison (no grounding required — only compares declared scale
+    # families).  Fires whenever the claim carries a scale suffix and the table
+    # caption declares a different scale family (e.g. "billion" vs "In millions").
+    # Must run independently of grounding so it catches scale errors even when the
+    # wrong-unit value happens to be numerically close to a table cell
+    # (e.g. "$211 billion" ≈ "$211,915 million" within 0.5% tolerance).
+    if claim.scale_token and table_scale:
+        table_scale_family = _scale_family(table_scale)
+        claim_scale_family = _scale_family(claim.scale_token)
+        if (table_scale_family is not None
+                and claim_scale_family is not None
+                and table_scale_family != claim_scale_family):
+            violations.append(Violation(
+                code=V_SCALE_LABEL_MISMATCH,
+                message=(
+                    f"Scale label mismatch: answer uses '{claim.scale_token}' "
+                    f"but table is declared in {table_scale_family}s"
+                ),
+                metadata={
+                    "claim_scale": claim.scale_token,
+                    "table_scale": table_scale,
+                },
+            ))
+
+    if grounding_match and claim.scale_token and not table_scale:
+        # Tier 2: magnitude fallback (no caption — raw-unit evidence assumed)
+        evidence_value = grounding_match.evidence.value
+        if abs(evidence_value) >= 1_000_000_000:
+            expected_scale = "billion"
+        elif abs(evidence_value) >= 1_000_000:
+            expected_scale = "million"
+        elif abs(evidence_value) >= 1_000:
+            expected_scale = "thousand"
         else:
-            # Tier 2: magnitude fallback (no caption — raw-unit evidence assumed)
-            evidence_value = grounding_match.evidence.value
-            if abs(evidence_value) >= 1_000_000_000:
-                expected_scale = "billion"
-            elif abs(evidence_value) >= 1_000_000:
-                expected_scale = "million"
-            elif abs(evidence_value) >= 1_000:
-                expected_scale = "thousand"
-            else:
-                expected_scale = None
-            scale_map = {
-                'K': 'thousand', 'k': 'thousand',
-                'M': 'million',  'm': 'million',
-                'B': 'billion',  'b': 'billion',
-            }
-            claim_scale_normalized = scale_map.get(claim.scale_token, claim.scale_token)
-            if expected_scale and claim_scale_normalized != expected_scale:
-                violations.append(Violation(
-                    code=V_SCALE_MISMATCH,
-                    message=(
-                        f"Scale mismatch: claim uses '{claim.scale_token}' "
-                        f"but evidence magnitude suggests {expected_scale}"
-                    ),
-                    metadata={
-                        "claim_scale": claim.scale_token,
-                        "expected_scale": expected_scale,
-                    },
-                ))
+            expected_scale = None
+        scale_map = {
+            'K': 'thousand', 'k': 'thousand',
+            'M': 'million',  'm': 'million',
+            'B': 'billion',  'b': 'billion',
+        }
+        claim_scale_normalized = scale_map.get(claim.scale_token, claim.scale_token)
+        if expected_scale and claim_scale_normalized != expected_scale:
+            violations.append(Violation(
+                code=V_SCALE_MISMATCH,
+                message=(
+                    f"Scale mismatch: claim uses '{claim.scale_token}' "
+                    f"but evidence magnitude suggests {expected_scale}"
+                ),
+                metadata={
+                    "claim_scale": claim.scale_token,
+                    "expected_scale": expected_scale,
+                },
+            ))
 
     if grounding_match and grounding_match.evidence.context:
         claim_periods = _periods_in_text(claim.raw_text)
