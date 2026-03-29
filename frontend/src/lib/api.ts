@@ -3,10 +3,10 @@ import { VerifyRequestBody, VerifyResponse } from '../types/api';
 
 export async function verifyAnswer(payload: VerifyRequestBody): Promise<VerifyResponse> {
   // Use /verify-only when candidate_answer is provided; /verify when not (LLM generates answer)
-  const endpoint =
-    payload.candidate_answer && payload.candidate_answer.trim()
-      ? `${API_BASE_URL}/verify-only`
-      : `${API_BASE_URL}/verify`;
+  const isManualMode = !!(payload.candidate_answer && payload.candidate_answer.trim());
+  const endpoint = isManualMode
+    ? `${API_BASE_URL}/verify-only`
+    : `${API_BASE_URL}/verify`;
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -37,5 +37,8 @@ export async function verifyAnswer(payload: VerifyRequestBody): Promise<VerifyRe
     throw new Error(message);
   }
 
-  return parsed as VerifyResponse;
+  const result = parsed as VerifyResponse;
+  // Tag the mode so the UI can display it
+  result._mode = isManualMode ? 'manual' : 'llm-verified';
+  return result;
 }

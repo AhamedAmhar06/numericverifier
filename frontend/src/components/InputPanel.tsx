@@ -54,11 +54,11 @@ export function InputPanel({
       </label>
 
       <label className="field">
-        <span>Candidate Answer (Optional)</span>
+        <span>Candidate Answer (Optional — leave blank for LLM-first flow)</span>
         <textarea
           value={candidateAnswer}
           onChange={(event) => onCandidateAnswerChange(event.target.value)}
-          placeholder="Optional answer to be verified/repaired."
+          placeholder="Leave blank: LLM generates an answer, then pipeline verifies it (primary /verify flow). Or type an answer here for manual verification (/verify-only)."
           rows={4}
         />
       </label>
@@ -74,7 +74,7 @@ export function InputPanel({
           Load Apple Example
         </button>
         <button type="button" className="button-primary" onClick={onVerify} disabled={isLoading}>
-          {isLoading ? 'Verifying...' : 'Verify'}
+          {isLoading ? 'Verifying...' : candidateAnswer.trim() ? 'Verify (Manual)' : 'Verify (LLM)'}
         </button>
         <button type="button" className="button-ghost" onClick={onClear} disabled={isLoading}>
           Clear
