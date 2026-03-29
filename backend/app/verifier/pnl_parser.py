@@ -489,7 +489,11 @@ def parse_pnl_table(content: Dict[str, Any]) -> Optional[PnLTable]:
     caption = content.get("caption", "")
     all_texts: List[str] = [str(caption)] + [str(c) for c in columns]
     if "units" in content:
-        all_texts += [str(v) for v in content["units"].values()]
+        units_val = content["units"]
+        if isinstance(units_val, dict):
+            all_texts += [str(v) for v in units_val.values()]
+        elif isinstance(units_val, str) and units_val:
+            all_texts.append(units_val)
 
     meta = _extract_table_metadata(all_texts)
 
