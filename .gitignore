@@ -45,4 +45,11 @@ htmlcov/
 .claude/
 
 frontend/node_modules/
-frontend/*.tsbuildinfo 
+frontend/*.tsbuildinfo
+frontend.zip
+
+# Runtime logs (large)
+runs/logs.jsonl
+
+# Additional venvs
+.venv*/
