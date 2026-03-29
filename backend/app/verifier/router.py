@@ -6,6 +6,7 @@ from .domain import classify_table_type, DomainContext
 
 logger = logging.getLogger(__name__)
 from .pnl_parser import parse_pnl_table
+from .ingestion import assess_ingestion
 from .extract import extract_numeric_claims
 from .normalize import normalize_claims
 from .evidence import ingest_evidence
@@ -151,6 +152,9 @@ def route_and_verify(
             llm_used=llm_used,
             llm_fallback_reason=llm_fallback_reason,
         )
+
+    # Ingestion confidence assessment (additive metadata — does not alter pipeline)
+    ingestion_meta = assess_ingestion(content)
 
     pnl_table = parse_pnl_table(content)
     if pnl_table is None:
@@ -402,6 +406,8 @@ def route_and_verify(
         # Per-claim structured audit
         "claim_audit": claim_audit,
         "audit_summary": audit_summary,
+        # Ingestion layer metadata
+        "ingestion": ingestion_meta,
     }
     if repair_audit is not None:
         result["repair_audit"] = repair_audit
