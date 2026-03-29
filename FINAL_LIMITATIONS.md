@@ -6,12 +6,9 @@
 
 ## Backend Limitations
 
-### 1. `units` field must be a dict
-Passing `"units": "millions USD"` (string) to any verify endpoint causes a 500 error:
-```
-AttributeError: 'str' object has no attribute 'values'
-```
-in `pnl_parser.py` line ~492. Always use `"units": {}` or `"units": {"FY2023": "millions USD"}`.
+### 1. `units` field — FIXED
+Previously, passing `"units": "millions USD"` (string) caused a 500 error. This has been fixed:
+both `pnl_parser.py` and `evidence.py` now accept `units` as either a dict or a string.
 
 ### 2. Scale token ambiguity
 The claim "Apple revenue was $383,285 million" parses the scale token "million" and multiplies:
@@ -64,7 +61,7 @@ The ACCEPT/REPAIR/FLAG boundary was calibrated on an 84-case eval set. Precision
 - ML model V6.1 achieves 91.67% accuracy on the 84-case evaluation set (evidence in `runs/ml_metrics_v6_1.json`)
 - The ingestion layer is implemented, integrated, and unit-tested (7 tests, all passing)
 - The frontend builds without errors and routes requests correctly to `/verify-only` vs `/verify`
-- 204 backend tests pass after all Session 4 changes
+- 234 backend tests pass after all Session 4/4b changes
 
 ## What Is NOT Safe to Claim
 

@@ -3,7 +3,7 @@
 **Date:** 2026-03-29
 **Branch:** feat/react-frontend
 **ML Model:** V6.1 XGBoost
-**Test count:** 204 passed, 4 skipped
+**Test count:** 234 passed, 4 skipped
 
 ---
 
@@ -17,7 +17,7 @@
 - Repair-and-reverify loop: REPAIR → attempt fix → re-verify (max 2 passes)
 - Per-claim audit (`claim_audit`, `audit_summary`) in every response
 - `ingestion` metadata field in every successful response (Session 4 addition)
-- 197+ previously passing tests still pass; new ingestion tests add 7 more
+- 234 tests passing (234 pass, 4 skip) including ingestion tests
 
 ### Frontend (React + TypeScript + Vite)
 - Clean build: `npm run build` succeeds with zero TypeScript errors
@@ -45,7 +45,7 @@
 
 ## Known Limitations
 
-- `units` field in table evidence must be a dict (e.g., `{}`), not a string — passing `"millions USD"` as string causes 500 error in pnl_parser.
+- `units` field in table evidence now accepts both dict and string formats (bug fixed in Session 4b).
 - Scale ambiguity: "383,285 million" gets parsed as 383,285,000,000 (billion scale) rather than 383,285 in millions. This is pre-existing behavior.
 - Frontend API base URL defaults to `http://localhost:8001` — needs `VITE_API_BASE_URL` env var for production deployment.
 
@@ -55,7 +55,7 @@
 
 - End-to-end P&L verification pipeline is functional and deterministic for table inputs
 - ML model V6.1 metrics are documented in `runs/ml_metrics_v6_1.json`
-- 221 tests passing (from Session 3 lock), 84-case eval at 91.67%
+- 234 tests passing (verified 2026-03-29), 84-case eval at 91.67%
 - Ingestion layer is additive and non-breaking — all existing tests pass after addition
 
 ---

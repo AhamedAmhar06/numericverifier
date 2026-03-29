@@ -131,14 +131,11 @@ result = assess_ingestion({
 
 ---
 
-## Known Issue: units as string causes 500
+## Units String Bug — FIXED
 
-Passing `"units": "millions USD"` (string) to `/verify-only` causes:
-```
-AttributeError: 'str' object has no attribute 'values'
-```
-in `pnl_parser.py`. The `units` field must be a dict (e.g., `{}`).
-This is a pre-existing limitation of the pnl_parser, not introduced in Session 4.
+Previously, passing `"units": "millions USD"` (string) caused a 500 error.
+This was fixed in Session 4b: both `pnl_parser.py` and `evidence.py` now accept
+`units` as either a dict or a string. All 234 tests pass after the fix.
 
 ---
 
