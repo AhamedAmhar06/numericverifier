@@ -1,0 +1,33 @@
+{
+  "test1_well_matched": {
+    "mode": "rule_based",
+    "coverage": 1.0,
+    "matched_rows": [
+      "Net sales",
+      "Cost of sales",
+      "Gross margin",
+      "Operating expenses",
+      "Operating income",
+      "Net income"
+    ],
+    "unmapped_rows": [],
+    "llm_suggestions": {},
+    "confidence": 1.0
+  },
+  "test2_ambiguous": {
+    "mode": "rule_based",
+    "coverage": 0.5,
+    "matched_rows": [
+      "Total Revenue",
+      "Gross Earnings",
+      "EBIT"
+    ],
+    "unmapped_rows": [
+      "Product Costs",
+      "Admin & General",
+      "Bottom Line"
+    ],
+    "llm_suggestions": {},
+    "confidence": 0.45
+  }
+}
