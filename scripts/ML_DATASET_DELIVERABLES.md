@@ -51,7 +51,7 @@ Distribution is taken from the **backend-produced** `decision` column in `runs/s
 
 ## How to Reproduce or Extend
 
-1. Start backend at `http://127.0.0.1:8000` (and set `OPENAI_API_KEY` for richer stratification).
+1. Start backend at `http://localhost:8877` (and set `OPENAI_API_KEY` for richer stratification).
 2. Run: `python3 scripts/generate_ml_dataset.py`
 3. Check `runs/signals_v2.csv` for new rows and `runs/logs.jsonl` for full audit trails.
 

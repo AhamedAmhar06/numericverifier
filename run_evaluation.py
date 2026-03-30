@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 # Configuration
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "http://localhost:8877"
 TEST_CASES_FILE = Path(__file__).parent / "evaluation_test_cases.json"
 RESULTS_FILE = Path(__file__).parent / "evaluation_results.json"
 
@@ -110,7 +110,7 @@ def main():
     if not check_server():
         print(f"ERROR: Server not running at {BASE_URL}")
         print("Please start the server with:")
-        print("  cd backend && python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000")
+        print("  cd backend && python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8877")
         sys.exit(1)
     print("Server is running ✓")
     
@@ -156,4 +156,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

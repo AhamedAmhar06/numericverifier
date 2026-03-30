@@ -1,0 +1,120 @@
+{
+  "accept_case": {
+    "question": "What was Apple gross margin FY2023?",
+    "candidate_answer": "Apple gross margin was 169148 million.",
+    "decision": "ACCEPT",
+    "ml_confidence": 0.9970749616622925,
+    "analyst_rationale": {
+      "summary": "The answer has been verified against the financial data and is consistent with the source table.",
+      "findings": [
+        "All key figures were verified against the source data.",
+        "Primary verification factor: grounding confidence"
+      ],
+      "recommendation": "Accept \u2014 high confidence verification"
+    },
+    "shap_explanation": {
+      "predicted_class": "FLAG",
+      "top_signals": [
+        {
+          "signal": "grounding confidence",
+          "shap_value": 2.7216,
+          "direction": "toward_flag"
+        },
+        {
+          "signal": "scale mismatch",
+          "shap_value": -0.0754,
+          "direction": "toward_accept"
+        },
+        {
+          "signal": "maximum numeric error",
+          "shap_value": -0.0595,
+          "direction": "toward_accept"
+        },
+        {
+          "signal": "ambiguous matches",
+          "shap_value": 0.0573,
+          "direction": "toward_flag"
+        },
+        {
+          "signal": "unverified claims",
+          "shap_value": 0.0,
+          "direction": "toward_accept"
+        }
+      ],
+      "plain_english": "The primary factor in this decision was 'grounding confidence' (SHAP +2.722, toward flag)."
+    },
+    "audit_summary": {
+      "total_claims": 1,
+      "supported_claims": 1,
+      "value_error_claims": 0,
+      "ungrounded_claims": 0,
+      "violation_claims": 0,
+      "repaired_claims": 0,
+      "coverage_ratio": 1.0,
+      "pipeline_passes": 1,
+      "repair_applied": false,
+      "overall_risk": "low",
+      "ml_confidence": 0.9971,
+      "requires_human_review": false
+    }
+  },
+  "flag_case": {
+    "question": "What was Apple net income FY2023?",
+    "candidate_answer": "Apple net income was 112000 million.",
+    "decision": "FLAG",
+    "ml_confidence": 0.9972033500671387,
+    "analyst_rationale": {
+      "summary": "The answer could not be verified against the financial data and should not be used without manual review.",
+      "findings": [
+        "One or more numeric values in the answer could not be matched to the evidence table.",
+        "Primary verification factor: grounding confidence"
+      ],
+      "recommendation": "Reject \u2014 verification failed, do not use this answer"
+    },
+    "shap_explanation": {
+      "predicted_class": "FLAG",
+      "top_signals": [
+        {
+          "signal": "grounding confidence",
+          "shap_value": 2.7216,
+          "direction": "toward_flag"
+        },
+        {
+          "signal": "scale mismatch",
+          "shap_value": -0.0754,
+          "direction": "toward_accept"
+        },
+        {
+          "signal": "maximum numeric error",
+          "shap_value": -0.0595,
+          "direction": "toward_accept"
+        },
+        {
+          "signal": "ambiguous matches",
+          "shap_value": 0.0573,
+          "direction": "toward_flag"
+        },
+        {
+          "signal": "unverified claims",
+          "shap_value": 0.0,
+          "direction": "toward_accept"
+        }
+      ],
+      "plain_english": "The primary factor in this decision was 'grounding confidence' (SHAP +2.722, toward flag)."
+    },
+    "audit_summary": {
+      "total_claims": 1,
+      "supported_claims": 0,
+      "value_error_claims": 0,
+      "ungrounded_claims": 1,
+      "violation_claims": 0,
+      "repaired_claims": 0,
+      "coverage_ratio": 0.0,
+      "pipeline_passes": 1,
+      "repair_applied": false,
+      "overall_risk": "high",
+      "ml_confidence": 0.9972,
+      "requires_human_review": false
+    }
+  }
+}

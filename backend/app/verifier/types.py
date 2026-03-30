@@ -222,13 +222,23 @@ class Decision:
     """Final decision output."""
     decision: str  # "ACCEPT", "REPAIR", or "FLAG"
     rationale: str
-    
+    ml_confidence: Optional[float] = None
+    ml_probabilities: Optional[Dict[str, float]] = None
+    shap_explanation: Optional[Dict[str, Any]] = None
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
-        return {
+        d: Dict[str, Any] = {
             "decision": self.decision,
-            "rationale": self.rationale
+            "rationale": self.rationale,
         }
+        if self.ml_confidence is not None:
+            d["ml_confidence"] = round(self.ml_confidence, 4)
+        if self.ml_probabilities is not None:
+            d["ml_probabilities"] = {k: round(v, 4) for k, v in self.ml_probabilities.items()}
+        if self.shap_explanation is not None:
+            d["shap_explanation"] = self.shap_explanation
+        return d
 
 
 @dataclass

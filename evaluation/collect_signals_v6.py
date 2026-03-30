@@ -11,7 +11,7 @@ import sys
 import os
 from collections import Counter
 
-API_URL = "http://localhost:8001/verify-only"
+API_URL = "http://localhost:8877/verify-only"
 
 FEATURES = [
     'unsupported_claims_count',

@@ -9,7 +9,7 @@ RULES (strict):
 - Logging enabled so signals are written to runs/signals_v2.csv.
 
 Usage:
-  Ensure backend is running at http://127.0.0.1:8000 and OpenAI is enabled.
+  Ensure backend is running at http://localhost:8877 and OpenAI is enabled.
   python scripts/generate_ml_dataset.py
 
 Target: at least 200 total rows in runs/signals_v2.csv.
@@ -23,7 +23,7 @@ import urllib.request
 import urllib.error
 from pathlib import Path
 
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "http://localhost:8877"
 
 
 def check_backend_health() -> bool:
@@ -253,7 +253,7 @@ def main():
     if not check_backend_health():
         print(f"ERROR: Backend not reachable at {BASE_URL}. Start the server first:")
         print("  cd backend && python3 -m uvicorn app.main:app --reload")
-        print("  or: PYTHONPATH=backend python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000")
+        print("  or: PYTHONPATH=backend python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8877")
         print("Ensure OPENAI_API_KEY is set if you want real LLM-generated answers.")
         return 1
 

@@ -1,4 +1,4 @@
-import { VerifyResponse } from '../types/api';
+import { VerifyResponse, ShapExplanation } from '../types/api';
 
 interface DecisionPanelProps {
   response: VerifyResponse | null;
@@ -20,6 +20,15 @@ function getDecisionClass(decision: string | undefined): string {
   return 'decision-unknown';
 }
 
+function getRecommendationClass(recommendation: string | undefined): string {
+  if (!recommendation) return '';
+  const lower = recommendation.toLowerCase();
+  if (lower.startsWith('accept')) return 'recommendation-accept';
+  if (lower.startsWith('review')) return 'recommendation-review';
+  if (lower.startsWith('reject')) return 'recommendation-reject';
+  return '';
+}
+
 function stringifyUnknown(value: unknown): string {
   if (typeof value === 'string') {
     return value;
@@ -35,7 +44,11 @@ function stringifyUnknown(value: unknown): string {
 
 export function DecisionPanel({ response, error, loading }: DecisionPanelProps) {
   const decision = response?.decision?.toUpperCase() || 'PENDING';
-  const rationale = response?.rationale ?? stringifyUnknown(response?.report) ?? '';
+  const analystRationale = response?.analyst_rationale;
+
+  // Fallback to raw rationale / report if analyst_rationale not present
+  const rawRationale = response?.rationale ?? stringifyUnknown(response?.report) ?? '';
+
   const ingestionText = response?.ingestion
     ? JSON.stringify(response.ingestion, null, 2)
     : '';
@@ -70,10 +83,59 @@ export function DecisionPanel({ response, error, loading }: DecisionPanelProps) 
             </div>
           )}
 
-          {rationale && (
+          {/* ── Analyst-readable summary (primary view) ── */}
+          {analystRationale && (
+            <>
+              {/* Recommendation — most prominent element */}
+              {analystRationale.recommendation && (
+                <div className={`card recommendation-card ${getRecommendationClass(analystRationale.recommendation)}`}>
+                  <h3>Recommendation</h3>
+                  <p className="recommendation-text">{analystRationale.recommendation}</p>
+                </div>
+              )}
+
+              {analystRationale.summary && (
+                <div className="card">
+                  <h3>Summary</h3>
+                  <p>{analystRationale.summary}</p>
+                </div>
+              )}
+
+              {analystRationale.findings && analystRationale.findings.length > 0 && (
+                <div className="card">
+                  <h3>Findings</h3>
+                  <ul className="findings-list">
+                    {analystRationale.findings.map((f, i) => (
+                      <li key={i}>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </>
+          )}
+
+          {/* SHAP Explanation Card */}
+          {response.shap_explanation && (response.shap_explanation as ShapExplanation).top_signals && ((response.shap_explanation as ShapExplanation).top_signals?.length ?? 0) > 0 && (
+            <div className="card">
+              <h3>Why this decision?</h3>
+              {(response.shap_explanation as ShapExplanation).plain_english && (
+                <p>{(response.shap_explanation as ShapExplanation).plain_english}</p>
+              )}
+              <ul className="findings-list">
+                {(response.shap_explanation as ShapExplanation).top_signals?.slice(0, 3).map((sig, i) => (
+                  <li key={i}>
+                    <strong>{sig.signal}</strong>: {sig.direction.replace(/_/g, ' ')} (value: {sig.shap_value.toFixed(2)})
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Fallback: show raw rationale when analyst_rationale is absent */}
+          {!analystRationale && rawRationale && (
             <div className="card">
               <h3>Rationale</h3>
-              <p>{rationale}</p>
+              <p>{rawRationale}</p>
             </div>
           )}
 

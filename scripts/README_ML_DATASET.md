@@ -12,16 +12,16 @@ Generate a **finance-specific dataset** of verification signals for training a d
 
 ## Prerequisites
 
-1. **Backend running** at `http://127.0.0.1:8000`:
+1. **Backend running** at `http://localhost:8877`:
 
    ```bash
-   cd backend && python3 -m uvicorn app.main:app --reload
+   cd backend && python3 -m uvicorn app.main:app --reload --port 8877
    ```
 
    Or from project root:
 
    ```bash
-   PYTHONPATH=backend python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+   PYTHONPATH=backend python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8877
    ```
 
 2. **OpenAI LLM enabled** (optional but recommended for diverse answers):

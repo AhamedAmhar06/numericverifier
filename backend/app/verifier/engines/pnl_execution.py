@@ -23,6 +23,7 @@ STANDARD_PNL_RATIOS = [
     ("operating_expenses",  "revenue",          "opex_ratio_pct"),
     ("operating_expenses",  "gross_profit",     "opex_to_gp_pct"),
     ("r_and_d",             "revenue",          "rd_ratio_pct"),
+    ("sales_marketing",     "revenue",          "sm_to_revenue_pct"),
     ("sga",                 "revenue",          "sga_ratio_pct"),
     ("net_income",          "operating_income", "ni_to_op_pct"),
 ]
@@ -193,6 +194,21 @@ def execute_claim_against_table(
     if was_normalized:
         claim_value = claim_value * scale_multiplier
 
+    # When the claim has an explicit scale suffix (e.g. "169148 million") but the
+    # table has no declared scale (scale_multiplier=1), the claim value has been
+    # pre-multiplied by the extractor while table items are stored at face value.
+    # De-scale the claim so it can be compared directly to table items.
+    _SCALE_DIVISORS = {"thousand": 1e3, "million": 1e6, "billion": 1e9,
+                       "k": 1e3, "m": 1e6, "b": 1e9}
+    _scale_descaled = False
+    if scale_token is not None and scale_multiplier == 1 and claim_unit_type != "percent":
+        divisor = _SCALE_DIVISORS.get(scale_token.lower().rstrip("s"))
+        if divisor is None:
+            divisor = _SCALE_DIVISORS.get(scale_token.lower())
+        if divisor is not None:
+            claim_value = claim_value / divisor
+            _scale_descaled = True
+
     # Determine target period from question (prefer the most recent year).
     # pnl_parser._normalize_period() may produce FY-prefixed labels ("FY2023"),
     # so bare year tokens from the question ("2023") must be resolved via
@@ -250,10 +266,11 @@ def execute_claim_against_table(
         if ratio_result.get("unverifiable_claim"):
             return {**ratio_result, "formula": None, "error": "unverifiable_pct_claim"}
 
-    # When normalization was applied (or claim has explicit scale suffix), tighten
-    # tolerance across all remaining checks to avoid wrong-period values matching
-    # via coincidental proximity (e.g. FY2022 $170,782M within 1% of FY2023 $169,148M).
-    effective_tolerance = tolerance / 10 if (scale_token is not None or was_normalized) else tolerance
+    # When normalization was applied (or claim has explicit scale suffix with a
+    # DIFFERENT scale than the table), tighten tolerance to avoid wrong-period
+    # values matching via coincidental proximity.
+    # When we de-scaled the claim (_scale_descaled), tolerance remains normal.
+    effective_tolerance = tolerance / 10 if (not _scale_descaled and (scale_token is not None or was_normalized)) else tolerance
 
     # Identity checks: try to match claim against computed identity
     identity_result = _try_identity_execution(claim_value, items, target_period, effective_tolerance)

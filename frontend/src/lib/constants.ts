@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.trim() || 'http://localhost:8001';
+  import.meta.env.VITE_API_BASE_URL?.trim() || 'http://localhost:8877';
 
 export const APPLE_EXAMPLE_QUESTION = "What was Apple revenue in FY2023?";
 
@@ -17,6 +17,9 @@ export const APPLE_EXAMPLE_EVIDENCE = {
       ['Income taxes', '29,749', '19,300'],
       ['Net income', '96,995', '99,803'],
     ],
-    units: 'millions USD',
+    units: {
+      FY2023: 'millions USD',
+      FY2022: 'millions USD',
+    },
   },
 };
