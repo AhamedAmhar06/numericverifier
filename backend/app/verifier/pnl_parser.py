@@ -31,17 +31,28 @@ _SYNONYMS: Dict[str, List[str]] = {
         "total cost of revenue",
     ],
     "gross_profit": ["gross profit", "gross income", "gross margin"],
+    # Individual opex line items get their own keys so the ratio library can
+    # verify claims like "R&D as % of revenue" without value collisions.
+    # These keys appear before "operating_expenses" so Pass 1 (exact match)
+    # resolves them first, preventing false matches to "revenue" via Pass 2.
+    "research_and_development": [
+        "research and development", "research development",
+        "research development and engineering",
+    ],
+    "sales_marketing": [
+        "sales and marketing", "selling and marketing", "marketing and sales",
+        "sales marketing and support",
+    ],
     "operating_expenses": [
         "operating expenses", "opex", "sg&a",
         "selling general and administrative", "selling general administrative",
         "selling general and administrative expenses",
         "total operating expenses",
-        # Common P&L line items that contain "sales" or other revenue-like words
-        # but are NOT revenue — must be listed here so Pass 1 (exact match)
-        # catches them before Pass 2 can incorrectly map them to "revenue".
-        "sales and marketing", "selling and marketing", "marketing and sales",
-        "sales marketing and support", "selling marketing and administrative",
-        "research and development", "research development and engineering",
+        # Combined opex items and standalone G&A remain here.
+        # Note: "research and development" and "sales and marketing" are now
+        # handled by the dedicated keys above to prevent value collision when
+        # both appear as separate rows in the same table.
+        "selling marketing and administrative",
         "general and administrative", "general and administrative expenses",
     ],
     "operating_income": [

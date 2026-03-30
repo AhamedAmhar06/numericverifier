@@ -57,14 +57,14 @@ pip install -r requirements.txt
 Start the FastAPI server:
 
 ```bash
-python3 -m uvicorn app.main:app --reload
+python3 -m uvicorn app.main:app --reload --port 8877
 ```
 
-The API will be available at `http://localhost:8000`.
+The API will be available at `http://localhost:8877`.
 
 API documentation is available at:
-- Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
+- Swagger UI: `http://localhost:8877/docs`
+- ReDoc: `http://localhost:8877/redoc`
 
 ## API Endpoints
 
@@ -123,7 +123,7 @@ Example JSON files are provided in the `examples/` directory:
 To test an example:
 
 ```bash
-curl -X POST "http://localhost:8000/verify-only" \
+curl -X POST "http://localhost:8877/verify-only" \
   -H "Content-Type: application/json" \
   -d @../examples/accept_case.json
 ```
@@ -216,4 +216,3 @@ The baseline uses deterministic rules:
 ## License
 
 This is a baseline implementation for research/development purposes.
-

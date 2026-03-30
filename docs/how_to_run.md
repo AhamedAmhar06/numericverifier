@@ -22,10 +22,10 @@ pip install -r requirements-ml.txt
 
 ```bash
 cd backend
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8877
 ```
 
-Swagger UI: http://localhost:8000/docs
+Swagger UI: http://localhost:8877/docs
 
 ## 3. Run Unit Tests
 
@@ -88,7 +88,7 @@ Exports to `runs/`:
 To use ML in the server:
 
 ```bash
-USE_ML_DECIDER=true uvicorn app.main:app --reload --port 8000
+USE_ML_DECIDER=true uvicorn app.main:app --reload --port 8877
 ```
 
 ## 8. Run Evaluation with ML Mode

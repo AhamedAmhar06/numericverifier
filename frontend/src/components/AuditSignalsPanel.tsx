@@ -5,22 +5,58 @@ interface AuditSignalsPanelProps {
   response: VerifyResponse | null;
 }
 
+// ---------------------------------------------------------------------------
+// Translation helpers (mirrors backend analyst_rationale.py)
+// ---------------------------------------------------------------------------
+
+const CLAIM_DECISION_LABELS: Record<string, string> = {
+  supported:        'Verified against source data ✓',
+  value_error:      'Value differs from source data ✗',
+  ungrounded:       'Could not find matching value in table ✗',
+  scale_violation:  'Unit scale mismatch detected ✗',
+  period_violation: 'Wrong fiscal period ✗',
+  repaired:         'Automatically corrected to match source data ↻',
+  unverifiable:     'Could not be independently computed ?',
+};
+
+const RISK_LEVEL_LABELS: Record<string, string> = {
+  low:      'Low risk — verified',
+  medium:   'Medium risk — review recommended',
+  high:     'High risk — manual verification required',
+  critical: 'Critical — do not use without verification',
+};
+
+function translateClaimDecision(code: string | undefined): string {
+  if (!code) return '—';
+  return CLAIM_DECISION_LABELS[code.toLowerCase()] ?? code;
+}
+
+function translateRiskLevel(level: string | undefined): string {
+  if (!level) return 'Unknown';
+  return RISK_LEVEL_LABELS[level.toLowerCase()] ?? level;
+}
+
+function formatEvidenceMatch(label?: string, period?: string): string {
+  if (!label && !period) return '—';
+  if (label && period) return `Matched to: ${label} (${period})`;
+  return `Matched to: ${label || period}`;
+}
+
+// ---------------------------------------------------------------------------
+// Utility
+// ---------------------------------------------------------------------------
+
 function toReadable(value: unknown): string {
-  if (value === undefined || value === null) {
-    return '-';
-  }
-  if (typeof value === 'string') {
-    return value;
-  }
-  if (typeof value === 'number' || typeof value === 'boolean') {
-    return String(value);
-  }
+  if (value === undefined || value === null) return '-';
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
   return JSON.stringify(value);
 }
 
 function claimRiskClass(level?: string): string {
   const normalized = level?.toLowerCase();
   if (!normalized) return 'risk-neutral';
+  if (normalized.includes('critical')) return 'risk-high';
   if (normalized.includes('high')) return 'risk-high';
   if (normalized.includes('medium')) return 'risk-medium';
   if (normalized.includes('low')) return 'risk-low';
@@ -29,15 +65,9 @@ function claimRiskClass(level?: string): string {
 
 function isSignalWarning(key: string, value: unknown): boolean {
   const keyRisk = /(warn|error|risk|violation|mismatch|failure)/i.test(key);
-  if (typeof value === 'number') {
-    return value !== 0 && keyRisk;
-  }
-  if (typeof value === 'boolean') {
-    return value && keyRisk;
-  }
-  if (typeof value === 'string') {
-    return value !== '0' && value.toLowerCase() !== 'none' && keyRisk;
-  }
+  if (typeof value === 'number') return value !== 0 && keyRisk;
+  if (typeof value === 'boolean') return value && keyRisk;
+  if (typeof value === 'string') return value !== '0' && value.toLowerCase() !== 'none' && keyRisk;
   return false;
 }
 
@@ -46,12 +76,7 @@ function computeCoverageRatio(response: VerifyResponse | null): number | null {
 
   const audit = response.audit_summary;
   if (audit) {
-    const candidateKeys = [
-      'coverage_ratio',
-      'claim_coverage_ratio',
-      'grounding_coverage',
-      'coverage',
-    ];
+    const candidateKeys = ['coverage_ratio', 'claim_coverage_ratio', 'grounding_coverage', 'coverage'];
     for (const key of candidateKeys) {
       const value = audit[key];
       if (typeof value === 'number') {
@@ -69,82 +94,97 @@ function computeCoverageRatio(response: VerifyResponse | null): number | null {
   return null;
 }
 
+// ---------------------------------------------------------------------------
+// Claim item renderer — analyst-friendly
+// ---------------------------------------------------------------------------
+
 function renderClaimItem(item: ClaimAuditItem, idx: number) {
   const id = item.claim_id ?? item.id ?? idx + 1;
-  const claimDecision = item.claim_decision ?? item.decision ?? '-';
-  const risk = item.risk_level ?? item.risk ?? 'unknown';
+  const claimDecisionRaw = item.claim_decision ?? item.decision ?? '';
+  const riskRaw = item.risk_level ?? item.risk ?? 'unknown';
+
+  const claimDecisionLabel = translateClaimDecision(claimDecisionRaw);
+  const riskLabel = translateRiskLevel(String(riskRaw));
+
+  const evidenceLabel = item.grounding?.evidence_label;
+  const evidencePeriod = item.grounding?.evidence_period;
+  const evidenceMatch = formatEvidenceMatch(evidenceLabel, evidencePeriod);
 
   return (
     <li key={String(id)} className="claim-item">
       <div className="claim-head">
         <strong>Claim {id}</strong>
-        <span className={`risk-badge ${claimRiskClass(String(risk))}`}>{String(risk)}</span>
+        <span className={`risk-badge ${claimRiskClass(String(riskRaw))}`}>{riskLabel}</span>
       </div>
 
       <p>
-        <span className="kv-label">Raw:</span> {item.raw_text ?? item.text ?? '-'}
+        <span className="kv-label">Value:</span> {item.raw_text ?? item.text ?? '—'}
       </p>
       <p>
-        <span className="kv-label">Parsed Value:</span> {toReadable(item.parsed_value)}
+        <span className="kv-label">Parsed:</span> {toReadable(item.parsed_value)}
       </p>
       <p>
-        <span className="kv-label">Decision:</span> {toReadable(claimDecision)}
+        <span className="kv-label">Status:</span> {claimDecisionLabel}
       </p>
 
       {item.grounding && (
         <div className="sub-card">
-          <h4>Grounding</h4>
-          <p>
-            <span className="kv-label">Matched:</span> {toReadable(item.grounding.matched)}
-          </p>
-          <p>
-            <span className="kv-label">Unmatched:</span> {toReadable(item.grounding.unmatched)}
-          </p>
-          <p>
-            <span className="kv-label">Evidence Label:</span>{' '}
-            {toReadable(item.grounding.evidence_label)}
-          </p>
-          <p>
-            <span className="kv-label">Evidence Period:</span>{' '}
-            {toReadable(item.grounding.evidence_period)}
-          </p>
-          <p>
-            <span className="kv-label">Evidence Value:</span>{' '}
-            {toReadable(item.grounding.evidence_value)}
-          </p>
-          <p>
-            <span className="kv-label">Relative Error:</span>{' '}
-            {toReadable(item.grounding.relative_error)}
-          </p>
-          <p>
-            <span className="kv-label">Confidence:</span> {toReadable(item.grounding.confidence)}
-          </p>
+          <h4>Evidence</h4>
+          {item.grounding.matched ? (
+            <>
+              <p>{evidenceMatch}</p>
+              {item.grounding.evidence_value !== undefined && (
+                <p>
+                  <span className="kv-label">Source value:</span>{' '}
+                  {toReadable(item.grounding.evidence_value)}
+                </p>
+              )}
+              {item.grounding.relative_error !== undefined && (
+                <p>
+                  <span className="kv-label">Relative error:</span>{' '}
+                  {(Number(item.grounding.relative_error) * 100).toFixed(2)}%
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="status status-muted">No matching row found in the evidence table.</p>
+          )}
         </div>
       )}
 
       {item.verification && (
         <div className="sub-card">
-          <h4>Verification</h4>
+          <h4>Checks</h4>
           <p>
-            <span className="kv-label">Lookup Supported:</span>{' '}
-            {toReadable(item.verification.lookup_supported)}
+            <span className="kv-label">Lookup:</span>{' '}
+            {item.verification.lookup_supported ? 'Supported ✓' : 'Not supported'}
           </p>
-          <p>
-            <span className="kv-label">Execution Result:</span>{' '}
-            {toReadable(item.verification.execution_result)}
-          </p>
-          <p>
-            <span className="kv-label">Constraint Violations:</span>{' '}
-            {toReadable(item.verification.constraint_violations)}
-          </p>
+          {item.verification.execution_result && (
+            <p>
+              <span className="kv-label">Formula check:</span>{' '}
+              {item.verification.execution_result}
+            </p>
+          )}
+          {item.verification.constraint_violations &&
+            (item.verification.constraint_violations as string[]).length > 0 && (
+              <p>
+                <span className="kv-label">Violations:</span>{' '}
+                {(item.verification.constraint_violations as string[]).join(', ')}
+              </p>
+            )}
         </div>
       )}
     </li>
   );
 }
 
+// ---------------------------------------------------------------------------
+// Panel component
+// ---------------------------------------------------------------------------
+
 export function AuditSignalsPanel({ response }: AuditSignalsPanelProps) {
-  const [signalsOpen, setSignalsOpen] = useState(true);
+  // Signals start collapsed — analysts see plain-language view by default
+  const [signalsOpen, setSignalsOpen] = useState(false);
 
   const coverageRatio = useMemo(() => computeCoverageRatio(response), [response]);
   const coveragePercent = coverageRatio === null ? 0 : Math.round(coverageRatio * 100);
@@ -193,13 +233,20 @@ export function AuditSignalsPanel({ response }: AuditSignalsPanelProps) {
           <div className="card">
             <h3>Claim Audit</h3>
             {claims.length === 0 && <p>No claim audit list returned.</p>}
-            {claims.length > 0 && <ul className="claim-list">{claims.map(renderClaimItem)}</ul>}
+            {claims.length > 0 && (
+              <ul className="claim-list">{claims.map(renderClaimItem)}</ul>
+            )}
           </div>
 
+          {/* Technical signals — collapsed by default, labelled for developers */}
           <div className="card">
             <div className="signals-header">
-              <h3>Signals</h3>
-              <button type="button" className="button-ghost" onClick={() => setSignalsOpen((v) => !v)}>
+              <h3>Technical Details <span className="meta-label">(for developers)</span></h3>
+              <button
+                type="button"
+                className="button-ghost"
+                onClick={() => setSignalsOpen((v) => !v)}
+              >
                 {signalsOpen ? 'Collapse' : 'Expand'}
               </button>
             </div>

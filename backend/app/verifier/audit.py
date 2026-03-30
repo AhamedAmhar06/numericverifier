@@ -156,6 +156,7 @@ def build_audit_summary(
     signals_dict: Dict[str, Any],
     repair_audit: Optional[Dict[str, Any]],
     accepted_after_repair: bool,
+    ml_confidence: Optional[float] = None,
 ) -> Dict[str, Any]:
     total = len(claim_audit)
     supported = sum(1 for c in claim_audit if c["claim_decision"] == "supported")
@@ -190,4 +191,6 @@ def build_audit_summary(
         "pipeline_passes": 2 if repair_audit else 1,
         "repair_applied": accepted_after_repair,
         "overall_risk": overall_risk,
+        "ml_confidence": round(ml_confidence, 4) if ml_confidence is not None else None,
+        "requires_human_review": (ml_confidence is not None and ml_confidence < 0.75),
     }

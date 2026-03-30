@@ -13,7 +13,7 @@ import sys
 import urllib.request
 import urllib.error
 
-BASE = "http://127.0.0.1:8000"
+BASE = "http://localhost:8877"
 
 # Path to P&L evaluation cases (authoritative for P&L-only refactor)
 PNL_EVAL_PATH = os.path.join(os.path.dirname(__file__), "examples", "pnl_eval_cases.json")

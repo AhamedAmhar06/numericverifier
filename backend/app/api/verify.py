@@ -1,11 +1,14 @@
 """Verification endpoint. P&L-only: both endpoints call verifier/router.route_and_verify."""
-from fastapi import APIRouter
-from pydantic import BaseModel
-from typing import Optional, Dict, Any, Union
+from pathlib import Path
+from typing import Any, Dict, Optional, Union
 
-from ..verifier.router import route_and_verify
+from fastapi import APIRouter, File, HTTPException, UploadFile
+from pydantic import BaseModel
+
 from ..core.config import settings
 from ..llm.provider import generate_llm_answer
+from ..verifier.analyst_rationale import translate_for_analyst
+from ..verifier.router import route_and_verify
 
 router = APIRouter()
 
@@ -47,6 +50,27 @@ class VerifyWithLLMRequest(BaseModel):
     }
 
 
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _attach_analyst_rationale(result: Dict[str, Any]) -> Dict[str, Any]:
+    """Add analyst_rationale to a route_and_verify() result dict."""
+    result["analyst_rationale"] = translate_for_analyst(
+        signals=result.get("signals") or {},
+        claim_audit=result.get("claim_audit") or [],
+        decision=result.get("decision"),
+        rationale=result.get("rationale"),
+        audit_summary=result.get("audit_summary") or {},
+        shap_explanation=result.get("shap_explanation"),
+    )
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Endpoints
+# ---------------------------------------------------------------------------
+
 @router.post("/verify-only")
 async def verify_only(request: VerifyRequest):
     """
@@ -56,7 +80,7 @@ async def verify_only(request: VerifyRequest):
     options = request.options or {}
     options.setdefault("tolerance", settings.tolerance)
     options.setdefault("log_run", True)
-    return route_and_verify(
+    result = route_and_verify(
         question=request.question,
         evidence=request.evidence,
         candidate_answer=request.candidate_answer,
@@ -64,6 +88,7 @@ async def verify_only(request: VerifyRequest):
         llm_used=False,
         llm_fallback_reason=None,
     )
+    return _attach_analyst_rationale(result)
 
 
 @router.post("/verify")
@@ -102,4 +127,32 @@ async def verify_with_llm(request: VerifyWithLLMRequest):
     result["generated_answer"] = answer
     # Alias for frontend consistency: candidate_answer = the LLM-generated answer
     result["candidate_answer"] = answer
-    return result
+    return _attach_analyst_rationale(result)
+
+
+@router.post("/upload-table")
+async def upload_table(file: UploadFile = File(...)):
+    """Parse an uploaded CSV or Excel file into verifier-compatible table JSON.
+
+    Accepts multipart/form-data with a single ``file`` field.
+    Supported formats: .csv, .xlsx, .xls
+
+    Returns:
+        {"type": "table", "content": {"caption": "...", "columns": [...], "rows": [...]}}
+    """
+    filename = file.filename or ""
+    ext = Path(filename).suffix.lower()
+    if ext not in (".csv", ".xlsx", ".xls"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type '{ext}'. Upload a .csv, .xlsx, or .xls file.",
+        )
+
+    contents = await file.read()
+
+    from ..ingestion.file_parser import parse_file  # noqa: PLC0415
+
+    try:
+        return parse_file(contents, filename=filename)
+    except (ValueError, OSError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc

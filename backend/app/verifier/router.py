@@ -342,6 +342,7 @@ def route_and_verify(
     )
     audit_summary = build_audit_summary(
         claim_audit, signals.to_dict(), repair_audit, accepted_after_repair,
+        ml_confidence=decision.ml_confidence,
     )
 
     # ------------------------------------------------------------------
@@ -389,6 +390,9 @@ def route_and_verify(
         "decision": decision.decision,
         "run_logged": log_run_flag,
         "rationale": decision.rationale,
+        "ml_confidence": decision.ml_confidence,
+        "ml_probabilities": decision.ml_probabilities,
+        "shap_explanation": decision.shap_explanation,
         "signals": signals.to_dict(),
         "claims": [c.to_dict() for c in normalized_claims],
         "grounding": [g.to_dict() for g in grounding],

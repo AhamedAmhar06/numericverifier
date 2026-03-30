@@ -130,10 +130,135 @@ def load_model(model_path: Optional[Path] = None) -> Optional[object]:
     }
 
 
+_SIGNAL_PLAIN_NAMES = {
+    "coverage_ratio": "evidence coverage",
+    "unsupported_claims_count": "unverified claims",
+    "scale_mismatch_count": "scale mismatch",
+    "pnl_period_strict_mismatch_count": "period mismatch",
+    "pnl_identity_fail_count": "accounting identity failure",
+    "grounding_confidence_score": "grounding confidence",
+    "max_relative_error": "maximum numeric error",
+    "mean_relative_error": "average numeric error",
+    "unverifiable_claim_count": "unverifiable calculations",
+    "ambiguity_count": "ambiguous matches",
+}
+
+
 def _signals_to_feature_vector(signals: VerifierSignals, feature_order: List[str]) -> List[float]:
     """Build feature vector in schema order. Uses VerifierSignals attributes / to_dict()."""
     d = signals.to_dict()
     return [float(d.get(k, 0)) for k in feature_order]
+
+
+def _compute_shap_explanation(
+    pipeline: Any,
+    X: Any,
+    feature_order: List[str],
+    decision_label: str,
+    label_mapping: Optional[dict] = None,
+) -> Optional[dict]:
+    """Compute SHAP values for the prediction. Returns None on any failure."""
+    try:
+        import shap  # noqa: PLC0415
+        import numpy as np  # noqa: PLC0415
+
+        explainer = shap.TreeExplainer(pipeline)
+        shap_values = explainer.shap_values(X)
+
+        # Determine which class index corresponds to decision_label
+        # classes_ may be integer indices [0, 1, 2] or string labels
+        label_mapping_ref = None
+        sv: Any = None
+
+        if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:
+            # Shape (n_samples, n_features, n_classes) — XGBoost multi-class
+            # Map decision_label to class index using label_mapping
+            class_idx = None
+
+            if label_mapping is not None:
+                lti = label_mapping.get("label_to_idx") or {}
+                if decision_label in lti:
+                    class_idx = int(lti[decision_label])
+
+            if class_idx is None:
+                classes_attr = getattr(pipeline, "classes_", None)
+                if classes_attr is not None:
+                    classes_list = list(classes_attr)
+                    # Try direct match (string labels)
+                    if decision_label in classes_list:
+                        class_idx = classes_list.index(decision_label)
+
+            if class_idx is None or class_idx >= shap_values.shape[2]:
+                # Use first class as fallback
+                class_idx = 0
+
+            sv = shap_values[0, :, class_idx]
+
+        elif isinstance(shap_values, list):
+            # Older SHAP: list of arrays, one per class
+            classes_attr = getattr(pipeline, "classes_", None)
+            class_idx = 0
+            if classes_attr is not None:
+                classes_list = list(classes_attr)
+                if decision_label in classes_list:
+                    class_idx = classes_list.index(decision_label)
+                    if class_idx >= len(shap_values):
+                        class_idx = 0
+            sv = shap_values[class_idx][0]
+        else:
+            # Binary: shape (n_samples, n_features)
+            sv = shap_values[0]
+
+        sv = list(sv)
+        if len(sv) != len(feature_order):
+            return None
+
+        # Build (feature, shap_value) pairs sorted by |shap_value| descending
+        pairs = sorted(
+            zip(feature_order, sv),
+            key=lambda x: abs(x[1]),
+            reverse=True,
+        )
+        top_n = pairs[:5]
+
+        top_signals = []
+        for feat, val in top_n:
+            plain = _SIGNAL_PLAIN_NAMES.get(feat, feat)
+            v = float(val)
+            # Direction logic
+            if decision_label == "FLAG":
+                direction = "toward_flag" if v > 0 else "toward_accept"
+            elif decision_label == "ACCEPT":
+                direction = "toward_accept" if v > 0 else "toward_flag"
+            elif decision_label == "REPAIR":
+                direction = "toward_repair" if v > 0 else "away_from_repair"
+            else:
+                direction = "toward_flag" if v > 0 else "toward_accept"
+
+            top_signals.append({
+                "signal": plain,
+                "shap_value": round(v, 4),
+                "direction": direction,
+            })
+
+        # Build plain-English sentence
+        if top_signals:
+            top = top_signals[0]
+            plain_english = (
+                f"The primary factor in this decision was '{top['signal']}' "
+                f"(SHAP {top['shap_value']:+.3f}, {top['direction'].replace('_', ' ')})."
+            )
+        else:
+            plain_english = f"Decision: {decision_label}."
+
+        return {
+            "predicted_class": decision_label,
+            "top_signals": top_signals,
+            "plain_english": plain_english,
+        }
+    except Exception as exc:
+        logger.debug("SHAP computation failed (non-critical): %s", exc)
+        return None
 
 
 def predict_decision(
@@ -174,25 +299,62 @@ def predict_decision(
         import numpy as np
         vec = _signals_to_feature_vector(signals, feature_order)
         X = np.array([vec], dtype=np.float64)
+
+        # Always get probabilities when available — used for confidence reporting.
+        try:
+            proba_raw = pipeline.predict_proba(X)[0]
+        except Exception:
+            proba_raw = None
+
+        confidence: Optional[float] = None
+        proba_dict: Optional[dict] = None
+
         if threshold is not None and classes and flag_idx >= 0:
-            proba = pipeline.predict_proba(X)[0]
-            p_flag = proba[flag_idx] if flag_idx < len(proba) else 0
-            if p_flag >= threshold:
-                decision_label = "FLAG"
+            proba = proba_raw
+            if proba is not None:
+                p_flag = proba[flag_idx] if flag_idx < len(proba) else 0
+                if p_flag >= threshold:
+                    decision_label = "FLAG"
+                    confidence = float(proba[flag_idx])
+                else:
+                    pred_index = int(np.argmax(proba))
+                    decision_label = classes[pred_index] if pred_index < len(classes) else "FLAG"
+                    confidence = float(proba[pred_index]) if pred_index < len(proba) else None
+                proba_dict = {classes[i]: float(proba[i]) for i in range(len(proba)) if i < len(classes)}
             else:
-                pred_index = int(np.argmax(proba))
-                decision_label = classes[pred_index] if pred_index < len(classes) else "FLAG"
+                p_flag = 0
+                decision_label = "FLAG"
         else:
-            pred_index = pipeline.predict(X)[0]
-            idx = int(pred_index)
+            pred_index = int(pipeline.predict(X)[0])
             raw = label_mapping.get("index_to_label") or {}
             index_to_label = {int(k): v for k, v in raw.items()}
-            decision_label = index_to_label.get(idx, "FLAG")
+            decision_label = index_to_label.get(pred_index, "FLAG")
+            if proba_raw is not None:
+                cls_list = label_mapping.get("classes") or [
+                    index_to_label.get(i, str(i)) for i in range(len(proba_raw))
+                ]
+                proba_dict = {
+                    cls_list[i]: float(proba_raw[i])
+                    for i in range(len(proba_raw)) if i < len(cls_list)
+                }
+                confidence = float(proba_raw[pred_index]) if pred_index < len(proba_raw) else None
+
         v_label = _model_version()
-        logger.info("Decision path: ML (%s model). decision=%s", v_label, decision_label)
+        logger.info("Decision path: ML (%s model). decision=%s confidence=%.3f",
+                    v_label, decision_label, confidence if confidence is not None else -1)
+        rationale = "ML decision (%s): %s." % (v_label, decision_label)
+        if confidence is not None and confidence < 0.75:
+            rationale += " Low confidence decision — recommend human review."
+
+        # SHAP explanation (best-effort, never breaks pipeline)
+        shap_explanation = _compute_shap_explanation(pipeline, X, feature_order, decision_label, label_mapping)
+
         return Decision(
             decision=decision_label,
-            rationale="ML decision (%s): %s." % (v_label, decision_label),
+            rationale=rationale,
+            ml_confidence=confidence,
+            ml_probabilities=proba_dict,
+            shap_explanation=shap_explanation,
         )
     except Exception as e:
         logger.warning("ML prediction failed: %s. Falling back to rule-based decision.", e)
@@ -254,6 +416,9 @@ def decide(
                 "ML P&L identity signal overridden: table may be structurally incomplete. "
                 "No unsupported claims, no period or scale violations."
             ),
+            ml_confidence=ml_decision.ml_confidence,
+            ml_probabilities=ml_decision.ml_probabilities,
+            shap_explanation=ml_decision.shap_explanation,
         )
 
     return ml_decision
