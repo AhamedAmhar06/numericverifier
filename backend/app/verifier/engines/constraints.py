@@ -94,17 +94,41 @@ def verify_constraints(
         if (table_scale_family is not None
                 and claim_scale_family is not None
                 and table_scale_family != claim_scale_family):
-            violations.append(Violation(
-                code=V_SCALE_LABEL_MISMATCH,
-                message=(
-                    f"Scale label mismatch: answer uses '{claim.scale_token}' "
-                    f"but table is declared in {table_scale_family}s"
-                ),
-                metadata={
-                    "claim_scale": claim.scale_token,
-                    "table_scale": table_scale,
-                },
-            ))
+            # Guard: do NOT fire when the claim value is numerically consistent with a
+            # valid denomination conversion from the table's declared scale.
+            # Example: "383.285 billion" (claim.value_decimal = 383,285,000,000) vs table
+            # declared "in millions" (scale_label "M", raw value 383,285).
+            # expected_raw = 383,285,000,000 / 1,000,000 = 383,285 → matches → skip.
+            # Use _scale_family() to normalise both tokens (handles "M"→"million" etc.).
+            _SCALE_FACTORS_BY_FAMILY = {
+                "billion": 1_000_000_000,
+                "million": 1_000_000,
+                "thousand": 1_000,
+            }
+            claim_factor = _SCALE_FACTORS_BY_FAMILY.get(claim_scale_family, 1)
+            table_factor = _SCALE_FACTORS_BY_FAMILY.get(table_scale_family, 1)
+            is_valid_conversion = False
+            if claim_factor != table_factor and table_factor > 0 and claim.value_decimal is not None:
+                # claim.value_decimal is the absolute dollar value.
+                # expected raw table cell = absolute_value / table_factor
+                expected_raw = float(claim.value_decimal) / table_factor
+                is_valid_conversion = any(
+                    abs(float(ev.value) - expected_raw) / max(abs(expected_raw), 1) < 0.01
+                    for ev in evidence_items
+                    if ev.value is not None
+                )
+            if not is_valid_conversion:
+                violations.append(Violation(
+                    code=V_SCALE_LABEL_MISMATCH,
+                    message=(
+                        f"Scale label mismatch: answer uses '{claim.scale_token}' "
+                        f"but table is declared in {table_scale_family}s"
+                    ),
+                    metadata={
+                        "claim_scale": claim.scale_token,
+                        "table_scale": table_scale,
+                    },
+                ))
 
     if grounding_match and claim.scale_token and not table_scale:
         # Tier 2: magnitude fallback (no caption — raw-unit evidence assumed)
