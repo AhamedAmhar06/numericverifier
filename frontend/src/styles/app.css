@@ -70,7 +70,7 @@ body {
 
 .layout-grid {
   display: grid;
-  grid-template-columns: 1.08fr 0.9fr 1.2fr;
+  grid-template-columns: 1fr 1.4fr;
   gap: 1rem;
   align-items: start;
 }
@@ -219,7 +219,7 @@ button:disabled {
 .decision-content {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
 }
 
 .card {
@@ -378,13 +378,340 @@ button:disabled {
   background: linear-gradient(90deg, var(--accept), var(--primary));
 }
 
+/* ── Upload row (Step 2.2) ── */
+.upload-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.button-upload {
+  border: 1px dashed var(--primary);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  color: var(--primary);
+  padding: 0.52rem 0.95rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.button-upload:hover {
+  background: color-mix(in srgb, var(--primary) 16%, transparent);
+}
+
+.button-upload:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.upload-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: color-mix(in srgb, var(--accept) 12%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--accept) 40%, var(--border));
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.84rem;
+}
+
+.upload-filename {
+  color: var(--text);
+  font-weight: 500;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-rows {
+  color: var(--text-muted);
+}
+
+.upload-clear {
+  font-size: 1rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ── LLM Answer section (Step 2.3) ── */
+.llm-answer-section {
+  border-left: 3px solid var(--primary);
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.answer-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ── Decision badge row with confidence (Step 2.7) ── */
+.decision-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.confidence-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  background: var(--surface-2);
+}
+
+.human-review-badge {
+  font-size: 0.82rem;
+  color: var(--repair);
+  border: 1px solid color-mix(in srgb, var(--repair) 50%, var(--border));
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  background: color-mix(in srgb, var(--repair) 10%, var(--surface-2));
+}
+
+/* Override badge margin when inside the row */
+.decision-badge-row .decision-badge {
+  margin-bottom: 0;
+}
+
+/* ── Plain explanation (Step 2.4) ── */
+.plain-explanation {
+  border-left: 3px solid var(--border);
+}
+
+/* ── Supporting evidence table (Step 2.5) ── */
+.supporting-evidence {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.evidence-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.evidence-table th {
+  text-align: left;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding: 4px 8px;
+  font-weight: 500;
+}
+
+.evidence-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.evidence-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* audit-details class kept for backwards compat but panel now uses button toggle */
+.audit-details-body {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Confidence bar (Change 2) ── */
+.confidence-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.confidence-bar-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 110px;
+}
+
+.confidence-bar-track {
+  flex: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  overflow: hidden;
+}
+
+.confidence-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accept), var(--primary));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.confidence-bar-pct {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ── Human review callout (Change 9) ── */
+.human-review-callout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--warning-bg);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--repair);
+  border: 1px solid color-mix(in srgb, var(--repair) 35%, var(--border));
+}
+
+/* ── Recommendation block (Change 4) ── */
+.recommendation-block {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0.65rem 0.85rem;
+  background: var(--surface-2);
+  border-radius: 10px;
+  border-left: 3px solid var(--border);
+  line-height: 1.45;
+}
+
+.recommendation-accept {
+  border-left-color: var(--accept);
+}
+
+.recommendation-flag {
+  border-left-color: var(--flag);
+}
+
+.recommendation-repair {
+  border-left-color: var(--repair);
+}
+
+/* ── Status pills for evidence table (Change 5) ── */
+.status-pill {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-pill-verified {
+  background: color-mix(in srgb, var(--accept) 15%, transparent);
+  color: var(--accept);
+  border: 1px solid color-mix(in srgb, var(--accept) 40%, transparent);
+}
+
+.status-pill-flagged {
+  background: color-mix(in srgb, var(--flag) 15%, transparent);
+  color: var(--flag);
+  border: 1px solid color-mix(in srgb, var(--flag) 40%, transparent);
+}
+
+/* ── Audit details summary arrow + sub-text ── */
+.audit-summary-arrow {
+  font-size: 0.7rem;
+  margin-right: 0.3rem;
+  transition: transform 0.2s ease;
+}
+
+details[open] .audit-summary-arrow {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+.audit-summary-sub {
+  margin-left: auto;
+  font-size: 0.74rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+.audit-details summary {
+  display: flex;
+  align-items: center;
+}
+
+/* ── File badge (replaces textarea when file loaded, Change 10) ── */
+.file-badge-evidence {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  background: color-mix(in srgb, var(--accept) 10%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--accept) 35%, var(--border));
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.88rem;
+}
+
+/* ── Findings list ── */
+.findings-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.findings-list li {
+  margin-bottom: 0.25rem;
+}
+
+/* ── Ingestion pre ── */
+.ingestion-pre {
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin: 0.4rem 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 @media (max-width: 1200px) {
   .layout-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .panel-audit {
-    grid-column: span 2;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -395,9 +722,5 @@ button:disabled {
 
   .layout-grid {
     grid-template-columns: 1fr;
-  }
-
-  .panel-audit {
-    grid-column: auto;
   }
 }
