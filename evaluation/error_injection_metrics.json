@@ -1,53 +1,65 @@
 {
   "aggregate": {
     "total": 270,
-    "false_accept_count": 12,
-    "false_accept_rate": 0.0444,
-    "detection_count": 258,
-    "detection_rate": 0.9556,
+    "false_accept_count": 69,
+    "false_accept_rate": 0.2556,
+    "detection_count": 201,
+    "detection_rate": 0.7444,
     "repair_count": 0,
     "repair_success_count": 0,
     "repair_success_rate": 0,
-    "avg_latency_ms": 0.62
+    "avg_latency_ms": 881.18
   },
   "per_type": {
     "arithmetic_error": {
       "total": 54,
-      "accept_count": 1,
-      "false_accept_rate": 0.0185,
+      "accept_count": 9,
+      "false_accept_rate": 0.1667,
       "repair_count": 0,
-      "flag_count": 53,
-      "detection_count": 53,
-      "detection_rate": 0.9815,
+      "flag_count": 45,
+      "detection_count": 45,
+      "detection_rate": 0.8333,
       "repair_success_count": 0,
       "repair_success_rate": 0,
-      "avg_latency_ms": 0.57
+      "avg_latency_ms": 878.85
     },
     "near_miss_error": {
       "total": 54,
-      "accept_count": 4,
-      "false_accept_rate": 0.0741,
+      "accept_count": 20,
+      "false_accept_rate": 0.3704,
       "repair_count": 0,
-      "flag_count": 50,
-      "detection_count": 50,
-      "detection_rate": 0.9259,
+      "flag_count": 34,
+      "detection_count": 34,
+      "detection_rate": 0.6296,
       "repair_success_count": 0,
       "repair_success_rate": 0,
-      "avg_latency_ms": 0.68
+      "avg_latency_ms": 835.69
     },
     "percentage_error": {
       "total": 54,
-      "accept_count": 5,
-      "false_accept_rate": 0.0926,
+      "accept_count": 16,
+      "false_accept_rate": 0.2963,
       "repair_count": 0,
-      "flag_count": 49,
-      "detection_count": 49,
-      "detection_rate": 0.9074,
+      "flag_count": 38,
+      "detection_count": 38,
+      "detection_rate": 0.7037,
       "repair_success_count": 0,
       "repair_success_rate": 0,
-      "avg_latency_ms": 0.67
+      "avg_latency_ms": 875.18
     },
     "period_error": {
+      "total": 54,
+      "accept_count": 22,
+      "false_accept_rate": 0.4074,
+      "repair_count": 0,
+      "flag_count": 32,
+      "detection_count": 32,
+      "detection_rate": 0.5926,
+      "repair_success_count": 0,
+      "repair_success_rate": 0,
+      "avg_latency_ms": 916.08
+    },
+    "scale_error": {
       "total": 54,
       "accept_count": 2,
       "false_accept_rate": 0.037,
@@ -57,19 +69,7 @@
       "detection_rate": 0.963,
       "repair_success_count": 0,
       "repair_success_rate": 0,
-      "avg_latency_ms": 0.63
-    },
-    "scale_error": {
-      "total": 54,
-      "accept_count": 0,
-      "false_accept_rate": 0.0,
-      "repair_count": 0,
-      "flag_count": 54,
-      "detection_count": 54,
-      "detection_rate": 1.0,
-      "repair_success_count": 0,
-      "repair_success_rate": 0,
-      "avg_latency_ms": 0.53
+      "avg_latency_ms": 900.12
     }
   }
 }
