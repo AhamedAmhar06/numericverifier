@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AuditSignalsPanel } from './components/AuditSignalsPanel';
 import { DecisionPanel } from './components/DecisionPanel';
 import { InputPanel } from './components/InputPanel';
 import { verifyAnswer } from './lib/api';
@@ -112,8 +111,6 @@ export default function App() {
         />
 
         <DecisionPanel response={response} error={verifyError} loading={loading} />
-
-        <AuditSignalsPanel response={response} />
       </div>
     </main>
   );

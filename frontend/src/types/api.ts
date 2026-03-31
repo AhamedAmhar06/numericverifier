@@ -96,6 +96,10 @@ export interface VerifyResponse {
   candidate_answer?: string;
   llm_used?: boolean;
   llm_fallback_reason?: string;
+  /** Grounding confidence score (0–1) from the ML model or grounding engine. */
+  grounding_confidence_score?: number | null;
+  /** Whether this result requires a human analyst to review before acting. */
+  requires_human_review?: boolean;
   /** Analyst-readable translation of verification results. */
   analyst_rationale?: AnalystRationale;
   /** SHAP explanation of the ML decision. */
