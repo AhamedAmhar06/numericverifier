@@ -100,6 +100,29 @@ def make_decision(
             rationale=f"Good evidence coverage ({signals.coverage_ratio:.1%}), but issues detected: {', '.join(issues)}. Errors appear correctable.",
         )
 
+    # UNVERIFIABLE distinguishes "I cannot check this" from
+    # "I checked and this is wrong" (FLAG).
+    # Unverifiable answers contain no detected violations but
+    # cannot be confirmed against the evidence table.
+    if (
+        signals.coverage_ratio < coverage_threshold
+        and signals.unsupported_claims_count > 0
+        and signals.scale_mismatch_count == 0
+        and signals.period_mismatch_count == 0
+        and getattr(signals, "pnl_identity_fail_count", 0) == 0
+        and getattr(signals, "pnl_margin_fail_count", 0) == 0
+        and getattr(signals, "pnl_missing_baseline_count", 0) == 0
+        and signals.recomputation_fail_count == 0
+    ):
+        return Decision(
+            decision="UNVERIFIABLE",
+            rationale=(
+                "Claims could not be grounded against evidence. No specific "
+                "constraint violations detected. "
+                "Escalate for human review."
+            ),
+        )
+
     # Default to FLAG
     issues = []
     if signals.coverage_ratio < coverage_threshold:

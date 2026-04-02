@@ -380,6 +380,15 @@ def decide(
         logger.info("Decision path: rules (USE_ML_DECIDER=false).")
         return make_decision(signals, verification_results)
 
+    # UNVERIFIABLE pre-ML check: if the rule-based engine determines the answer
+    # cannot be grounded (no violations, just missing evidence coverage), bypass
+    # the ML model and return UNVERIFIABLE directly.  The ML model would see low
+    # coverage and FLAG, which is less informative than a human-review escalation.
+    _rules_pre = make_decision(signals, verification_results)
+    if _rules_pre.decision == "UNVERIFIABLE":
+        logger.info("Decision path: UNVERIFIABLE (bypassing ML — no violations, claims ungrounded).")
+        return _rules_pre
+
     global _cached_model
     if model is None:
         if _cached_model is None:
@@ -418,7 +427,14 @@ def decide(
             ),
             ml_confidence=ml_decision.ml_confidence,
             ml_probabilities=ml_decision.ml_probabilities,
-            shap_explanation=ml_decision.shap_explanation,
+            shap_explanation=None,
+            override_note=(
+                "ACCEPT override applied: all verification signals are clear. "
+                "The ML component predicted %s, but the post-generation override gate "
+                "determined the answer is acceptable. "
+                "SHAP is suppressed because it reflects the pre-override ML prediction "
+                "and would misrepresent the final verdict." % ml_decision.decision
+            ),
         )
 
     return ml_decision

@@ -237,3 +237,43 @@ def test_pnl_synonym_accept():
     assert data["engine_used"] == "pnl"
     assert data["domain"].get("table_type") == "pnl"
     assert data["decision"] in ["ACCEPT", "FLAG"]
+
+
+def test_gross_profit_not_overwritten_by_gross_margin():
+    """
+    Regression: when a P&L table has both a 'Gross profit' row (absolute value)
+    and a 'Gross margin' row (percentage), the pnl_parser must NOT map 'Gross margin'
+    to the gross_profit canonical key.  Previously 'gross margin' was a synonym for
+    gross_profit, causing the percentage values (e.g. 9.2%) to overwrite the absolute
+    values (e.g. 291.8), making YoY difference questions unfalsifiable.
+
+    Confirmed fix: removed 'gross margin' from _SYNONYMS['gross_profit'] in pnl_parser.py.
+    """
+    table = {
+        "type": "table",
+        "content": {
+            "columns": ["", "2019", "2018"],
+            "rows": [
+                ["Net sales", "3164.4", "2873.5"],
+                ["Cost of sales", "2872.6", "2615.9"],
+                ["Gross profit", "291.8", "257.6"],
+                ["Gross margin", "9.2%", "9.0%"],
+                ["Operating income", "142.1", "118.3"],
+            ],
+        },
+    }
+    request_data = {
+        "question": "What was the change in the gross profit between 2018 and 2019?",
+        "evidence": table,
+        "candidate_answer": "The gross profit increased by 34.2.",
+        "options": {"tolerance": 0.01, "log_run": False},
+    }
+    response = client.post("/verify-only", json=request_data)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["engine_used"] == "pnl"
+    # With fix: gross_profit items have correct absolute values → execution verifies 34.2 → ACCEPT
+    assert data["decision"] == "ACCEPT", (
+        f"Expected ACCEPT after gross_margin synonym fix, got {data['decision']}. "
+        f"signals={data.get('signals')}"
+    )

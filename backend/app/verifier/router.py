@@ -278,6 +278,55 @@ def route_and_verify(
     normalized_claims = pass1["claims"]
 
     # ------------------------------------------------------------------
+    # LLM Fallback — Tier 3 of three-tier verification architecture.
+    # Fires only when symbolic+ML pipeline returned UNVERIFIABLE AND
+    # LLM provider is available.
+    # Purpose: verify derived computation claims (percentage change,
+    # difference, average) that the formula library cannot check
+    # symbolically. Falls back gracefully if provider unavailable.
+    #
+    # Tier 1: Symbolic constraints (deterministic)
+    # Tier 2: ML disambiguation (probabilistic)
+    # Tier 3: LLM fallback (targeted, derived claims only)
+    # ------------------------------------------------------------------
+    _llm_fallback_used = False
+    if decision.decision == "UNVERIFIABLE" and candidate_answer and question and content:
+        try:
+            from .llm_fallback import llm_verify_fallback, make_llm_caller
+            _caller = make_llm_caller()
+            if _caller is not None:
+                fallback_result = llm_verify_fallback(
+                    question=question,
+                    table_content=content,
+                    candidate_answer=candidate_answer,
+                    llm_caller=_caller,
+                )
+                if fallback_result == "ACCEPT":
+                    decision = Decision(
+                        decision="ACCEPT",
+                        rationale=(
+                            "Accepted via LLM fallback verification. "
+                            "Symbolic grounding was not possible for this "
+                            "derived computation. LLM confirmed numeric "
+                            "consistency with the evidence table."
+                        ),
+                    )
+                    _llm_fallback_used = True
+                elif fallback_result == "FLAG":
+                    decision = Decision(
+                        decision="FLAG",
+                        rationale=(
+                            "Flagged via LLM fallback verification. "
+                            "Symbolic grounding was not possible. "
+                            "LLM detected numeric inconsistency with "
+                            "the evidence table."
+                        ),
+                    )
+                    _llm_fallback_used = True
+        except Exception:
+            pass  # Fall through to UNVERIFIABLE
+
+    # ------------------------------------------------------------------
     # Repair-and-reverify loop (pass 2)
     # Fires when pass 1 → REPAIR.  Maximum 2 total pipeline runs.
     # ------------------------------------------------------------------
@@ -393,6 +442,7 @@ def route_and_verify(
         "ml_confidence": decision.ml_confidence,
         "ml_probabilities": decision.ml_probabilities,
         "shap_explanation": decision.shap_explanation,
+        "override_note": decision.override_note,
         "signals": signals.to_dict(),
         "claims": [c.to_dict() for c in normalized_claims],
         "grounding": [g.to_dict() for g in grounding],
@@ -412,6 +462,8 @@ def route_and_verify(
         "audit_summary": audit_summary,
         # Ingestion layer metadata
         "ingestion": ingestion_meta,
+        # LLM fallback metadata (True when Tier 3 resolved an UNVERIFIABLE case)
+        "llm_fallback_used": _llm_fallback_used,
     }
     if repair_audit is not None:
         result["repair_audit"] = repair_audit
