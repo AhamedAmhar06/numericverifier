@@ -30,7 +30,7 @@ _SYNONYMS: Dict[str, List[str]] = {
         "cost of products", "cost of services", "total cost of sales",
         "total cost of revenue",
     ],
-    "gross_profit": ["gross profit", "gross income", "gross margin"],
+    "gross_profit": ["gross profit", "gross income"],
     # Individual opex line items get their own keys so the ratio library can
     # verify claims like "R&D as % of revenue" without value collisions.
     # These keys appear before "operating_expenses" so Pass 1 (exact match)

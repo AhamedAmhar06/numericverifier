@@ -66,3 +66,28 @@ def test_extract_multiple_numbers():
     assert claims[1].parsed_value == 1500000.0
     assert claims[2].parsed_value == 2000000.0
 
+
+def test_year_token_not_extracted_as_claim():
+    """
+    Regression test: year references in temporal context must not
+    be extracted as numeric financial claims.
+    Confirmed bug: 2023 was being extracted and scale-expanded.
+    """
+    answer = "Apple's net revenue in 2023 was $383.285 billion."
+    claims = extract_numeric_claims(answer)
+    numeric_values = [
+        float(str(c.parsed_value).replace(',', ''))
+        for c in claims
+        if c.parsed_value is not None
+    ]
+    year_tokens = [v for v in numeric_values if 1900 <= v <= 2099]
+    assert year_tokens == [], (
+        f"Year token extracted as financial claim: {year_tokens}. "
+        f"All extracted values: {numeric_values}"
+    )
+    non_year = [v for v in numeric_values if v > 100 and not 1900 <= v <= 2099]
+    assert len(non_year) >= 1, (
+        f"Expected at least one revenue value extracted, found none. "
+        f"All values: {numeric_values}"
+    )
+

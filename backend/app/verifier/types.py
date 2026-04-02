@@ -225,6 +225,7 @@ class Decision:
     ml_confidence: Optional[float] = None
     ml_probabilities: Optional[Dict[str, float]] = None
     shap_explanation: Optional[Dict[str, Any]] = None
+    override_note: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""

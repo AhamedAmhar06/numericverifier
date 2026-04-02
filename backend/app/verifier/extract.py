@@ -147,5 +147,40 @@ def extract_numeric_claims(text: str) -> List[NumericClaim]:
             scale_token=scale_token
         )
         claims.append(claim)
-    
+
+    # Year-token filter: 4-digit integers 1900-2099 in temporal context
+    # (e.g., "revenue in 2023") are period labels, not financial values.
+    # Confirmed bug: without this filter, year tokens pass through the
+    # scale normalizer and produce grounding failures on valid answers.
+    # Fix applied after reproduction confirmed in current worktree.
+    _TEMPORAL_PRECEDING = {"in", "for", "fiscal", "fy", "year", "during", "of", "since"}
+    _CURRENCY_SYMS = {"$", "£", "€", "usd", "gbp", "eur"}
+    _SCALE_WORDS = {
+        "million", "millions", "billion", "billions", "thousand", "thousands",
+        "trillion", "trillions", "m", "b", "k", "mn", "bn",
+    }
+    filtered = []
+    for cl in claims:
+        pv = cl.parsed_value
+        keep = True
+        if pv is not None:
+            try:
+                fv = float(pv)
+                if 1900.0 <= fv <= 2099.0 and fv == int(fv):
+                    s, e = cl.char_span
+                    before_words = text[:s].split()
+                    prec = before_words[-1].lower().strip(".,;:") if before_words else ""
+                    char_before = text[max(0, s - 5):s].strip().lower()
+                    has_currency = any(sym in char_before for sym in _CURRENCY_SYMS)
+                    after_str = text[e:min(len(text), e + 25)].strip().lower()
+                    after_first = after_str.split()[0].strip(".,;:") if after_str else ""
+                    has_scale_after = after_first in _SCALE_WORDS
+                    if prec in _TEMPORAL_PRECEDING or (not has_currency and not has_scale_after):
+                        keep = False
+            except (TypeError, ValueError):
+                pass
+        if keep:
+            filtered.append(cl)
+    claims = filtered
+
     return claims
